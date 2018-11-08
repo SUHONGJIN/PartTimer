@@ -1,0 +1,132 @@
+package com.bee.parttimer.view.activity;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
+import com.bee.parttimer.R;
+import com.bee.parttimer.base.BaseActivity;
+import com.bee.parttimer.utils.StatusBarUtil;
+import com.bee.parttimer.view.fragment.HomeFragment;
+import com.bee.parttimer.view.fragment.MessageFragment;
+import com.bee.parttimer.view.fragment.MyFragment;
+import com.bee.parttimer.view.fragment.PostFragment;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
+    private FragmentManager fragmentManager;
+    @BindView(R.id.rb_home)
+    RadioButton rb_home;
+    @BindView(R.id.rb_post)
+    RadioButton rb_post;
+    @BindView(R.id.rb_message)
+    RadioButton rb_message;
+    @BindView(R.id.rb_my)
+    RadioButton rb_my;
+    @BindView(R.id.rg_bottom)
+    RadioGroup rg_bottom;
+    @BindView(R.id.fl_content)
+    FrameLayout fl_content;
+    private Fragment fragmentHome, fragmentPost, fragmentMessage, fragmentMy;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //绑定初始化ButterKnife
+        ButterKnife.bind(this);
+        //设置状态栏的样式
+        setStatuBar();
+
+        initView();
+    }
+
+    /**
+     * 初始化view
+     */
+    public void initView() {
+        rg_bottom.setOnCheckedChangeListener(this);
+        //初始化默认第一个RadioButton为选中状态
+        rb_home.setChecked(true);
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
+    /**
+     * 切换fragment
+     * @param radioGroup
+     * @param i
+     */
+
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        hideAllFragment(transaction);
+        switch (i) {
+            case R.id.rb_home:
+                if (rb_home != null) {
+                    fragmentHome = new HomeFragment();
+                    transaction.add(R.id.fl_content, fragmentHome);
+                } else {
+                    transaction.show(fragmentHome);
+                }
+                break;
+            case R.id.rb_post:
+                if (rb_post != null) {
+                    fragmentPost = new PostFragment();
+                    transaction.add(R.id.fl_content, fragmentPost);
+                } else {
+                    transaction.show(fragmentPost);
+                }
+                break;
+            case R.id.rb_message:
+                if (rb_message != null) {
+                    fragmentMessage = new MessageFragment();
+                    transaction.add(R.id.fl_content, fragmentMessage);
+                } else {
+                    transaction.show(fragmentMessage);
+                }
+                break;
+            case R.id.rb_my:
+                if (rb_my != null) {
+                    fragmentMy = new MyFragment();
+                    transaction.add(R.id.fl_content, fragmentMy);
+                } else {
+                    transaction.show(fragmentMy);
+                }
+                break;
+        }
+        transaction.commit();
+    }
+
+
+    /**
+     * 隐藏fragment
+     *
+     * @param transaction
+     */
+    private void hideAllFragment(FragmentTransaction transaction) {
+        if (fragmentHome != null) {
+            transaction.hide(fragmentHome);
+        }
+        if (fragmentPost != null) {
+            transaction.hide(fragmentPost);
+        }
+        if (fragmentMessage != null) {
+            transaction.hide(fragmentMessage);
+        }
+        if (fragmentMy != null) {
+            transaction.hide(fragmentMy);
+        }
+    }
+}
