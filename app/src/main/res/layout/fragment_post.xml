@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#fff">
     <RelativeLayout
@@ -19,10 +20,19 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#ddd"/>
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="广场"/>
+        android:layout_height="match_parent">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/float_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/yellow"
+            app:rippleColor="@color/gray"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            app:maxImageSize="30dp"
+            android:src="@mipmap/ic_post_d"/>
+    </FrameLayout>
 
 </LinearLayout>

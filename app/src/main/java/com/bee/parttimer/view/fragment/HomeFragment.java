@@ -31,10 +31,6 @@ public class HomeFragment extends BaseFragment {
 
     @BindView(R.id.mBanner)
     Banner mBanner;
-    @BindView(R.id.btn_test)
-    Button btn_test;
-    @BindView(R.id.btn_test2)
-    Button btn_test2;
 
     private Unbinder unbander;
     private List<String> bannerList;
@@ -45,23 +41,13 @@ public class HomeFragment extends BaseFragment {
         View view=inflater.inflate(R.layout.fragment_home,container,false);
         //绑定的时候返回一个unbander对象
         unbander = ButterKnife.bind(this,view);
-        initView();
+        initView(view);
         initData();
         return view;
     }
 
-    @OnClick(R.id.btn_test)
-    public void click(View view){
-        ToastUtils.setOkToast(getContext(),"测试测试1");
-    }
-    @OnClick(R.id.btn_test2)
-    public void ssss(View view2){
-        ToastUtils.setOkToast(getContext(),"测试测试2");
-    }
-
-
     @Override
-    public void initView() {
+    public void initView(View view) {
         //图片地址集合
         bannerList=new ArrayList<>();
         bannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541497492385&di=128d8fbb2d1a07f1a26149ca68540b59&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a9225995332f0000002129d42836.jpg%402o.jpg");
