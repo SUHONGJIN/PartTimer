@@ -21,8 +21,7 @@
         </activity>
         <activity android:name=".view.activity.SettingActivity" />
         <activity android:name=".view.activity.WelcomeGuideActivity" />
-        <activity android:name=".view.activity.LoginActivity" />
-        <activity android:name=".test.TestActivity" />
+        <activity android:name=".view.activity.LoginActivity" />/>
     </application>
 
 </manifest>
