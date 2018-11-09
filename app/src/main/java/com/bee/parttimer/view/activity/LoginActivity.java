@@ -1,18 +1,25 @@
 package com.bee.parttimer.view.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.bee.parttimer.R;
+import com.bee.parttimer.base.BaseActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        Log.i("tag","测试专用");
-        Log.i("tag","测试专用");
+    public int getContentViewResId() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    public void initView(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public void initData() {
+
     }
 }

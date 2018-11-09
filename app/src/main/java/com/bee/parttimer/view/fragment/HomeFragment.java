@@ -32,18 +32,11 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.mBanner)
     Banner mBanner;
 
-    private Unbinder unbander;
     private List<String> bannerList;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_home,container,false);
-        //绑定的时候返回一个unbander对象
-        unbander = ButterKnife.bind(this,view);
-        initView(view);
-        initData();
-        return view;
+    public int getLayoutResId() {
+        return R.layout.fragment_home;
     }
 
     @Override
@@ -70,15 +63,5 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    public void initData() {
-        //Toast.makeText(getContext(),"我重写了父类的方法Data()",Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        //解绑
-        unbander.unbind();
-    }
-
+    public void initData() {}
 }

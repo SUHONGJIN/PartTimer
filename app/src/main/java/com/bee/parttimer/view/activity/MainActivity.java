@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 
 import com.bee.parttimer.R;
 import com.bee.parttimer.base.BaseActivity;
+import com.bee.parttimer.utils.ActivityCollector;
 import com.bee.parttimer.view.fragment.HomeFragment;
 import com.bee.parttimer.view.fragment.MessageFragment;
 import com.bee.parttimer.view.fragment.MyFragment;
@@ -119,4 +120,5 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             transaction.hide(fragmentMy);
         }
     }
+
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ItemView">
+        <attr name="setIcon" format="integer"/>
+        <attr name="setText" format="string"/>
+        <attr name="isShowRightIcon" format="boolean"/>
+        <attr name="isShowLine" format="boolean"/>
+    </declare-styleable>
+</resources>

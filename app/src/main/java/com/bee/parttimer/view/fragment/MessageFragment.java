@@ -8,16 +8,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bee.parttimer.R;
+import com.bee.parttimer.base.BaseFragment;
 
 /**
  * Created by SuHongJin on 2018/10/14.
  */
 
-public class MessageFragment extends Fragment {
-    @Nullable
+public class MessageFragment extends BaseFragment {
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_message,container,false);
-        return view;
+    public int getLayoutResId() {
+        return R.layout.fragment_message;
+    }
+
+    @Override
+    public void initView(View view) {
+
+    }
+
+    @Override
+    public void initData() {
+
     }
 }

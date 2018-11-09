@@ -1,66 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="#f2f2f2">
+    android:background="@color/bg_color"
+    android:orientation="vertical">
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingTop="0dp">
+
             <RelativeLayout
                 android:id="@+id/rl_userdata"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
+                android:paddingTop="10dp">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="未知地球人"
                         android:textColor="@color/black"
-                        android:gravity="center_vertical"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:textSize="14sp"
                         android:gravity="center_vertical"
-                        android:text="马上登录查看更多哟~"/>
+                        android:text="马上登录查看更多哟~"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_userhead"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:src="@drawable/head"
                     android:layout_alignParentRight="true"
+                    android:src="@drawable/head"
                     app:civ_border_color="@color/black"
-                    app:civ_border_width="1dp"/>
+                    app:civ_border_width="1dp" />
 
             </RelativeLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@color/gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1500dp" />
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/ic_my_s"
+                    android:gravity="center"
+                    android:text="消息" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/ic_my_s"
+                    android:gravity="center"
+                    android:text="消息" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/ic_my_s"
+                    android:gravity="center"
+                    android:text="消息" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/ic_my_s"
+                    android:gravity="center"
+                    android:text="消息" />
+            </LinearLayout>
+
+            <com.bee.parttimer.widget.ItemView
+                android:id="@+id/itemview_item1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:isShowLine="true"
+                app:setIcon="@mipmap/ic_home_d"
+                app:setText="@string/item1_name">
+
+            </com.bee.parttimer.widget.ItemView>
+
+            <com.bee.parttimer.widget.ItemView
+                android:id="@+id/itemview_item2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isShowLine="true"
+                app:setIcon="@mipmap/ic_home_s"
+                app:setText="@string/item2_name">
+
+            </com.bee.parttimer.widget.ItemView>
+
+            <com.bee.parttimer.widget.ItemView
+                android:id="@+id/itemview_item3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isShowLine="true"
+                app:setIcon="@mipmap/ic_post_d"
+                app:setText="@string/item3_name">
+
+            </com.bee.parttimer.widget.ItemView>
+
+            <com.bee.parttimer.widget.ItemView
+                android:id="@+id/itemview_item4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isShowLine="false"
+                app:setIcon="@mipmap/ic_post_s"
+                app:setText="@string/item4_name">
+
+            </com.bee.parttimer.widget.ItemView>
+
+
+            <com.bee.parttimer.widget.ItemView
+                android:id="@+id/itemview_item5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:isShowLine="true"
+                app:setIcon="@mipmap/ic_message_s"
+                app:setText="@string/item5_name">
+
+            </com.bee.parttimer.widget.ItemView>
+
+            <com.bee.parttimer.widget.ItemView
+                android:id="@+id/itemview_item6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isShowLine="true"
+                app:setIcon="@mipmap/ic_message_d"
+                app:setText="@string/item6_name">
+
+            </com.bee.parttimer.widget.ItemView>
+
+            <com.bee.parttimer.widget.ItemView
+                android:id="@+id/itemview_item7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isShowLine="true"
+                app:setIcon="@mipmap/ic_my_s"
+                app:setText="@string/item7_name">
+
+            </com.bee.parttimer.widget.ItemView>
+
+            <com.bee.parttimer.widget.ItemView
+                android:id="@+id/itemview_item8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isShowLine="false"
+                app:setIcon="@mipmap/ic_my_s"
+                app:setText="@string/item8_name">
+
+            </com.bee.parttimer.widget.ItemView>
+
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

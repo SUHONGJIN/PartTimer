@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">蜜蜂兼职</string>
+
+
+    <string name="item1_name">我的简历</string>
+    <string name="item2_name">我的收藏</string>
+    <string name="item3_name">个人认证</string>
+    <string name="item4_name">我的钱包</string>
+
+    <string name="item5_name">帮助与反馈</string>
+    <string name="item6_name">关于我们</string>
+    <string name="item7_name">发布兼职</string>
+    <string name="item8_name">我的设置</string>
 </resources>
