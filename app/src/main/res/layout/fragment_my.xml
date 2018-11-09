@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#fff">
+    android:background="#f2f2f2">
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -11,12 +12,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="25dp">
+            android:paddingTop="0dp">
             <RelativeLayout
+                android:id="@+id/rl_userdata"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+                android:layout_height="100dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:background="@color/white"
                 android:orientation="horizontal">
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -39,20 +44,19 @@
                         android:text="马上登录查看更多哟~"/>
                 </LinearLayout>
 
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:background="@drawable/head"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/head"
+                    android:layout_alignParentRight="true"
+                    app:civ_border_color="@color/black"
+                    app:civ_border_width="1dp"/>
 
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:background="@color/gray"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_height="0dp"
+                android:background="@color/gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"

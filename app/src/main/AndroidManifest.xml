@@ -21,7 +21,9 @@
         </activity>
         <activity android:name=".view.activity.SettingActivity" />
         <activity android:name=".view.activity.WelcomeGuideActivity" />
-        <activity android:name=".view.activity.LoginActivity" />/>
+        <activity android:name=".view.activity.LoginActivity" />
+        />
+        <activity android:name=".view.activity.UserDataActivity"></activity>
     </application>
 
 </manifest>
