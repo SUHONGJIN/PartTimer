@@ -4,20 +4,19 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.bee.parttimer.R;
 import com.bee.parttimer.base.BaseActivity;
-import com.bee.parttimer.utils.StatusBarUtil;
 import com.bee.parttimer.view.fragment.HomeFragment;
 import com.bee.parttimer.view.fragment.MessageFragment;
 import com.bee.parttimer.view.fragment.MyFragment;
 import com.bee.parttimer.view.fragment.PostFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
     private FragmentManager fragmentManager;
@@ -35,31 +34,22 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     FrameLayout fl_content;
     private Fragment fragmentHome, fragmentPost, fragmentMessage, fragmentMy;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //绑定初始化ButterKnife
-        ButterKnife.bind(this);
-        //设置状态栏的样式
-        setStatuBar();
 
-        initView();
+    @Override
+    public int getContentViewResId() {
+        return R.layout.activity_main;
     }
 
-    /**
-     * 初始化view
-     */
-    public void initView() {
+    @Override
+    public void initView(Bundle savedInstanceState) {
+        //注册监听
         rg_bottom.setOnCheckedChangeListener(this);
         //初始化默认第一个RadioButton为选中状态
         rb_home.setChecked(true);
     }
 
     @Override
-    public void initData() {
-
-    }
+    public void initData() {}
 
     /**
      * 切换fragment
@@ -106,7 +96,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 }
                 break;
         }
-        transaction.commit();
+        transaction.commit(); //事务提交
     }
 
 

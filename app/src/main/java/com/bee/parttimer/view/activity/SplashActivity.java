@@ -17,16 +17,12 @@ import java.util.TimerTask;
 public class SplashActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        //设置状态栏的样式
-        setStatuBar();
-        initView();
-
+    public int getContentViewResId() {
+        return R.layout.activity_splash;
     }
+
     @Override
-    public void initView() {
+    public void initView(Bundle savedInstanceState) {
         /**
          * 定时器，作用于延时页面跳转
          */
@@ -51,7 +47,5 @@ public class SplashActivity extends BaseActivity {
     }
 
     @Override
-    public void initData() {
-
-    }
+    public void initData() {}
 }

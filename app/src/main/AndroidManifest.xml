@@ -20,8 +20,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.SettingActivity" />
-        <activity android:name=".view.activity.WelcomeGuideActivity"></activity>
-        <activity android:name=".view.activity.LoginActivity"></activity>
+        <activity android:name=".view.activity.WelcomeGuideActivity" />
+        <activity android:name=".view.activity.LoginActivity" />
+        <activity android:name=".test.TestActivity" />
     </application>
 
 </manifest>

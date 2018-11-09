@@ -18,13 +18,13 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="60dp"
-        android:textSize="15sp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:textSize="14sp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:textColor="@color/black"
         android:background="@drawable/selector_btn_bg"
         android:visibility="gone"
-        android:text="立即进入"
+        android:text="立即体验"
         />
 
 </RelativeLayout>

@@ -5,28 +5,63 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.bee.parttimer.utils.ActivityCollector;
 import com.bee.parttimer.utils.StatusBarUtil;
 
+import butterknife.ButterKnife;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getContentViewResId());
+
+        //绑定初始化ButterKnife
+        ButterKnife.bind(this);
+
+        //设置状态栏
+        setStatuBar();
+
+        //初始化控件
+        initView(savedInstanceState);
+
+        //初始化数据
+        initData();
+
+        //添加Activity
+        ActivityCollector.addActivity(this);
     }
-    public void setStatuBar(){
-        StatusBarUtil.transparencyBar(this); //设置状态栏全透明
-        StatusBarUtil.StatusBarLightMode(this); //设置白底黑字
-    }
+
+    /**
+     * 获取xml布局
+     * @return
+     */
+    public abstract int getContentViewResId();
 
     /**
      * 初始化控件
      */
-    public abstract void initView();
+    public abstract void initView(Bundle savedInstanceState);
 
     /**
      * 初始化数据
      */
     public abstract void initData();
 
+    /**
+     * 设置状态栏
+     */
+    public void setStatuBar(){
+        StatusBarUtil.transparencyBar(this); //设置状态栏全透明
+        StatusBarUtil.StatusBarLightMode(this); //设置白底黑字
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //移除Activity
+        ActivityCollector.removeActivity(this);
+    }
 }

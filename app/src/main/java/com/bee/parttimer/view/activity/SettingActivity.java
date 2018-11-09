@@ -13,11 +13,15 @@ public class SettingActivity extends BaseActivity implements ISettingAView {
 
     private ISettingAPresenter mISettingAPresenter;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public int getContentViewResId() {
+        return R.layout.activity_setting;
+    }
+
+    @Override
+    public void initView(Bundle savedInstanceState) {
         mISettingAPresenter = new SettingAPresenterImpl(this);
-        setContentView(R.layout.activity_setting);
     }
 
     @Override
@@ -30,10 +34,6 @@ public class SettingActivity extends BaseActivity implements ISettingAView {
 
     }
 
-    @Override
-    public void initView() {
-
-    }
 
     @Override
     public void initData() {

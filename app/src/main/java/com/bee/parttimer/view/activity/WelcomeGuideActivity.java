@@ -3,7 +3,6 @@ package com.bee.parttimer.view.activity;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,11 @@ import android.widget.ImageView;
 
 import com.bee.parttimer.R;
 import com.bee.parttimer.base.BaseActivity;
-import com.bee.parttimer.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class WelcomeGuideActivity extends BaseActivity {
@@ -30,80 +27,58 @@ public class WelcomeGuideActivity extends BaseActivity {
 
     List<View> list;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guide);
-
-        //设置状态栏样式
-        setStatuBar();
-
-        //初始化绑定
-        ButterKnife.bind(this);
-        initViewPager();
-        //设置适配器
-        viewPager.setAdapter(new MyPagerAdapter());
+    public int getContentViewResId() {
+        return R.layout.activity_guide;
     }
 
+    /**
+     * 跳转到主页
+     *
+     * @param view
+     */
     @OnClick(R.id.btn_guide)
-    public void click(View view){
-        //跳转到主页
-        startActivity(new Intent(WelcomeGuideActivity.this,MainActivity.class));
+    public void click(View view) {
+        startActivity(new Intent(WelcomeGuideActivity.this, MainActivity.class));
         finish();
     }
 
     /**
      * 初始化ViewPager
      */
-    private void initViewPager() {
-        list=new ArrayList<View>();
+    @Override
+    public void initView(Bundle savedInstanceState) {
 
-        ImageView iv1=new ImageView(this);
-        iv1.setImageResource(R.drawable.bg_guide1);
-        iv1.setScaleType(ImageView.ScaleType.FIT_XY);
+        list = new ArrayList<View>();
 
-        ImageView iv2=new ImageView(this);
+        ImageView iv1 = new ImageView(this);
+
+        iv1.setImageResource(R.drawable.bg_guide1);     //为ImageView添加图片资源
+        iv1.setScaleType(ImageView.ScaleType.FIT_XY);   //设置图片充满屏幕
+        list.add(iv1);                                  //把ImageView添加到list集合
+
+        ImageView iv2 = new ImageView(this);
         iv2.setImageResource(R.drawable.bg_guide2);
         iv2.setScaleType(ImageView.ScaleType.FIT_XY);
-
-        ImageView iv3=new ImageView(this);
-        //为ImageView添加图片资源
-        iv3.setImageResource(R.drawable.bg_guide3);
-        //设置图片充满屏幕
-        iv3.setScaleType(ImageView.ScaleType.FIT_XY);
-
-        //把ImageView添加到list集合
-        list.add(iv1);
         list.add(iv2);
+
+        ImageView iv3 = new ImageView(this);
+        iv3.setImageResource(R.drawable.bg_guide3);
+        iv3.setScaleType(ImageView.ScaleType.FIT_XY);
         list.add(iv3);
 
-        //监听ViewPager滑动的效果
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-            //选中的页卡
-            @Override
-            public void onPageSelected(int position) {
-                //如果是第三个页面就显示按钮，反之不显示
-                if (position==2){
-                    btn_guide.setVisibility(View.VISIBLE);
-                }else{
-                    btn_guide.setVisibility(View.GONE);
-                }
-            }
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
+        setPager();
+
     }
 
-
+    @Override
+    public void initData() {}
 
     /**
      * ViewPager的适配器
      */
-    class MyPagerAdapter extends PagerAdapter{
+    class MyPagerAdapter extends PagerAdapter {
 
         //计算item个数
         @Override
@@ -113,7 +88,7 @@ public class WelcomeGuideActivity extends BaseActivity {
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view==object;
+            return view == object;
         }
 
         @Override
@@ -128,15 +103,36 @@ public class WelcomeGuideActivity extends BaseActivity {
             container.removeView(list.get(position));
         }
     }
-    @Override
-    public void initView() {
 
+    /**
+     * 设置ViewPager
+     */
+    private void setPager() {
+        //监听ViewPager滑动的效果
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            //选中的页卡
+            @Override
+            public void onPageSelected(int position) {
+                //如果是第三个页面就显示按钮，反之不显示
+                if (position == 2) {
+                    btn_guide.setVisibility(View.VISIBLE);
+                } else {
+                    btn_guide.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+        //设置适配器
+        viewPager.setAdapter(new MyPagerAdapter());
     }
 
-    @Override
-    public void initData() {
-
-    }
 
 }
 
