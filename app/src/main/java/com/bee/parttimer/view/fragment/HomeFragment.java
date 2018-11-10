@@ -43,8 +43,9 @@ public class HomeFragment extends BaseFragment {
     public void initView(View view) {
         //图片地址集合
         bannerList=new ArrayList<>();
-        bannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541497492385&di=128d8fbb2d1a07f1a26149ca68540b59&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a9225995332f0000002129d42836.jpg%402o.jpg");
+
         bannerList.add("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=147527940,74269358&fm=26&gp=0.jpg");
+        bannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541497492385&di=128d8fbb2d1a07f1a26149ca68540b59&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a9225995332f0000002129d42836.jpg%402o.jpg");
         bannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541497716885&di=6f19350f7712b24e765c603bdd88f73f&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01d1d257747cce0000012e7e28e6ef.jpg%402o.jpg");
         //图片装载机
         ImageLoader imageLoader=new ImageLoader() {

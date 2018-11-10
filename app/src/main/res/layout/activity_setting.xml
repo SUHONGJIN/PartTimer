@@ -4,6 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/bg_color"
+    android:orientation="vertical"
     tools:context="com.bee.parttimer.view.activity.SettingActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/white">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/icon_back_d"
+            android:padding="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <com.bee.parttimer.widget.ItemView
+        android:id="@+id/setting_itemview1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:isShowLeftIcon="false"
+        android:layout_marginTop="10dp"
+        app:isShowLine="false"
+        app:setText="@string/setting_item1_name"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/item_color"
+        />
+    <com.bee.parttimer.widget.ItemView
+        android:id="@+id/setting_itemview2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:isShowLeftIcon="false"
+        app:isShowLine="false"
+        app:setText="@string/setting_item2_name"/>
+    <com.bee.parttimer.widget.ItemView
+        android:id="@+id/setting_itemview3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:isShowLeftIcon="false"
+        app:isShowLine="false"
+        android:layout_marginTop="10dp"
+        app:setText="@string/setting_item3_name"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/item_color"
+        />
+    <com.bee.parttimer.widget.ItemView
+        android:id="@+id/setting_itemview4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:isShowLeftIcon="false"
+        app:isShowLine="false"
+        app:setText="@string/setting_item4_name"/>
+
+    <TextView
+        android:id="@+id/tv_logout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="退出登录"
+        android:textColor="@color/red"
+        android:background="@drawable/selector_itemview_bg"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:gravity="center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="2018 beept.cn v1.0"
+            android:textSize="12sp"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
 
 </LinearLayout>

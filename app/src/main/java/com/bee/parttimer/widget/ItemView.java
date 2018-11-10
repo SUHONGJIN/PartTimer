@@ -46,11 +46,12 @@ public class ItemView extends LinearLayout {
 
         int setIcon=typedArray.getResourceId(R.styleable.ItemView_setIcon,R.mipmap.ic_my_d);
         String setText=typedArray.getString(R.styleable.ItemView_setText);
+        Boolean isShowLeftIcon=typedArray.getBoolean(R.styleable.ItemView_isShowLeftIcon,true);
         Boolean isShowRightIcon=typedArray.getBoolean(R.styleable.ItemView_isShowRightIcon,true);
         Boolean isShowLine=typedArray.getBoolean(R.styleable.ItemView_isShowLine,true);
 
         //通过绑定属性设置自定义的View
-        setView(setIcon,setText,isShowRightIcon,isShowLine);
+        setView(setIcon,setText,isShowLeftIcon,isShowRightIcon,isShowLine);
 
         //回收
         typedArray.recycle();
@@ -59,10 +60,11 @@ public class ItemView extends LinearLayout {
      * 可调用该方法去设置我们的自定义View
      * @param setIcon  设置图片
      * @param setText  设置标题
+     * @param isShowLeftIcon   是否显示左边的图标
      * @param isShowRightIcon   是否显示右边的图标
      * @param isShowLine  是否显示线条
      */
-    public void setView(int setIcon,String setText,Boolean isShowRightIcon,Boolean isShowLine){
+    public void setView(int setIcon,String setText,Boolean isShowLeftIcon,Boolean isShowRightIcon,Boolean isShowLine){
 
         if (setIcon != 0){
             iv_itemview_icon.setImageResource(setIcon);
@@ -70,6 +72,12 @@ public class ItemView extends LinearLayout {
 
         if (setText != null){
             tv_itemview_text.setText(setText);
+        }
+
+        if (isShowLeftIcon){
+            iv_itemview_icon.setVisibility(View.VISIBLE);
+        }else {
+            iv_itemview_icon.setVisibility(View.GONE);
         }
 
         if (isShowRightIcon){

@@ -64,42 +64,48 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
-                android:padding="10dp">
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp">
 
-                <TextView
+                <com.bee.parttimer.widget.ItemMenu
+                    android:id="@+id/itemmenu_item1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:drawableTop="@mipmap/ic_my_s"
                     android:gravity="center"
-                    android:text="消息" />
+                    app:setMenuIcon="@mipmap/ic_message_d"
+                    app:setMenuText="@string/my_menu1_name" />
 
-                <TextView
+                <com.bee.parttimer.widget.ItemMenu
+                    android:id="@+id/itemmenu_item2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:drawableTop="@mipmap/ic_my_s"
                     android:gravity="center"
-                    android:text="消息" />
+                    app:setMenuIcon="@mipmap/ic_home_d"
+                    app:setMenuText="@string/my_menu2_name" />
 
-                <TextView
+                <com.bee.parttimer.widget.ItemMenu
+                    android:id="@+id/itemmenu_item3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:drawableTop="@mipmap/ic_my_s"
                     android:gravity="center"
-                    android:text="消息" />
+                    app:setMenuIcon="@mipmap/ic_post_d"
+                    app:setMenuText="@string/my_menu3_name" />
 
-                <TextView
+                <com.bee.parttimer.widget.ItemMenu
+                    android:id="@+id/itemmenu_item4"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:drawableTop="@mipmap/ic_my_s"
                     android:gravity="center"
-                    android:text="消息" />
+                    app:setMenuIcon="@mipmap/ic_home_d"
+                    app:setMenuText="@string/my_menu4_name" />
+
             </LinearLayout>
 
             <com.bee.parttimer.widget.ItemView
@@ -184,6 +190,26 @@
                 app:setText="@string/item8_name">
 
             </com.bee.parttimer.widget.ItemView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="客服电话 400-098-8888 工作时间 9:30-18:30"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="用户协议及隐私政策 | 防骗指南 "
+                    android:textSize="12sp" />
+            </LinearLayout>
 
         </LinearLayout>
 

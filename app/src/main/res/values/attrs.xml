@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--ItemView-->
     <declare-styleable name="ItemView">
         <attr name="setIcon" format="integer"/>
         <attr name="setText" format="string"/>
+        <attr name="isShowLeftIcon" format="boolean"/>
         <attr name="isShowRightIcon" format="boolean"/>
         <attr name="isShowLine" format="boolean"/>
     </declare-styleable>
+
+    <!--ItemMenu-->
+    <declare-styleable name="ItemMenu">
+        <attr name="setMenuIcon" format="integer"/>
+        <attr name="setMenuText" format="string"/>
+    </declare-styleable>
+
 </resources>
