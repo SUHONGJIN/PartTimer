@@ -1,15 +1,25 @@
 package com.bee.parttimer.view.fragment;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.baidu.location.BDAbstractLocationListener;
+import com.baidu.location.BDLocation;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.bee.parttimer.R;
 import com.bee.parttimer.base.BaseFragment;
 import com.bee.parttimer.utils.ToastUtils;
@@ -32,7 +42,15 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.mBanner)
     Banner mBanner;
 
+    @BindView(R.id.tv_location)
+    TextView tv_location;
+
+    public LocationClient mLocationClient = null;
+    private MyLocationListener myListener = new MyLocationListener();
+
     private List<String> bannerList;
+    //创建权限集合
+    private List<String> permissionList=new ArrayList<>();
 
     @Override
     public int getLayoutResId() {
@@ -61,8 +79,87 @@ public class HomeFragment extends BaseFragment {
         mBanner.setIndicatorGravity(BannerConfig.CENTER);  //设置指示器位置
         mBanner.start();  //开始执行
 
+        //配置定位SDK参数
+        mLocationClient = new LocationClient(getActivity().getApplicationContext());
+        mLocationClient.registerLocationListener(myListener);
+        LocationClientOption option = new LocationClientOption();
+        option.setIsNeedAddress(true);
+        mLocationClient.setLocOption(option);
+
+        //检查权限是否获取
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+        if (ContextCompat.checkSelfPermission(getContext(),Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if(ContextCompat.checkSelfPermission(getContext(),Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.READ_PHONE_STATE);
+        }
+
+        if (!permissionList.isEmpty()){
+            String[] permission = permissionList.toArray(new String[permissionList.size()]);
+            ActivityCompat.requestPermissions(getActivity(),permission,1);
+        }else{
+            //开始定位
+            requestLocation();
+        }
+
+    }
+
+    /**
+     * 初始化一些定位配置
+     */
+    @Override
+    public void initData() {
+
+    }
+
+    /**
+     * 开始定位的方法
+     */
+    public void requestLocation(){
+        mLocationClient.start();
+    }
+
+    /**
+     * 获取定位结果
+     */
+    public class MyLocationListener extends BDAbstractLocationListener {
+        @Override
+        public void onReceiveLocation(BDLocation location){
+
+            String addr = location.getAddrStr();    //获取详细地址信息
+            String country = location.getCountry();    //获取国家
+            String province = location.getProvince();    //获取省份
+            String city = location.getCity();    //获取城市
+            String district = location.getDistrict();    //获取区县
+            String street = location.getStreet();    //获取街道信息
+
+            if (city != null) {
+                tv_location.setText(city);
+            }
+
+        }
     }
 
     @Override
-    public void initData() {}
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 1:
+                if (grantResults.length > 0){
+                    for (int results : grantResults){
+                        if (results != PackageManager.PERMISSION_GRANTED){
+                            ToastUtils.setOkToast(getContext(),"为了能正常使用APP，建议打开相应的权限~");
+                        }else {
+                            requestLocation();
+                        }
+                    }
+                }else{
+                    ToastUtils.setOkToast(getContext(),"未知权限错误！");
+                }
+                break;
+            default:break;
+        }
+    }
 }
