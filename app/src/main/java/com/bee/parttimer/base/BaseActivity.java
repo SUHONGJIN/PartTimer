@@ -18,7 +18,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getContentViewResId());
 
-        //绑定初始化ButterKnife
+        //绑定初始化ButterKnife、
         ButterKnife.bind(this);
 
         //设置状态栏

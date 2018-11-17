@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import com.bee.parttimer.R;
 import com.bee.parttimer.base.BaseFragment;
 import com.bee.parttimer.utils.ToastUtils;
+import com.bee.parttimer.view.activity.LoginActivity;
 import com.bee.parttimer.view.activity.SettingActivity;
 import com.bee.parttimer.view.activity.UserDataActivity;
 import com.bee.parttimer.widget.ItemMenu;
@@ -78,7 +79,7 @@ public class MyFragment extends BaseFragment {
     public void ClickItemMenu(View view){
         switch(view.getId()){
             case R.id.itemmenu_item1:
-                ToastUtils.setOkToast(getContext(),"menu点击有效1");
+                startActivity(new Intent(getContext(), LoginActivity.class));
                 break;
             case R.id.itemmenu_item2:
                 ToastUtils.setOkToast(getContext(),"menu点击有效2");
