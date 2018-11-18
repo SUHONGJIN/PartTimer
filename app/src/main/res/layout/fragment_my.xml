@@ -70,7 +70,7 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp">
 
-                <com.bee.parttimer.widget.ItemMenu
+                <com.mfzj.parttimer.widget.ItemMenu
                     android:id="@+id/itemmenu_item1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -79,7 +79,7 @@
                     app:setMenuIcon="@mipmap/ic_message_d"
                     app:setMenuText="@string/my_menu1_name" />
 
-                <com.bee.parttimer.widget.ItemMenu
+                <com.mfzj.parttimer.widget.ItemMenu
                     android:id="@+id/itemmenu_item2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -88,7 +88,7 @@
                     app:setMenuIcon="@mipmap/ic_home_d"
                     app:setMenuText="@string/my_menu2_name" />
 
-                <com.bee.parttimer.widget.ItemMenu
+                <com.mfzj.parttimer.widget.ItemMenu
                     android:id="@+id/itemmenu_item3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -97,7 +97,7 @@
                     app:setMenuIcon="@mipmap/ic_post_d"
                     app:setMenuText="@string/my_menu3_name" />
 
-                <com.bee.parttimer.widget.ItemMenu
+                <com.mfzj.parttimer.widget.ItemMenu
                     android:id="@+id/itemmenu_item4"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -108,7 +108,7 @@
 
             </LinearLayout>
 
-            <com.bee.parttimer.widget.ItemView
+            <com.mfzj.parttimer.widget.ItemView
                 android:id="@+id/itemview_item1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,9 +117,9 @@
                 app:setIcon="@mipmap/ic_home_d"
                 app:setText="@string/item1_name">
 
-            </com.bee.parttimer.widget.ItemView>
+            </com.mfzj.parttimer.widget.ItemView>
 
-            <com.bee.parttimer.widget.ItemView
+            <com.mfzj.parttimer.widget.ItemView
                 android:id="@+id/itemview_item2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,9 +127,9 @@
                 app:setIcon="@mipmap/ic_home_s"
                 app:setText="@string/item2_name">
 
-            </com.bee.parttimer.widget.ItemView>
+            </com.mfzj.parttimer.widget.ItemView>
 
-            <com.bee.parttimer.widget.ItemView
+            <com.mfzj.parttimer.widget.ItemView
                 android:id="@+id/itemview_item3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -137,9 +137,9 @@
                 app:setIcon="@mipmap/ic_post_d"
                 app:setText="@string/item3_name">
 
-            </com.bee.parttimer.widget.ItemView>
+            </com.mfzj.parttimer.widget.ItemView>
 
-            <com.bee.parttimer.widget.ItemView
+            <com.mfzj.parttimer.widget.ItemView
                 android:id="@+id/itemview_item4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -147,10 +147,10 @@
                 app:setIcon="@mipmap/ic_post_s"
                 app:setText="@string/item4_name">
 
-            </com.bee.parttimer.widget.ItemView>
+            </com.mfzj.parttimer.widget.ItemView>
 
 
-            <com.bee.parttimer.widget.ItemView
+            <com.mfzj.parttimer.widget.ItemView
                 android:id="@+id/itemview_item5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -159,9 +159,9 @@
                 app:setIcon="@mipmap/ic_message_s"
                 app:setText="@string/item5_name">
 
-            </com.bee.parttimer.widget.ItemView>
+            </com.mfzj.parttimer.widget.ItemView>
 
-            <com.bee.parttimer.widget.ItemView
+            <com.mfzj.parttimer.widget.ItemView
                 android:id="@+id/itemview_item6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -169,9 +169,9 @@
                 app:setIcon="@mipmap/ic_message_d"
                 app:setText="@string/item6_name">
 
-            </com.bee.parttimer.widget.ItemView>
+            </com.mfzj.parttimer.widget.ItemView>
 
-            <com.bee.parttimer.widget.ItemView
+            <com.mfzj.parttimer.widget.ItemView
                 android:id="@+id/itemview_item7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -179,9 +179,9 @@
                 app:setIcon="@mipmap/ic_my_s"
                 app:setText="@string/item7_name">
 
-            </com.bee.parttimer.widget.ItemView>
+            </com.mfzj.parttimer.widget.ItemView>
 
-            <com.bee.parttimer.widget.ItemView
+            <com.mfzj.parttimer.widget.ItemView
                 android:id="@+id/itemview_item8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -189,7 +189,7 @@
                 app:setIcon="@mipmap/ic_my_s"
                 app:setText="@string/item8_name">
 
-            </com.bee.parttimer.widget.ItemView>
+            </com.mfzj.parttimer.widget.ItemView>
 
             <LinearLayout
                 android:layout_width="match_parent"

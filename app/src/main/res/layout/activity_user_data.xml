@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bee.parttimer.view.activity.UserDataActivity">
+    tools:context="com.mfzj.parttimer.view.activity.UserDataActivity">
 
     <FrameLayout
         android:layout_width="match_parent"

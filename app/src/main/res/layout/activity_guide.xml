@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bee.parttimer.view.activity.WelcomeGuideActivity">
+    tools:context="com.mfzj.parttimer.view.activity.WelcomeGuideActivity">
     <android.support.v4.view.ViewPager
         android:id="@+id/pager_guide"
         android:layout_width="match_parent"

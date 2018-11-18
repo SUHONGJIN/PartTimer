@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bee.parttimer">
+    package="com.mfzj.parttimer">
 
     <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -32,12 +32,12 @@
         <!-- 百度定位SDK -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="cvdvo8Gi07ouq2r60Kujmgtg5KQpu8F1"></meta-data>
+            android:value="cvdvo8Gi07ouq2r60Kujmgtg5KQpu8F1" />
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
 
         <activity android:name=".view.activity.MainActivity" />
         <activity android:name=".view.activity.SplashActivity">
@@ -52,7 +52,8 @@
         <activity android:name=".view.activity.LoginActivity" />
         />
         <activity android:name=".view.activity.UserDataActivity" />
-        <activity android:name=".view.activity.LocationActivity"></activity>
+        <activity android:name=".view.activity.LocationActivity" />
+        <activity android:name=".view.activity.RegisterActivity"></activity>
     </application>
 
 </manifest>

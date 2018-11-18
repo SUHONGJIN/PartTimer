@@ -36,8 +36,8 @@
 
         <ImageView
             android:id="@+id/iv_itemview_right"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@mipmap/icon_right"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"/>

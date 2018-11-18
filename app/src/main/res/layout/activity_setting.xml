@@ -7,26 +7,11 @@
     android:fitsSystemWindows="true"
     android:background="@color/bg_color"
     android:orientation="vertical"
-    tools:context="com.bee.parttimer.view.activity.SettingActivity">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height"
-        android:background="@color/white">
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@mipmap/icon_back_d"
-            android:padding="15dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="设置"
-            android:layout_centerInParent="true"
-            android:textSize="18sp"
-            android:textColor="@color/black" />
-    </RelativeLayout>
+    tools:context="com.mfzj.parttimer.view.activity.SettingActivity">
 
-    <com.bee.parttimer.widget.ItemView
+    <include layout="@layout/view_main_titlebar_layout"/>
+
+    <com.mfzj.parttimer.widget.ItemView
         android:id="@+id/setting_itemview1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,14 +24,14 @@
         android:layout_height="0.1dp"
         android:background="@color/item_color"
         />
-    <com.bee.parttimer.widget.ItemView
+    <com.mfzj.parttimer.widget.ItemView
         android:id="@+id/setting_itemview2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:isShowLeftIcon="false"
         app:isShowLine="false"
         app:setText="@string/setting_item2_name"/>
-    <com.bee.parttimer.widget.ItemView
+    <com.mfzj.parttimer.widget.ItemView
         android:id="@+id/setting_itemview3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,7 +44,7 @@
         android:layout_height="0.1dp"
         android:background="@color/item_color"
         />
-    <com.bee.parttimer.widget.ItemView
+    <com.mfzj.parttimer.widget.ItemView
         android:id="@+id/setting_itemview4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:text="退出登录"
-        android:textColor="@color/red"
+        android:textColor="@color/black"
         android:background="@drawable/selector_itemview_bg"
         android:layout_marginTop="10dp"
         android:textSize="16sp"
