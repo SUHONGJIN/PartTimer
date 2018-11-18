@@ -76,7 +76,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    app:setMenuIcon="@mipmap/ic_message_d"
+                    app:setMenuIcon="@mipmap/icon_menu1"
                     app:setMenuText="@string/my_menu1_name" />
 
                 <com.mfzj.parttimer.widget.ItemMenu
@@ -85,7 +85,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    app:setMenuIcon="@mipmap/ic_home_d"
+                    app:setMenuIcon="@mipmap/icon_menu2"
                     app:setMenuText="@string/my_menu2_name" />
 
                 <com.mfzj.parttimer.widget.ItemMenu
@@ -94,7 +94,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    app:setMenuIcon="@mipmap/ic_post_d"
+                    app:setMenuIcon="@mipmap/icon_menu3"
                     app:setMenuText="@string/my_menu3_name" />
 
                 <com.mfzj.parttimer.widget.ItemMenu
@@ -103,7 +103,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    app:setMenuIcon="@mipmap/ic_home_d"
+                    app:setMenuIcon="@mipmap/icon_menu4"
                     app:setMenuText="@string/my_menu4_name" />
 
             </LinearLayout>
