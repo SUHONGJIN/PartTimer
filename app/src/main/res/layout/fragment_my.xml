@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:isShowLine="true"
-                app:setIcon="@mipmap/ic_home_d"
+                app:setIcon="@mipmap/icon_item1"
                 app:setText="@string/item1_name">
 
             </com.mfzj.parttimer.widget.ItemView>
@@ -124,7 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:isShowLine="true"
-                app:setIcon="@mipmap/ic_home_s"
+                app:setIcon="@mipmap/icon_item2"
                 app:setText="@string/item2_name">
 
             </com.mfzj.parttimer.widget.ItemView>
@@ -134,7 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:isShowLine="true"
-                app:setIcon="@mipmap/ic_post_d"
+                app:setIcon="@mipmap/icon_item3"
                 app:setText="@string/item3_name">
 
             </com.mfzj.parttimer.widget.ItemView>
@@ -144,7 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:isShowLine="false"
-                app:setIcon="@mipmap/ic_post_s"
+                app:setIcon="@mipmap/icon_item4"
                 app:setText="@string/item4_name">
 
             </com.mfzj.parttimer.widget.ItemView>
@@ -156,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:isShowLine="true"
-                app:setIcon="@mipmap/ic_message_s"
+                app:setIcon="@mipmap/icon_item5"
                 app:setText="@string/item5_name">
 
             </com.mfzj.parttimer.widget.ItemView>
@@ -166,7 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:isShowLine="true"
-                app:setIcon="@mipmap/ic_message_d"
+                app:setIcon="@mipmap/icon_item6"
                 app:setText="@string/item6_name">
 
             </com.mfzj.parttimer.widget.ItemView>
@@ -176,7 +176,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:isShowLine="true"
-                app:setIcon="@mipmap/ic_my_s"
+                app:setIcon="@mipmap/icon_item7"
                 app:setText="@string/item7_name">
 
             </com.mfzj.parttimer.widget.ItemView>
@@ -186,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:isShowLine="false"
-                app:setIcon="@mipmap/ic_my_s"
+                app:setIcon="@mipmap/icon_item8"
                 app:setText="@string/item8_name">
 
             </com.mfzj.parttimer.widget.ItemView>

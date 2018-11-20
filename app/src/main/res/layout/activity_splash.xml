@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
+            android:textColor="@color/gray"
             android:layout_marginTop="5dp"
-            android:text="Bee PartTime  v1.0"/>
+            android:text="蜜蜂兼职 V1.0"/>
     </LinearLayout>
 </RelativeLayout>

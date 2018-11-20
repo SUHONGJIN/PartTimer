@@ -8,7 +8,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@mipmap/icon_back_d"
-        android:padding="15dp"/>
+        android:padding="17dp"/>
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
