@@ -6,7 +6,8 @@
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.MyStateActivity">
+    tools:context=".view.activity.MyStateActivity"
+    android:background="@color/white">
     <include layout="@layout/view_main_titlebar_layout"/>
 
     <LinearLayout
@@ -18,17 +19,13 @@
             android:id="@+id/mTabLayout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            app:tabBackground="@color/yellow"
-            app:tabIndicatorColor="@color/yellow"
-            app:tabIndicatorHeight="2dp"
-            app:tabSelectedTextColor="@color/yellow"
-            app:tabTextColor="@color/gray">
+            style="@style/MyTablayoutstyle">
         </android.support.design.widget.TabLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
-            android:background="@color/gray"/>
+            android:background="@color/french_grey"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/mViewpager"

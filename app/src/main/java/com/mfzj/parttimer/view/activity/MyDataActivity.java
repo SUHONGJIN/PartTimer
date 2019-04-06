@@ -280,6 +280,7 @@ public class MyDataActivity extends BaseActivity {
                     //关闭加载框
                     WeiboDialogUtils.closeDialog(mWeiboDialog);
                     ToastUtils.setOkToast(MyDataActivity.this, "更新头像失败！");
+                    Log.i("tag12",e.getMessage());
                 }
             }
         });

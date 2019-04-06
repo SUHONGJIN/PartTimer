@@ -3,7 +3,6 @@ package com.mfzj.parttimer.view.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +11,9 @@ import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseActivity;
 import com.bumptech.glide.Glide;
 import com.mfzj.parttimer.bean.User;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -47,6 +49,8 @@ public class MyResumeActivity extends BaseActivity {
     TextView tv_experience;
     @BindView(R.id.tv_show_name)
     TextView tv_show_name;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
 
     public static final int REQUEST_INFO = 1;
 
@@ -62,7 +66,13 @@ public class MyResumeActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                showUserInfo();
+                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
     }
 
     @OnClick({R.id.tv_to_edit_resume,R.id.iv_close})
@@ -97,14 +107,9 @@ public class MyResumeActivity extends BaseActivity {
             tv_show_name.setText(user.getName());
             tv_show_name.setVisibility(View.VISIBLE);
         }
-        if (user.getGender()==0){
-            tv_gender.setText("男生");
-        }else if(user.getGender()==1){
-            tv_gender.setText("女生");
-        }else {
-            tv_gender.setText("保密");
+        if (user.getGender()!=null){
+            tv_gender.setText(user.getGender());
         }
-
         if (user.getBirth()!=null){
             tv_birth.setText(user.getBirth());
         }
@@ -114,8 +119,8 @@ public class MyResumeActivity extends BaseActivity {
         if (user.getPhone()!=null){
             tv_phone.setText(user.getPhone());
         }
-        if (user.getEmail()!=null){
-            tv_email.setText(user.getEmail());
+        if (user.getMyemail()!=null){
+            tv_email.setText(user.getMyemail());
         }
         if (user.getIntro()!=null){
             tv_intro.setText(user.getIntro());

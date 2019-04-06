@@ -12,7 +12,7 @@ public class MyApplication extends Application {
         //bmob默认初始化
         Bmob.initialize(this, "867ea944e58d62bbe33e3324f5f03abe");
         //极光推送配置
-        JPushInterface.setDebugMode(true);
+        JPushInterface.setDebugMode(false);
         JPushInterface.init(this);
 
     }

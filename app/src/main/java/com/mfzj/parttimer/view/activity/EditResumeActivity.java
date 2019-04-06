@@ -66,7 +66,7 @@ public class EditResumeActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        tv_title.setText("完善简历");
+        tv_title.setText("编辑简历");
     }
 
     @Override
@@ -82,12 +82,13 @@ public class EditResumeActivity extends BaseActivity {
         if (user.getName()!=null){
             et_name.setText(user.getName());
         }
-        if (user.getGender()==0){
-            tv_show_sex.setText("男生");
-            rb_men.setChecked(true);
-        }else if(user.getGender()==1){
-            tv_show_sex.setText("女生");
-            rb_women.setChecked(true);
+        if (user.getGender()!=null){
+            tv_show_sex.setText(user.getGender());
+            if (user.getGender().equals("男")){
+                rb_men.setChecked(true);
+            }else if (user.getGender().equals("女")){
+                rb_women.setChecked(true);
+            }
         }
         if (user.getBirth()!=null){
             tv_show_birth.setText(user.getBirth());
@@ -98,8 +99,8 @@ public class EditResumeActivity extends BaseActivity {
         if (user.getPhone()!=null){
             et_phone.setText(user.getPhone());
         }
-        if (user.getEmail()!=null){
-            et_email.setText(user.getEmail());
+        if (user.getMyemail()!=null){
+            et_email.setText(user.getMyemail());
         }
         if (user.getIntro()!=null){
             et_intro.setText(user.getIntro());
@@ -139,12 +140,12 @@ public class EditResumeActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.rb_men:
                 if (ischanged) {
-                    tv_show_sex.setText("男生");
+                    tv_show_sex.setText("男");
                 }
                 break;
             case R.id.rb_women:
                 if (ischanged) {
-                    tv_show_sex.setText("女生");
+                    tv_show_sex.setText("女");
                 }
                 break;
             default:
@@ -213,17 +214,13 @@ public class EditResumeActivity extends BaseActivity {
         BmobUser myUser= BmobUser.getCurrentUser(User.class);
         myUser.setValue("name",et_name.getText().toString());
         myUser.setValue("birth",tv_show_birth.getText().toString());
-        myUser.setValue("email",et_email.getText().toString());
+        myUser.setValue("myemail",et_email.getText().toString());
         myUser.setValue("phone",et_phone.getText().toString());
         myUser.setValue("identity",tv_show_identity.getText().toString());
         myUser.setValue("intro",et_intro.getText().toString());
         myUser.setValue("experience",et_experience.getText().toString());
+        myUser.setValue("gender",tv_show_sex.getText().toString());
 
-        if (tv_show_sex.getText().equals("男生")){
-            ((User) myUser).setGender(0);
-        }else if (tv_show_sex.getText().equals("女生")){
-            ((User) myUser).setGender(1);
-        }
         myUser.update(myUser.getObjectId(), new UpdateListener() {
             @Override
             public void done(BmobException e) {
@@ -232,7 +229,7 @@ public class EditResumeActivity extends BaseActivity {
                     setResult(200);
                     finish();
                 }else {
-                    ToastUtils.setOkToast(EditResumeActivity.this,"简历提交失败！");
+                    ToastUtils.setOkToast(EditResumeActivity.this,"提交失败，请检查格式是否有误！");
                     Log.i("tag1",e.getMessage().toString());
                 }
             }

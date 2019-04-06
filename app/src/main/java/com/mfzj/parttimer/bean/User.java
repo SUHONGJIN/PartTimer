@@ -18,7 +18,7 @@ public class User extends BmobUser {
     /**
      * 性别
      */
-    private Integer gender;
+    private String gender;
     /**
      * 头像
      */
@@ -31,6 +31,17 @@ public class User extends BmobUser {
     private String birth;
     //手机号码
     private String phone;
+    //邮箱
+    private String myemail;
+
+    public String getMyemail() {
+        return myemail;
+    }
+
+    public void setMyemail(String myemail) {
+        this.myemail = myemail;
+    }
+
     //简介
     private String intro;
     //工作经验
@@ -100,11 +111,11 @@ public class User extends BmobUser {
         this.age = age;
     }
 
-    public Integer getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Integer gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

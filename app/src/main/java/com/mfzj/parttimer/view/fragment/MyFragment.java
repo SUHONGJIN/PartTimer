@@ -95,16 +95,41 @@ public class MyFragment extends BaseFragment {
     public void ClickItemMenu(View view){
         switch(view.getId()){
             case R.id.itemmenu_item1:
-                startActivity(new Intent(getContext(), MyStateActivity.class));
+                if (BmobUser.isLogin()) {
+                    Intent intent=new Intent(getContext(),MyStateActivity.class);
+                    intent.putExtra("tag",1);
+                    startActivity(intent);
+                }else {
+                    startActivity(new Intent(getContext(),LoginActivity.class));
+                }
+
                 break;
             case R.id.itemmenu_item2:
-                ToastUtils.setOkToast(getContext(),"menu点击有效2");
+                if (BmobUser.isLogin()) {
+                    Intent intent=new Intent(getContext(),MyStateActivity.class);
+                    intent.putExtra("tag",2);
+                    startActivity(intent);
+                }else {
+                    startActivity(new Intent(getContext(),LoginActivity.class));
+                }
                 break;
             case R.id.itemmenu_item3:
-                ToastUtils.setOkToast(getContext(),"menu点击有效3");
+                if (BmobUser.isLogin()) {
+                    Intent intent=new Intent(getContext(),MyStateActivity.class);
+                    intent.putExtra("tag",3);
+                    startActivity(intent);
+                }else {
+                    startActivity(new Intent(getContext(),LoginActivity.class));
+                }
                 break;
             case R.id.itemmenu_item4:
-                ToastUtils.setOkToast(getContext(),"menu点击有效4");
+                if (BmobUser.isLogin()) {
+                    Intent intent=new Intent(getContext(),MyStateActivity.class);
+                    intent.putExtra("tag",4);
+                    startActivity(intent);
+                }else {
+                    startActivity(new Intent(getContext(),LoginActivity.class));
+                }
                 break;
                 default:break;
         }
@@ -143,10 +168,20 @@ public class MyFragment extends BaseFragment {
                 }
                 break;
             case R.id.itemview_item3:
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                //判断用户是否登录
+                if (BmobUser.isLogin()) {
+                    startActivity(new Intent(getContext(), CollectActivity.class));
+                } else {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
                 break;
             case R.id.itemview_item4:
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                //判断用户是否登录
+                if (BmobUser.isLogin()) {
+                    startActivity(new Intent(getContext(), CollectActivity.class));
+                } else {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
                 break;
             case R.id.itemview_item5:
                 startActivity(new Intent(getContext(), FeedBackActivity.class));

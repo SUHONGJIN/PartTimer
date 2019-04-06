@@ -7,11 +7,22 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="MyDatePickerDialogTheme">
         <item name="colorPrimary">@color/yellow</item>
         <item name="colorPrimaryDark">@color/yellow</item>
         <item name="colorAccent">@color/yellow</item>
     </style>
+
+    <style name="MyTablayoutstyle" parent="Base.Widget.Design.TabLayout">
+        <item name="tabBackground">@color/white</item>
+        <item name="tabIndicatorColor">@color/yellow</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabSelectedTextColor">@color/yellow</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <!--底部导航栏样式-->
     <style name="BottomStyle">
         <item name="android:textSize">14sp</item>
