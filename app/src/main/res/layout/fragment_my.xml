@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color"
     android:orientation="vertical">
+
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -19,36 +24,48 @@
             <RelativeLayout
                 android:id="@+id/rl_userdata"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:background="@color/white"
                 android:orientation="horizontal"
                 android:paddingBottom="10dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:paddingTop="10dp">
+                android:paddingTop="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:text="未知地球人"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/tv_username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="未知小蜜蜂"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+                        <ImageView
+                            android:id="@+id/iv_vip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_vip"
+                            android:visibility="gone"/>
+                    </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tv_motto"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:text="马上登录查看更多哟~"
-                        android:textSize="14sp" />
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -62,10 +79,37 @@
 
             </RelativeLayout>
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <com.mfzj.parttimer.widget.WaveViewBySinCos
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    app:waveColor="@color/yellow2"
+                    app:waveAmplitude="12dp"
+                    app:waveSpeed="3"
+                    app:waveStart="true"
+                    app:waveStartPeriod="0.5"
+                    app:waveType="sin" />
+
+                <com.mfzj.parttimer.widget.WaveViewBySinCos
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    app:waveColor="@color/yellow3"
+                    app:waveAmplitude="12dp"
+                    app:waveSpeed="3"
+                    app:waveStart="true"
+                    app:waveStartPeriod="1"
+                    app:waveType="sin" />
+
+            </FrameLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="6dp"
                 android:background="@color/white"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp">
@@ -77,7 +121,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     app:setMenuIcon="@mipmap/icon_menu1"
-                    app:setMenuText="@string/my_menu1_name" />
+                    app:setMenuText="@string/my_item1_name" />
 
                 <com.mfzj.parttimer.widget.ItemMenu
                     android:id="@+id/itemmenu_item2"
@@ -86,7 +130,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     app:setMenuIcon="@mipmap/icon_menu2"
-                    app:setMenuText="@string/my_menu2_name" />
+                    app:setMenuText="@string/my_item2_name" />
 
                 <com.mfzj.parttimer.widget.ItemMenu
                     android:id="@+id/itemmenu_item3"
@@ -95,7 +139,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     app:setMenuIcon="@mipmap/icon_menu3"
-                    app:setMenuText="@string/my_menu3_name" />
+                    app:setMenuText="@string/my_item3_name" />
 
                 <com.mfzj.parttimer.widget.ItemMenu
                     android:id="@+id/itemmenu_item4"
@@ -104,7 +148,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     app:setMenuIcon="@mipmap/icon_menu4"
-                    app:setMenuText="@string/my_menu4_name" />
+                    app:setMenuText="@string/my_item4_name" />
 
             </LinearLayout>
 
@@ -118,6 +162,7 @@
                 app:setText="@string/item1_name">
 
             </com.mfzj.parttimer.widget.ItemView>
+
 
             <com.mfzj.parttimer.widget.ItemView
                 android:id="@+id/itemview_item2"
@@ -148,7 +193,6 @@
                 app:setText="@string/item4_name">
 
             </com.mfzj.parttimer.widget.ItemView>
-
 
             <com.mfzj.parttimer.widget.ItemView
                 android:id="@+id/itemview_item5"
@@ -216,4 +260,4 @@
     </android.support.v4.widget.NestedScrollView>
 
 
-</LinearLayout>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

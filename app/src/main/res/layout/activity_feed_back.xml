@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.mfzj.parttimer.view.activity.FeedBackActivity">
+
+    <include layout="@layout/view_main_titlebar_layout"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/et_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@color/french_grey"
+            android:padding="12dp"
+            android:layout_margin="20dp"
+            android:textSize="17sp"
+            android:hint="提交反馈！谈论吊炸天的idea~"
+            android:gravity="top"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="你选择的分类是:" />
+            <TextView
+                android:id="@+id/tv_feedback_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="产品功能意见"
+                android:textSize="16sp"
+                android:textColor="@color/yellow"
+                android:paddingLeft="5dp"/>
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/rg_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="20dp">
+            <RadioButton
+                android:id="@+id/rb_feedback1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:buttonTint="@color/yellow"
+                android:text="产品功能意见"/>
+            <RadioButton
+                android:id="@+id/rb_feedback2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:buttonTint="@color/yellow"
+                android:text="投诉建议"/>
+            <RadioButton
+                android:id="@+id/rb_feedback3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:buttonTint="@color/yellow"
+                android:text="其他问题"/>
+        </RadioGroup>
+        <Button
+            android:id="@+id/btn_commit_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/selector_btn_bg"
+            android:text="提 交"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="80dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

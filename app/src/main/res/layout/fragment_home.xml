@@ -9,25 +9,28 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
-        android:background="@color/colorAccent"
-        android:paddingLeft="10dp"
-        >
+        android:background="@color/white"
+        android:paddingLeft="10dp">
         <TextView
             android:id="@+id/tv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="定位..."
             android:textSize="16sp"
-            android:layout_centerVertical="true"/>
+            android:textColor="@color/black"
+            android:drawableLeft="@mipmap/ic_item1"
+            android:layout_centerVertical="true"
+            />
+
         <TextView
-            android:layout_width="250dp"
+            android:layout_width="100dp"
             android:layout_height="35dp"
+            android:layout_marginRight="10dp"
             android:hint="搜索兼职"
-            android:gravity="center_vertical"
-            android:paddingLeft="15dp"
+            android:gravity="center"
             android:layout_centerVertical="true"
             android:background="@drawable/selector_serach"
-            android:layout_centerInParent="true"/>
+            android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -45,7 +48,7 @@
             <com.youth.banner.Banner
                 android:id="@+id/mBanner"
                 android:layout_width="match_parent"
-                android:layout_height="160dp">
+                android:layout_height="180dp">
             </com.youth.banner.Banner>
 
             <LinearLayout
@@ -53,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
-                android:paddingTop="5dp">
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp">
 
                 <com.mfzj.parttimer.widget.ItemMenu
                     android:id="@+id/itemmenu_item1"
@@ -93,6 +97,15 @@
 
             </LinearLayout>
 
+            <include layout="@layout/item_list_day"/>
+            <include layout="@layout/item_list_day"/>
+            <include layout="@layout/item_list_day"/>
+            <include layout="@layout/item_list_day"/>
+            <include layout="@layout/item_list_day"/>
+            <include layout="@layout/item_list_day"/>
+            <include layout="@layout/item_list_day"/>
+            <include layout="@layout/item_list_day"/>
+            <include layout="@layout/item_list_day"/>
 
         </LinearLayout>
 

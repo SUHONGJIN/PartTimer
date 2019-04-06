@@ -43,20 +43,23 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="10dp"
                             android:src="@drawable/head"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="JIN"
-                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
                             android:textColor="@color/black" />
                     </LinearLayout>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="今天做兼职赚200，真好！"/>
+                        android:text="今天做兼职赚200，真好！"
+                        android:layout_marginLeft="20dp"/>
                 </LinearLayout>
 
             </LinearLayout>

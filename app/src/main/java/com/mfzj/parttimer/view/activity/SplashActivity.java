@@ -1,16 +1,28 @@
 package com.mfzj.parttimer.view.activity;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 
+import com.baidu.location.LocationClient;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseActivity;
 import com.mfzj.parttimer.utils.SharedPreferencesUtils;
+import com.mfzj.parttimer.utils.ToastUtils;
+import com.mfzj.parttimer.view.fragment.HomeFragment;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class SplashActivity extends BaseActivity {
+
 
     @Override
     public int getContentViewResId() {
@@ -43,5 +55,9 @@ public class SplashActivity extends BaseActivity {
     }
 
     @Override
-    public void initData() {}
+    public void initData() {
+
+    }
+
+
 }

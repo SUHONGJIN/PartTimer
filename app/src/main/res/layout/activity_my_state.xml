@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.MyStateActivity">
+    <include layout="@layout/view_main_titlebar_layout"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/mTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:tabBackground="@color/yellow"
+            app:tabIndicatorColor="@color/yellow"
+            app:tabIndicatorHeight="2dp"
+            app:tabSelectedTextColor="@color/yellow"
+            app:tabTextColor="@color/gray">
+        </android.support.design.widget.TabLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/gray"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/mViewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v4.view.ViewPager>
+    </LinearLayout>
+
+</LinearLayout>

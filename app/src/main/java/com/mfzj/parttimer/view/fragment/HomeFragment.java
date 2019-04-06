@@ -53,10 +53,12 @@ public class HomeFragment extends BaseFragment {
     public void initView(View view) {
         //图片地址集合
         bannerList=new ArrayList<>();
+        
+        bannerList.add("http://image-1256444076.picgz.myqcloud.com/ad/app_ad_ios.png");
+        bannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554358768819&di=9c84301d6f2b99603e4a748b3347a6e6&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F17%2F09%2F26%2F924bec50d30abc11d9b9ffec2206537f.jpg");
+        bannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554358768818&di=f2f7ab143f2de6d825f922b17021bdd0&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F014cb65771ef600000018c1b8608be.jpg");
+        bannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554358768617&di=00cb15d2f4fcba21be84f6446708419a&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F05%2F24%2F99%2F8059f5b19446a1f.jpg");
 
-        bannerList.add("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=147527940,74269358&fm=26&gp=0.jpg");
-        bannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541497492385&di=128d8fbb2d1a07f1a26149ca68540b59&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a9225995332f0000002129d42836.jpg%402o.jpg");
-        bannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541497716885&di=6f19350f7712b24e765c603bdd88f73f&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01d1d257747cce0000012e7e28e6ef.jpg%402o.jpg");
         //图片装载机
         ImageLoader imageLoader=new ImageLoader() {
             @Override
@@ -66,7 +68,7 @@ public class HomeFragment extends BaseFragment {
         };
         mBanner.setImageLoader(imageLoader);   //设置图片装载机
         mBanner.setImages(bannerList);  //设置图片地址集合
-        mBanner.setBannerAnimation(Transformer.Default); //设置轮播图加载的动画效果
+        mBanner.setBannerAnimation(Transformer.Accordion); //设置轮播图加载的动画效果
         mBanner.setDelayTime(5000);   //设置加载间隔时间
         mBanner.setIndicatorGravity(BannerConfig.CENTER);  //设置指示器位置
         mBanner.start();  //开始执行

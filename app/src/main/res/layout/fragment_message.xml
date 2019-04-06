@@ -35,8 +35,8 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/icon_notify"
-            android:padding="10dp"/>
+            android:src="@drawable/head"
+            android:padding="0dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,8 +68,8 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/icon_notify"
-            android:padding="10dp"/>
+            android:src="@drawable/head"
+            android:padding="0dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

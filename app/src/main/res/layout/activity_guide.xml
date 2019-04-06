@@ -21,10 +21,11 @@
         android:textSize="14sp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        style="?android:attr/borderlessButtonStyle"
         android:textColor="@color/white"
         android:background="@drawable/selector_btn_bg"
         android:visibility="gone"
-        android:text="立即体验!"
+        android:text="立刻找兼职>"
         />
 
 </RelativeLayout>

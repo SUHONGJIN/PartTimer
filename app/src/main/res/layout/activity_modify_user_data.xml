@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.mfzj.parttimer.view.activity.ModifyUserDataActivity">
+
+    <include layout="@layout/view_main_titlebar_layout"/>
+
+    <EditText
+        android:id="@+id/et_nick"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="修改昵称"
+        android:paddingLeft="10dp"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+    <EditText
+        android:id="@+id/et_motto"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="个性签名"
+        android:paddingLeft="10dp"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+    <Button
+        android:id="@+id/btn_commit_info"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:textSize="15sp"
+        android:text="提交"
+        android:textColor="@color/black"
+        android:background="@drawable/selector_btn_bg"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"/>
+</LinearLayout>

@@ -1,6 +1,11 @@
 package com.mfzj.parttimer.view.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
@@ -11,6 +16,7 @@ import android.widget.ImageView;
 
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseActivity;
+import com.mfzj.parttimer.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +32,8 @@ public class WelcomeGuideActivity extends BaseActivity {
     Button btn_guide;
 
     List<View> list;
-
+    //创建权限集合
+    private List<String> permissionList = new ArrayList<>();
 
     @Override
     public int getContentViewResId() {
@@ -73,7 +80,25 @@ public class WelcomeGuideActivity extends BaseActivity {
     }
 
     @Override
-    public void initData() {}
+    public void initData() {
+        //检查权限是否获取
+        if (ContextCompat.checkSelfPermission(WelcomeGuideActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+        if (ContextCompat.checkSelfPermission(WelcomeGuideActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (ContextCompat.checkSelfPermission(WelcomeGuideActivity.this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(Manifest.permission.READ_PHONE_STATE);
+        }
+
+        if (!permissionList.isEmpty()) {
+            String[] permission = permissionList.toArray(new String[permissionList.size()]);
+            ActivityCompat.requestPermissions(WelcomeGuideActivity.this, permission, 1);
+        } else {
+            //开始定位
+        }
+    }
 
     /**
      * ViewPager的适配器
@@ -133,6 +158,25 @@ public class WelcomeGuideActivity extends BaseActivity {
         viewPager.setAdapter(new MyPagerAdapter());
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0) {
+                    for (int results : grantResults) {
+                        if (results != PackageManager.PERMISSION_GRANTED) {
+                            ToastUtils.setOkToast(WelcomeGuideActivity.this, "为了能正常使用APP，建议打开相应的权限~");
+                        } else {
 
+                        }
+                    }
+                } else {
+                    ToastUtils.setOkToast(this, "未知权限错误！");
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
 

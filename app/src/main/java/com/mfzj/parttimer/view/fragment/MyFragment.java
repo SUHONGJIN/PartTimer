@@ -2,20 +2,34 @@ package com.mfzj.parttimer.view.fragment;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseFragment;
+import com.mfzj.parttimer.bean.User;
 import com.mfzj.parttimer.utils.ToastUtils;
+import com.mfzj.parttimer.view.activity.AboutActivity;
+import com.mfzj.parttimer.view.activity.CollectActivity;
+import com.mfzj.parttimer.view.activity.FeedBackActivity;
 import com.mfzj.parttimer.view.activity.LoginActivity;
+import com.mfzj.parttimer.view.activity.MyDataActivity;
+import com.mfzj.parttimer.view.activity.MyStateActivity;
+import com.mfzj.parttimer.view.activity.PostPartTimerActivity;
 import com.mfzj.parttimer.view.activity.SettingActivity;
 import com.mfzj.parttimer.view.activity.UserDataActivity;
 import com.mfzj.parttimer.widget.ItemMenu;
 import com.mfzj.parttimer.widget.ItemView;
 import com.bumptech.glide.Glide;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobUser;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -48,8 +62,15 @@ public class MyFragment extends BaseFragment {
     ItemMenu itemMenu_item3;
     @BindView(R.id.itemmenu_item4)
     ItemMenu itemMenu_item4;
-
-
+    @BindView(R.id.tv_username)
+    TextView tv_username;
+    @BindView(R.id.tv_motto)
+    TextView tv_motto;
+    @BindView(R.id.iv_vip)
+    ImageView iv_vip;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
+    private static  final int INFO_CODE=1;
     @Override
     public int getLayoutResId() {
         return R.layout.fragment_my;
@@ -57,10 +78,14 @@ public class MyFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
-        //加载头像
-        Glide.with(getContext())
-                .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542425119&di=37abff6014019236f1d1fadc954913ea&imgtype=jpg&er=1&src=http%3A%2F%2Fww2.sinaimg.cn%2Flarge%2F692eb742gw1ewi4mr5bgqj20h00h0dik.jpg")
-                .into(civ_userhead);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                initData();
+                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
+
     }
 
     /**
@@ -71,7 +96,7 @@ public class MyFragment extends BaseFragment {
     public void ClickItemMenu(View view){
         switch(view.getId()){
             case R.id.itemmenu_item1:
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                startActivity(new Intent(getContext(), MyStateActivity.class));
                 break;
             case R.id.itemmenu_item2:
                 ToastUtils.setOkToast(getContext(),"menu点击有效2");
@@ -94,13 +119,20 @@ public class MyFragment extends BaseFragment {
     public void ClickItemView(View view){
         switch (view.getId()){
             case R.id.rl_userdata:
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                //判断用户是否登录
+                if (BmobUser.isLogin()) {
+                    Intent intent = new Intent(getContext(), MyDataActivity.class);
+                    startActivityForResult(intent,INFO_CODE);
+                } else {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
+
                 break;
             case R.id.itemview_item1:
                 startActivity(new Intent(getContext(), UserDataActivity.class));
                 break;
             case R.id.itemview_item2:
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                startActivity(new Intent(getContext(), CollectActivity.class));
                 break;
             case R.id.itemview_item3:
                 startActivity(new Intent(getContext(), LoginActivity.class));
@@ -109,13 +141,13 @@ public class MyFragment extends BaseFragment {
                 startActivity(new Intent(getContext(), LoginActivity.class));
                 break;
             case R.id.itemview_item5:
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                startActivity(new Intent(getContext(), FeedBackActivity.class));
                 break;
             case R.id.itemview_item6:
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                startActivity(new Intent(getContext(), AboutActivity.class));
                 break;
             case R.id.itemview_item7:
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                startActivity(new Intent(getContext(), PostPartTimerActivity.class));
                 break;
             case R.id.itemview_item8:
                 //跳转到设置界面
@@ -128,7 +160,52 @@ public class MyFragment extends BaseFragment {
 
     @Override
     public void initData() {
+        if (BmobUser.isLogin()){
+            User user = BmobUser.getCurrentUser(User.class);
+            //加载头像
+            if (user.getAvatar() != null){
+                Glide.with(getContext())
+                        .load(user.getAvatar())
+                        .into(civ_userhead);
+            }
+            //用户名
+            tv_username.setText(user.getUsername());
+            if (user.getNick()!=null){
+                tv_username.setText(user.getNick());
+            }
+            //用户座右铭
+            tv_motto.setText("没有签名，哪来的个性。");
+            if (user.getMotto()!=null){
+                tv_motto.setText(user.getMotto());
+            }
+            //用户身份标识
+            iv_vip.setVisibility(View.VISIBLE);
+        }
 
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==INFO_CODE){
+            //刷新用户信息
+            User user = BmobUser.getCurrentUser(User.class);
+            //加载头像
+            if (user.getAvatar() != null){
+                Glide.with(getContext())
+                        .load(user.getAvatar())
+                        .into(civ_userhead);
+            }
+            //获取用户名
+            if (user.getNick() == null && user.getUsername() != null) {
+                tv_username.setText(user.getUsername());
+            } else if (user.getNick() != null) {
+                tv_username.setText(user.getNick());
+            }
+            //获取座右铭
+            if (user.getMotto() != null) {
+                tv_motto.setText(user.getMotto());
+            }
+        }
     }
 
 }

@@ -5,19 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/bg_color"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.mfzj.parttimer.view.activity.SettingActivity">
 
     <include layout="@layout/view_main_titlebar_layout"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/item_color"
+        />
 
     <com.mfzj.parttimer.widget.ItemView
         android:id="@+id/setting_itemview1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:isShowLeftIcon="false"
-        android:layout_marginTop="10dp"
         app:isShowLine="false"
+        android:layout_marginTop="10dp"
         app:setText="@string/setting_item1_name"/>
     <View
         android:layout_width="match_parent"
@@ -30,7 +35,15 @@
         android:layout_height="wrap_content"
         app:isShowLeftIcon="false"
         app:isShowLine="false"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
         app:setText="@string/setting_item2_name"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/item_color"
+        />
+
     <com.mfzj.parttimer.widget.ItemView
         android:id="@+id/setting_itemview3"
         android:layout_width="match_parent"
@@ -49,17 +62,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:isShowLeftIcon="false"
+        android:layout_marginTop="10dp"
         app:isShowLine="false"
         app:setText="@string/setting_item4_name"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/item_color"
+        />
 
     <TextView
         android:id="@+id/tv_logout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="44dp"
         android:text="退出登录"
-        android:textColor="@color/red"
-        android:background="@drawable/selector_itemview_bg"
-        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:background="@drawable/selector_exit_bg"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:textSize="16sp"
         android:gravity="center"/>
 
