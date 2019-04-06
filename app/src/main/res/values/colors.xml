@@ -6,6 +6,7 @@
     <color name="bg_color">#fafafa</color>
     <color name="item_color">#e6e6e6</color>
     <color name="black">#000000</color>
+    <color name="somber">#3C3C3C</color>
     <color name="white">#ffffff</color>
     <color name="yellow">#EBCC00</color>
     <color name="yellow2">#75FFEB3B</color>

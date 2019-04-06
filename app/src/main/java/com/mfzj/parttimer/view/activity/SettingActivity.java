@@ -60,7 +60,7 @@ public class SettingActivity extends BaseActivity implements ISettingAView {
     public void OnClickItemView(View view){
         switch (view.getId()){
             case R.id.setting_itemview1:
-                ToastUtils.setOkToast(SettingActivity.this,"账号管理");
+                startActivity(new Intent(SettingActivity.this,ModifyPassWordActivity.class));
                 break;
             case R.id.setting_itemview2:
                 startActivity(new Intent(SettingActivity.this,ModifyPassWordActivity.class));

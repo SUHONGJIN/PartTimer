@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".view.activity.PostPartTimerActivity">
 
     <RelativeLayout
@@ -25,5 +26,10 @@
             android:layout_centerInParent="true"
             android:textSize="18sp"/>
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/item_color"
+        />
 
 </LinearLayout>

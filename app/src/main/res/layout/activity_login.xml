@@ -32,20 +32,20 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="48dp">
                 <EditText
                     android:id="@+id/et_login_username"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="请输入手机号"
                     android:drawableLeft="@mipmap/icon_username"
                     android:textSize="17sp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray"
                     android:background="@drawable/bg_et_input"
-                    android:padding="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:layout_marginTop="10dp"
                     android:inputType="phone"
                     android:lines="1"
                     />
@@ -54,20 +54,20 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginTop="10dp">
                 <EditText
                     android:id="@+id/et_login_password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="请输入密码"
                     android:drawableLeft="@mipmap/icon_password"
                     android:textSize="17sp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray"
                     android:background="@drawable/bg_et_input"
-                    android:padding="10dp"
-                    android:layout_marginTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
                     android:inputType="textPassword"
                     android:lines="1"

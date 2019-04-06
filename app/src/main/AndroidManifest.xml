@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mfzj.parttimer"
     android:versionCode="316"
-    android:versionName="3.1.6"> <!-- 这个权限用于进行网络定位 -->
+    android:versionName="3.1.6">
+    <!-- 这个权限用于进行网络定位 -->
     <!-- Required -->
     <permission
         android:name="com.mfzj.parttimer.permission.JPUSH_MESSAGE"
@@ -27,12 +28,10 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 访问网络，网络定位需要上网 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- SD卡读取权限，用户写入离线定位数据 -->
-    <!--保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!-- 相机权限 -->
+    <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- 相机权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
@@ -46,13 +45,14 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.CollectActivity"></activity>
+        <activity android:name=".view.activity.EditResumeActivity"></activity>
+        <activity android:name=".view.activity.CollectActivity" />
         <activity android:name=".view.activity.MyStateActivity" />
         <activity android:name=".view.activity.FeedBackActivity" />
         <activity android:name=".view.activity.AboutActivity" />
         <activity android:name=".view.activity.PostPartTimerActivity" />
-        <activity android:name=".view.activity.ModifyUserDataActivity"/>
-        <activity android:name=".view.activity.ModifyPassWordActivity"/>
+        <activity android:name=".view.activity.ModifyUserDataActivity" />
+        <activity android:name=".view.activity.ModifyPassWordActivity" />
         <activity android:name=".view.activity.MyDataActivity" /> <!-- 百度定位SDK -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
@@ -74,7 +74,7 @@
         <activity android:name=".view.activity.SettingActivity" />
         <activity android:name=".view.activity.WelcomeGuideActivity" />
         <activity android:name=".view.activity.LoginActivity" />
-        <activity android:name=".view.activity.UserDataActivity" />
+        <activity android:name=".view.activity.MyResumeActivity" />
         <activity android:name=".view.activity.LocationActivity" />
         <activity android:name=".view.activity.RegisterActivity" />
 
@@ -159,7 +159,7 @@
         <service
             android:name="cn.jpush.android.service.DownloadService"
             android:enabled="true"
-            android:exported="false"></service> <!-- Required SDK 核心功能 -->
+            android:exported="false" /> <!-- Required SDK 核心功能 -->
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" /> <!-- Required. For publish channel feature -->
         <!-- JPUSH_CHANNEL 是为了方便开发者统计 APK 分发渠道。 -->
         <!-- 例如: -->
@@ -170,19 +170,16 @@
             android:value="developer-default" /> <!-- Required. AppKey copied from Portal -->
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="8355e93092a28d39dacceb87" />
-
-        <!--内容提供者-->
+            android:value="8355e93092a28d39dacceb87" /> <!-- 内容提供者 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.mfzj.parttimer.fileprovider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

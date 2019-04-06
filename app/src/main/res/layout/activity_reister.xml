@@ -22,7 +22,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="48dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
         <LinearLayout
@@ -32,20 +32,19 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="50dp">
                 <EditText
                     android:id="@+id/et_register_username"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="请输入手机号"
                     android:drawableLeft="@mipmap/icon_username"
                     android:textSize="17sp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray"
                     android:background="@drawable/bg_et_input"
-                    android:padding="10dp"
+                    android:paddingLeft="10dp"
                     android:drawablePadding="5dp"
-                    android:layout_marginTop="10dp"
                     android:inputType="phone"
                     android:lines="1"
                     />
@@ -53,21 +52,20 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginTop="10dp">
                 <EditText
                     android:id="@+id/et_register_password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="请输入密码"
                     android:drawableLeft="@mipmap/icon_password"
                     android:textSize="17sp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray"
                     android:background="@drawable/bg_et_input"
-                    android:padding="10dp"
+                    android:paddingLeft="10dp"
                     android:drawablePadding="5dp"
-                    android:layout_marginTop="10dp"
                     android:inputType="textPassword"
                     android:lines="1"
                     />
@@ -76,12 +74,12 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginTop="10dp">
                 <EditText
                     android:id="@+id/et_register_code"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_centerVertical="true"
                     android:hint="请输入验证码"
                     android:drawableLeft="@mipmap/icon_verify"
@@ -91,8 +89,6 @@
                     android:background="@drawable/bg_et_input"
                     android:paddingLeft="10dp"
                     android:paddingRight="30dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
                     android:drawablePadding="5dp"
                     android:inputType="phone"
                     android:lines="1"

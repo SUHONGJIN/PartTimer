@@ -87,7 +87,6 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
         final User user = new User();
         user.setUsername(et_register_username.getText().toString());
         user.setPassword(et_register_password.getText().toString());
-
         user.signUp(new SaveListener<User>() {
             @Override
             public void done(User user, BmobException e) {

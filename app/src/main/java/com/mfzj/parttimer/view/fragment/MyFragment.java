@@ -18,13 +18,12 @@ import com.mfzj.parttimer.view.activity.MyDataActivity;
 import com.mfzj.parttimer.view.activity.MyStateActivity;
 import com.mfzj.parttimer.view.activity.PostPartTimerActivity;
 import com.mfzj.parttimer.view.activity.SettingActivity;
-import com.mfzj.parttimer.view.activity.UserDataActivity;
+import com.mfzj.parttimer.view.activity.MyResumeActivity;
 import com.mfzj.parttimer.widget.ItemMenu;
 import com.mfzj.parttimer.widget.ItemView;
 import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import butterknife.BindView;
@@ -126,13 +125,22 @@ public class MyFragment extends BaseFragment {
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
-
                 break;
             case R.id.itemview_item1:
-                startActivity(new Intent(getContext(), UserDataActivity.class));
+                //判断用户是否登录
+                if (BmobUser.isLogin()) {
+                    startActivity(new Intent(getContext(), MyResumeActivity.class));
+                } else {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
                 break;
             case R.id.itemview_item2:
-                startActivity(new Intent(getContext(), CollectActivity.class));
+                //判断用户是否登录
+                if (BmobUser.isLogin()) {
+                    startActivity(new Intent(getContext(), CollectActivity.class));
+                } else {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
                 break;
             case R.id.itemview_item3:
                 startActivity(new Intent(getContext(), LoginActivity.class));

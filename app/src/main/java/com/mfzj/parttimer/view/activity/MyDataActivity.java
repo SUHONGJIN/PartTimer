@@ -147,7 +147,7 @@ public class MyDataActivity extends BaseActivity {
                 startActivityForResult(intent1, REQUEST_INFO);
                 break;
             case R.id.rl_to_mydata:
-                startActivity(new Intent(MyDataActivity.this, UserDataActivity.class));
+                startActivity(new Intent(MyDataActivity.this, MyResumeActivity.class));
                 break;
             case R.id.iv_back:
                 finish();

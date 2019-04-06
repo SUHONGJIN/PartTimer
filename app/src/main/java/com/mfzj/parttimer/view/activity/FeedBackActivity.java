@@ -47,7 +47,7 @@ public class FeedBackActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        tv_title.setText("对话产品汪");
+        tv_title.setText("意见反馈");
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
