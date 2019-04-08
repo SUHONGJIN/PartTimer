@@ -1,6 +1,5 @@
 package com.mfzj.parttimer.view.activity;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -110,18 +109,18 @@ public class EditResumeActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.iv_back,R.id.tv_select_identity,R.id.tv_select_birth,R.id.btn_commit})
+    @OnClick({R.id.iv_back,R.id.tv_show_identity,R.id.tv_show_birth,R.id.btn_commit})
     public void OnClickE(View view){
         switch (view.getId()){
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.tv_select_identity:
+            case R.id.tv_show_identity:
 
                 setIdentity();
 
                 break;
-            case R.id.tv_select_birth:
+            case R.id.tv_show_birth:
                 showDatePickDlg();
                 break;
             case R.id.btn_commit:
@@ -195,15 +194,13 @@ public class EditResumeActivity extends BaseActivity {
      */
     protected void showDatePickDlg() {
         Calendar calendar = Calendar.getInstance();
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(EditResumeActivity.this,DatePickerDialog.THEME_HOLO_LIGHT, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(EditResumeActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 tv_show_birth.setText(year + "-" + (monthOfYear+1) + "-" + dayOfMonth);
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
-
     }
 
     /**

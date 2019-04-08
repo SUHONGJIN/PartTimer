@@ -3,11 +3,24 @@ package com.mfzj.parttimer.view.fragment;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.transition.AutoTransition;
+import android.support.transition.TransitionManager;
+import android.support.transition.TransitionSet;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.baidu.location.BDAbstractLocationListener;
@@ -17,6 +30,7 @@ import com.baidu.location.LocationClientOption;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseFragment;
 import com.mfzj.parttimer.utils.SharedPreferencesUtils;
+import com.mfzj.parttimer.utils.StatusBarUtil;
 import com.mfzj.parttimer.utils.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.youth.banner.Banner;
@@ -33,9 +47,18 @@ public class HomeFragment extends BaseFragment {
 
     @BindView(R.id.mBanner)
     Banner mBanner;
-
     @BindView(R.id.tv_location)
     TextView tv_location;
+    @BindView(R.id.tv_search)
+    TextView tvSearch;
+    @BindView(R.id.ll_search)
+    LinearLayout mSearchLayout;
+    @BindView(R.id.scrollView)
+    ScrollView mScrollView;
+    boolean isExpand = false;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    private TransitionSet mSet;
 
     public LocationClient mLocationClient = null;
     private MyLocationListener myListener = new MyLocationListener();
@@ -53,11 +76,9 @@ public class HomeFragment extends BaseFragment {
     public void initView(View view) {
         //图片地址集合
         bannerList=new ArrayList<>();
-        
-        bannerList.add("http://image-1256444076.picgz.myqcloud.com/ad/app_ad_ios.png");
-        bannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554358768819&di=9c84301d6f2b99603e4a748b3347a6e6&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F17%2F09%2F26%2F924bec50d30abc11d9b9ffec2206537f.jpg");
-        bannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554358768818&di=f2f7ab143f2de6d825f922b17021bdd0&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F014cb65771ef600000018c1b8608be.jpg");
-        bannerList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554358768617&di=00cb15d2f4fcba21be84f6446708419a&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F05%2F24%2F99%2F8059f5b19446a1f.jpg");
+
+        bannerList.add("http://bmob-cdn-24662.b0.upaiyun.com/2019/04/08/c7d946ff407d188e8044ad53ebf3168e.png");
+        bannerList.add("http://bmob-cdn-24662.b0.upaiyun.com/2019/04/08/c7d946ff407d188e8044ad53ebf3168e.png");
 
         //图片装载机
         ImageLoader imageLoader=new ImageLoader() {
@@ -68,7 +89,7 @@ public class HomeFragment extends BaseFragment {
         };
         mBanner.setImageLoader(imageLoader);   //设置图片装载机
         mBanner.setImages(bannerList);  //设置图片地址集合
-        mBanner.setBannerAnimation(Transformer.Accordion); //设置轮播图加载的动画效果
+        mBanner.setBannerAnimation(Transformer.BackgroundToForeground); //设置轮播图加载的动画效果
         mBanner.setDelayTime(5000);   //设置加载间隔时间
         mBanner.setIndicatorGravity(BannerConfig.CENTER);  //设置指示器位置
         mBanner.start();  //开始执行
@@ -107,6 +128,26 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initData() {
 
+        //设置toolbar初始透明度为0
+        toolbar.getBackground().mutate().setAlpha(0);
+        //scrollview滚动状态监听
+        mScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                //改变toolbar的透明度
+                changeToolbarAlpha();
+                //滚动距离>=大图高度-toolbar高度 即toolbar完全盖住大图的时候 且不是伸展状态 进行伸展操作
+                if (mScrollView.getScrollY() >=mBanner.getHeight() - toolbar.getHeight()  && !isExpand) {
+                    expand();
+                    isExpand = true;
+                }
+                //滚动距离<=0时 即滚动到顶部时  且当前伸展状态 进行收缩操作
+                else if (mScrollView.getScrollY()<=0&& isExpand) {
+                    reduce();
+                    isExpand = false;
+                }
+            }
+        });
     }
 
     /**
@@ -138,6 +179,56 @@ public class HomeFragment extends BaseFragment {
 
         }
     }
+
+    private void changeToolbarAlpha() {
+        int scrollY = mScrollView.getScrollY();
+        //快速下拉会引起瞬间scrollY<0
+        if(scrollY<0){
+            toolbar.getBackground().mutate().setAlpha(0);
+            return;
+        }
+        //计算当前透明度比率
+        float radio= Math.min(1,scrollY/(mBanner.getHeight()-toolbar.getHeight()*1f));
+        //设置透明度
+        toolbar.getBackground().mutate().setAlpha( (int)(radio * 0xFF));
+    }
+
+
+    private void expand() {
+        //设置伸展状态时的布局
+        tvSearch.setText("搜索附近兼职");
+        tv_location.setVisibility(View.GONE);
+        RelativeLayout.LayoutParams LayoutParams = (RelativeLayout.LayoutParams) mSearchLayout.getLayoutParams();
+        LayoutParams.width = LayoutParams.MATCH_PARENT;
+        LayoutParams.setMargins(dip2px(10), dip2px(10), dip2px(10), dip2px(10));
+        mSearchLayout.setLayoutParams(LayoutParams);
+        //开始动画
+        beginDelayedTransition(mSearchLayout);
+    }
+
+    private void reduce() {
+        //设置收缩状态时的布局
+        tvSearch.setText("搜索");
+        tv_location.setVisibility(View.VISIBLE);
+        RelativeLayout.LayoutParams LayoutParams = (RelativeLayout.LayoutParams) mSearchLayout.getLayoutParams();
+        LayoutParams.width = dip2px(80);
+        LayoutParams.setMargins(dip2px(10), dip2px(10), dip2px(10), dip2px(10));
+        mSearchLayout.setLayoutParams(LayoutParams);
+        //开始动画
+        beginDelayedTransition(mSearchLayout);
+    }
+
+    void beginDelayedTransition(ViewGroup view) {
+        mSet = new AutoTransition();
+        mSet.setDuration(300);
+        TransitionManager.beginDelayedTransition(view, mSet);
+    }
+
+    private int dip2px(float dpVale) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (dpVale * scale + 0.5f);
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

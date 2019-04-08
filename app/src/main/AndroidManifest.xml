@@ -45,7 +45,9 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.EditResumeActivity"></activity>
+        <activity android:name=".view.activity.AuthenticationActivity"></activity>
+        <activity android:name=".view.activity.WalletActivity" />
+        <activity android:name=".view.activity.EditResumeActivity" />
         <activity android:name=".view.activity.CollectActivity" />
         <activity android:name=".view.activity.MyStateActivity" />
         <activity android:name=".view.activity.FeedBackActivity" />

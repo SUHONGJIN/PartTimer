@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ffffff</color>
-    <color name="colorPrimaryDark">#ffffff</color>
-    <color name="colorAccent">#ffffff</color>
+    <color name="colorPrimary">#FFC107</color>
+    <color name="colorPrimaryDark">#FFC107</color>
+    <color name="colorAccent">#FFC107</color>
+
     <color name="bg_color">#fafafa</color>
     <color name="item_color">#e6e6e6</color>
     <color name="black">#000000</color>
@@ -10,10 +11,11 @@
     <color name="white">#ffffff</color>
     <color name="yellow">#EBCC00</color>
     <color name="yellow2">#75FFEB3B</color>
-    <color name="yellow3">#90FFD50F</color>
+    <color name="yellow3">#9FFFC107</color>
     <color name="color_btn_select">#ccc491</color>
     <color name="gray">#acacac</color>
     <color name="french_grey">#E0E0E0</color>
+    <color name="bg_search">#28E0E0E0</color>
     <color name="green">#26b426</color>
     <color name="red">#ff0400</color>
     <color name="dark_red">#F44336</color>

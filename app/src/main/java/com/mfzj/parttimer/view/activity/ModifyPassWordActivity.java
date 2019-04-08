@@ -39,7 +39,7 @@ public class ModifyPassWordActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        tv_title.setText("修改密码");
+        tv_title.setText("重置密码");
     }
 
     @Override

@@ -1,117 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="#fff">
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height"
-        android:background="@color/white"
-        android:paddingLeft="10dp">
-        <TextView
-            android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="定位..."
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:drawableLeft="@mipmap/ic_item1"
-            android:layout_centerVertical="true"
-            />
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:layout_marginRight="10dp"
-            android:hint="搜索兼职"
-            android:gravity="center"
-            android:layout_centerVertical="true"
-            android:background="@drawable/selector_serach"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#ddd"/>
-
-            <com.youth.banner.Banner
-                android:id="@+id/mBanner"
+                android:layout_height="60dp"
+                android:background="@color/white"/>
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="180dp">
-            </com.youth.banner.Banner>
+                android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:paddingTop="5dp"
-                android:paddingBottom="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                <com.mfzj.parttimer.widget.ItemMenu
-                    android:id="@+id/itemmenu_item1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    app:setMenuIcon="@mipmap/ic_item1"
-                    app:setMenuText="@string/my_menu1_name" />
+                    <com.youth.banner.Banner
+                        android:id="@+id/mBanner"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:layout_margin="10dp">
+                    </com.youth.banner.Banner>
 
-                <com.mfzj.parttimer.widget.ItemMenu
-                    android:id="@+id/itemmenu_item2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    app:setMenuIcon="@mipmap/ic_item2"
-                    app:setMenuText="@string/my_menu2_name" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="10dp">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@mipmap/a"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="日结专区"
+                                android:textSize="16sp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@mipmap/b"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="日结专区"
+                                android:textSize="16sp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@mipmap/c"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="日结专区"
+                                android:textSize="16sp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@mipmap/d"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="日结专区"
+                                android:textSize="16sp"/>
+                        </LinearLayout>
 
-                <com.mfzj.parttimer.widget.ItemMenu
-                    android:id="@+id/itemmenu_item3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    app:setMenuIcon="@mipmap/ic_item3"
-                    app:setMenuText="@string/my_menu3_name" />
 
-                <com.mfzj.parttimer.widget.ItemMenu
-                    android:id="@+id/itemmenu_item4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    app:setMenuIcon="@mipmap/ic_item4"
-                    app:setMenuText="@string/my_menu4_name" />
+                    </LinearLayout>
 
-            </LinearLayout>
-
-            <include layout="@layout/item_list_day"/>
-            <include layout="@layout/item_list_day"/>
-            <include layout="@layout/item_list_day"/>
-            <include layout="@layout/item_list_day"/>
-            <include layout="@layout/item_list_day"/>
-            <include layout="@layout/item_list_day"/>
-            <include layout="@layout/item_list_day"/>
-            <include layout="@layout/item_list_day"/>
-            <include layout="@layout/item_list_day"/>
-
+                </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
 
 
-    </android.support.v4.widget.NestedScrollView>
+
+    </ScrollView>
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        android:background="@android:color/white"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="定位中..."
+                android:textSize="16sp"
+                android:textColor="@color/somber"
+                android:drawableLeft="@mipmap/ic_item1"
+                android:layout_centerVertical="true"
+                />
+            <LinearLayout
+                android:id="@+id/ll_search"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_serach"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/icon_search"
+                    android:gravity="center_vertical"
+                    android:text="搜索"
+                    android:drawablePadding="5dp"
+                    android:textColor="#8A8A8A" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
 
 
-
-</LinearLayout>
+</RelativeLayout>

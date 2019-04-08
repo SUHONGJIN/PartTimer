@@ -21,17 +21,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bg_color"
         android:orientation="vertical">
         <RelativeLayout
             android:id="@+id/rl_modify_user_head"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:padding="5dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/selector_itemview_bg">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="头像"
+                android:text="修改头像"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:paddingLeft="5dp"
@@ -39,8 +41,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/civ_user_head"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/head"
                 app:civ_border_color="@color/black"
@@ -151,6 +153,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:padding="5dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/selector_itemview_bg">
             <TextView
                 android:layout_width="wrap_content"

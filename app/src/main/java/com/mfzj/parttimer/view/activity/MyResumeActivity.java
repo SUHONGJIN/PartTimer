@@ -75,7 +75,7 @@ public class MyResumeActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.tv_to_edit_resume,R.id.iv_close})
+    @OnClick({R.id.tv_to_edit_resume,R.id.iv_close,R.id.civ_head})
     public void OnClickResume(View view){
         switch (view.getId()){
             case R.id.iv_close:
@@ -84,6 +84,9 @@ public class MyResumeActivity extends BaseActivity {
             case R.id.tv_to_edit_resume:
                 Intent intent=new Intent(MyResumeActivity.this,EditResumeActivity.class);
                 startActivityForResult(intent,REQUEST_INFO);
+                break;
+            case R.id.civ_head:
+                startActivity(new Intent(MyResumeActivity.this,MyDataActivity.class));
                 break;
                 default:break;
         }

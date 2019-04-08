@@ -14,6 +14,7 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:overScrollMode="never"
         android:scrollbars="none">
         <LinearLayout
@@ -90,7 +91,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -120,7 +121,7 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="2dp"
                         android:layout_height="match_parent"
                         android:background="@color/yellow" />
 
@@ -151,7 +152,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:text="未填写"
-                                android:textColor="@color/somber"
+                                android:textColor="@color/gray"
                                 android:textSize="17sp" />
                         </LinearLayout>
 
@@ -175,8 +176,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
-                                android:text="保密"
-                                android:textColor="@color/somber"
+                                android:text="未填写"
+                                android:textColor="@color/gray"
                                 android:textSize="17sp" />
                         </LinearLayout>
 
@@ -201,7 +202,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:text="未填写"
-                                android:textColor="@color/somber"
+                                android:textColor="@color/gray"
                                 android:textSize="17sp" />
                         </LinearLayout>
 
@@ -226,7 +227,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:text="未填写"
-                                android:textColor="@color/somber"
+                                android:textColor="@color/gray"
                                 android:textSize="17sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -266,7 +267,7 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="2dp"
                         android:layout_height="match_parent"
                         android:background="@color/yellow" />
 
@@ -297,7 +298,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:text="未填写"
-                                android:textColor="@color/somber"
+                                android:textColor="@color/gray"
                                 android:textSize="17sp" />
                         </LinearLayout>
 
@@ -322,7 +323,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:text="未填写"
-                                android:textColor="@color/somber"
+                                android:textColor="@color/gray"
                                 android:textSize="17sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -361,7 +362,7 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="2dp"
                         android:layout_height="match_parent"
                         android:background="@color/green" />
 
@@ -369,15 +370,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:padding="10dp">
+                        android:padding="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="简介:"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="17sp" />
 
                         <TextView
                             android:id="@+id/tv_intro"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:maxLines="5"
+                            android:maxLines="10"
+                            android:paddingRight="20dp"
                             android:textSize="17sp"
-                            android:textColor="@color/somber"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/gray"
                             android:text="介绍自己..." />
                     </LinearLayout>
 
@@ -416,7 +427,7 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="2dp"
                         android:layout_height="match_parent"
                         android:background="@color/red" />
 
@@ -424,24 +435,30 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:padding="10dp">
+                        android:padding="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="经验:"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="17sp" />
 
                         <TextView
                             android:id="@+id/tv_experience"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:maxLines="5"
+                            android:maxLines="10"
                             android:textSize="17sp"
-                            android:textColor="@color/somber"
+                            android:paddingRight="20dp"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/gray"
                             android:text="工作经验..." />
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.2dp"
-                    android:background="@color/french_grey" />
 
             </LinearLayout>
 

@@ -11,6 +11,7 @@ import com.mfzj.parttimer.base.BaseFragment;
 import com.mfzj.parttimer.bean.User;
 import com.mfzj.parttimer.utils.ToastUtils;
 import com.mfzj.parttimer.view.activity.AboutActivity;
+import com.mfzj.parttimer.view.activity.AuthenticationActivity;
 import com.mfzj.parttimer.view.activity.CollectActivity;
 import com.mfzj.parttimer.view.activity.FeedBackActivity;
 import com.mfzj.parttimer.view.activity.LoginActivity;
@@ -19,6 +20,7 @@ import com.mfzj.parttimer.view.activity.MyStateActivity;
 import com.mfzj.parttimer.view.activity.PostPartTimerActivity;
 import com.mfzj.parttimer.view.activity.SettingActivity;
 import com.mfzj.parttimer.view.activity.MyResumeActivity;
+import com.mfzj.parttimer.view.activity.WalletActivity;
 import com.mfzj.parttimer.widget.ItemMenu;
 import com.mfzj.parttimer.widget.ItemView;
 import com.bumptech.glide.Glide;
@@ -170,7 +172,7 @@ public class MyFragment extends BaseFragment {
             case R.id.itemview_item3:
                 //判断用户是否登录
                 if (BmobUser.isLogin()) {
-                    startActivity(new Intent(getContext(), CollectActivity.class));
+                    startActivity(new Intent(getContext(), AuthenticationActivity.class));
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
@@ -178,7 +180,7 @@ public class MyFragment extends BaseFragment {
             case R.id.itemview_item4:
                 //判断用户是否登录
                 if (BmobUser.isLogin()) {
-                    startActivity(new Intent(getContext(), CollectActivity.class));
+                    startActivity(new Intent(getContext(), WalletActivity.class));
                 } else {
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
