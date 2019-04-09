@@ -25,14 +25,15 @@ public class SharedPreferencesUtils {
         editor.commit();
     }
     //保存字符串
-    public static void saveStringSharedPreferences(Context context,String location){
+    public static void saveStringSharedPreferences(Context context,String filename,String location){
         Editor editor = context.getSharedPreferences(FILE_NAME,Context.MODE_PRIVATE).edit();
-        editor.putString(VALUE_LOCATION,location);
+        editor.putString(filename,location);
         editor.commit();
     }
     //获取字符串
-    public  static String getStringSharedPreferences(Context context){
-        return context.getSharedPreferences(FILE_NAME,Context.MODE_PRIVATE).getString(VALUE_LOCATION,"定位失败");
+    public  static String getStringSharedPreferences(Context context,String filename,String defValue){
+        return context.getSharedPreferences(FILE_NAME,Context.MODE_PRIVATE).getString(filename,defValue);
     }
+
 
 }

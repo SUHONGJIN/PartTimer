@@ -83,5 +83,8 @@ dependencies {
 
     //弹出框
     implementation 'com.longsh:OptionFrame:1.0.0'
-
+    //拼音
+    implementation 'com.belerweb:pinyin4j:2.5.0'
+    //gson
+    implementation 'com.google.code.gson:gson:2.8.5'
 }

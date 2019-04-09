@@ -11,7 +11,7 @@
     <string name="my_item1_name">已报名</string>
     <string name="my_item2_name">已录用</string>
     <string name="my_item3_name">已到岗</string>
-    <string name="my_item4_name">已结算</string>
+    <string name="my_item4_name">已完成</string>
 
     <string name="item1_name">我的简历</string>
     <string name="item2_name">我的收藏</string>
@@ -24,8 +24,8 @@
     <string name="item8_name">我的设置</string>
 
     <!--设置界面的item-->
-    <string name="setting_item1_name">账号管理</string>
-    <string name="setting_item2_name">修改密码</string>
+    <string name="setting_item1_name">重置密码</string>
+    <string name="setting_item2_name">常见问题</string>
     <string name="setting_item3_name">清理缓存</string>
     <string name="setting_item4_name">检查更新</string>
 

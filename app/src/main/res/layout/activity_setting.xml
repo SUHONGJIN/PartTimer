@@ -13,7 +13,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
-        android:background="@color/item_color"
+        android:background="@color/french_grey"
         />
 
     <com.mfzj.parttimer.widget.ItemView
@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:isShowLeftIcon="false"
+        android:visibility="gone"
         app:isShowLine="false"
         app:setText="@string/setting_item1_name"/>
     <View
@@ -34,7 +35,6 @@
         android:layout_height="wrap_content"
         app:isShowLeftIcon="false"
         app:isShowLine="false"
-        android:visibility="gone"
         app:setText="@string/setting_item2_name"/>
     <View
         android:layout_width="match_parent"

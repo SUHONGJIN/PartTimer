@@ -6,16 +6,16 @@
     android:gravity="center">
 
     <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/no_data"/>
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/icon_now_verify"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:textColor="@color/somber"
+        android:textColor="@color/gray"
         android:text="很遗憾，暂时没有数据。"
-        android:textSize="16sp"/>
+        android:textSize="14sp"/>
 
 
 </LinearLayout>

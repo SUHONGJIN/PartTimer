@@ -1,6 +1,7 @@
 package com.mfzj.parttimer.view.activity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,8 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
 import com.longsh.optionframelibrary.OptionCenterDialog;
+import com.mfzj.parttimer.CitySelect.CityPickerActivity;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseActivity;
 import com.mfzj.parttimer.bean.User;
@@ -55,6 +56,8 @@ public class EditResumeActivity extends BaseActivity {
     TextView tv_show_birth;
     @BindView(R.id.tv_show_sex)
     TextView tv_show_sex;
+    @BindView(R.id.tv_show_city)
+    TextView tv_show_city;
     @BindView(R.id.btn_commit)
     Button btn_commit;
 
@@ -95,6 +98,9 @@ public class EditResumeActivity extends BaseActivity {
         if (user.getIdentity()!=null){
             tv_show_identity.setText(user.getIdentity());
         }
+        if (user.getCity()!=null){
+            tv_show_city.setText(user.getCity());
+        }
         if (user.getPhone()!=null){
             et_phone.setText(user.getPhone());
         }
@@ -109,16 +115,14 @@ public class EditResumeActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.iv_back,R.id.tv_show_identity,R.id.tv_show_birth,R.id.btn_commit})
+    @OnClick({R.id.iv_back,R.id.tv_show_identity,R.id.tv_show_birth,R.id.btn_commit,R.id.tv_show_city})
     public void OnClickE(View view){
         switch (view.getId()){
             case R.id.iv_back:
                 finish();
                 break;
             case R.id.tv_show_identity:
-
                 setIdentity();
-
                 break;
             case R.id.tv_show_birth:
                 showDatePickDlg();
@@ -126,6 +130,11 @@ public class EditResumeActivity extends BaseActivity {
             case R.id.btn_commit:
                 commitResume();
                 break;
+            case R.id.tv_show_city:
+                Intent intent = new Intent(EditResumeActivity.this, CityPickerActivity.class);
+                startActivityForResult(intent, 1);
+                break;
+
                 default:break;
         }
     }
@@ -160,7 +169,7 @@ public class EditResumeActivity extends BaseActivity {
         list.add("上班族");
         list.add("家庭主妇");
         list.add("自由职业");
-        list.add("不限");
+        list.add("职业不限");
         final OptionCenterDialog optionCenterDialog = new OptionCenterDialog();
         optionCenterDialog.show(EditResumeActivity.this, list);
         optionCenterDialog.setItemClickListener(new AdapterView.OnItemClickListener() {
@@ -180,7 +189,7 @@ public class EditResumeActivity extends BaseActivity {
                         tv_show_identity.setText("自由职业");
                         break;
                     case 4:
-                        tv_show_identity.setText("不限");
+                        tv_show_identity.setText("职业不限");
                         break;
                     default:break;
                 }
@@ -217,6 +226,7 @@ public class EditResumeActivity extends BaseActivity {
         myUser.setValue("intro",et_intro.getText().toString());
         myUser.setValue("experience",et_experience.getText().toString());
         myUser.setValue("gender",tv_show_sex.getText().toString());
+        myUser.setValue("city",tv_show_city.getText().toString());
 
         myUser.update(myUser.getObjectId(), new UpdateListener() {
             @Override
@@ -232,5 +242,20 @@ public class EditResumeActivity extends BaseActivity {
             }
         });
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == 200) {
+                if (data == null) {
+                    return;
+                }
+                tv_show_city.setText(data.getStringExtra("cityname"));
+            }
+        }
+    }
+
 
 }

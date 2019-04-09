@@ -255,6 +255,7 @@ public class MyDataActivity extends BaseActivity {
             public void onProgress(Integer value) {
                 // 返回的上传进度（百分比）
             }
+
         });
     }
 
@@ -305,10 +306,9 @@ public class MyDataActivity extends BaseActivity {
         switch (requestCode) {
             case CAMERA_PERMISSION_CODE:
                 takePhoto();
-                ToastUtils.setOkToast(MyDataActivity.this, "相机权限已申请！");
+                ToastUtils.setOkToast(MyDataActivity.this, "相机权限已申请");
                 break;
         }
-
     }
 
     @Override

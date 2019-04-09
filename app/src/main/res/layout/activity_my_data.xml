@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:padding="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/selector_itemview_bg">
             <TextView
                 android:layout_width="wrap_content"

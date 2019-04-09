@@ -3,6 +3,7 @@ package com.mfzj.parttimer.view.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseActivity;
 import com.mfzj.parttimer.bean.User;
 import com.mfzj.parttimer.utils.ActivityCollector;
+import com.mfzj.parttimer.utils.SharedPreferencesUtils;
 import com.mfzj.parttimer.utils.ToastUtils;
 import com.mfzj.parttimer.widget.WeiboDialogUtils;
 
@@ -45,7 +47,9 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-
+        //获取已保存的定位信息
+        String username= SharedPreferencesUtils.getStringSharedPreferences(LoginActivity.this,"username","");
+        et_login_username.setText(username);
     }
 
     @Override
@@ -57,7 +61,8 @@ public class LoginActivity extends BaseActivity {
     public void click(View view){
         switch (view.getId()){
             case R.id.tv_to_register:
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivityForResult(intent,1);
                 break;
             case R.id.iv_back:
                 finish();
@@ -106,9 +111,24 @@ public class LoginActivity extends BaseActivity {
                 } else {
                     //关闭加载框
                     WeiboDialogUtils.closeDialog(mWeiboDialog);
-                    Snackbar.make(view, "登录失败! Log：" + e.getMessage(), Snackbar.LENGTH_LONG).show();
+                    ToastUtils.setOkToast(LoginActivity.this,"账号或密码错误！");
+                    //Snackbar.make(view, "登录失败! Log：" + e.getMessage(), Snackbar.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode ==1){
+            switch (resultCode){
+                case 200:
+                    et_login_username.setText(data.getStringExtra("username"));
+                    break;
+                default:break;
+            }
+        }
+
     }
 }

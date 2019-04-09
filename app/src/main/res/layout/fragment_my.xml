@@ -52,10 +52,11 @@
                             android:textStyle="bold" />
                         <ImageView
                             android:id="@+id/iv_vip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
                             android:src="@mipmap/ic_vip"
-                            android:visibility="gone"/>
+                            android:visibility="gone"
+                            android:layout_marginLeft="5dp"/>
                     </LinearLayout>
 
                     <TextView
@@ -244,6 +245,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/french_grey"
                     android:text="客服电话 400-098-8888 工作时间 9:30-18:30"
                     android:textSize="12sp" />
 
@@ -251,6 +253,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:textColor="@color/french_grey"
                     android:text="用户协议及隐私政策 | 防骗指南 "
                     android:textSize="12sp" />
             </LinearLayout>

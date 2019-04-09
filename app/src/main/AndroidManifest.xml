@@ -55,7 +55,11 @@
         <activity android:name=".view.activity.PostPartTimerActivity" />
         <activity android:name=".view.activity.ModifyUserDataActivity" />
         <activity android:name=".view.activity.ModifyPassWordActivity" />
-        <activity android:name=".view.activity.MyDataActivity" /> <!-- 百度定位SDK -->
+        <activity android:name=".CitySelect.CityPickerActivity" />
+        <activity android:name=".view.activity.MyDataActivity" />
+        <activity android:name=".view.activity.HelpActivity"/>
+
+        <!-- 百度定位SDK -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="cvdvo8Gi07ouq2r60Kujmgtg5KQpu8F1" />
@@ -77,7 +81,6 @@
         <activity android:name=".view.activity.WelcomeGuideActivity" />
         <activity android:name=".view.activity.LoginActivity" />
         <activity android:name=".view.activity.MyResumeActivity" />
-        <activity android:name=".view.activity.LocationActivity" />
         <activity android:name=".view.activity.RegisterActivity" />
 
         <provider

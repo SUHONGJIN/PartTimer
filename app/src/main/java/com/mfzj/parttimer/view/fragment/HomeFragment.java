@@ -2,6 +2,7 @@ package com.mfzj.parttimer.view.fragment;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
@@ -27,12 +28,14 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.mfzj.parttimer.CitySelect.CityPickerActivity;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseFragment;
 import com.mfzj.parttimer.utils.SharedPreferencesUtils;
 import com.mfzj.parttimer.utils.StatusBarUtil;
 import com.mfzj.parttimer.utils.ToastUtils;
 import com.bumptech.glide.Glide;
+import com.mfzj.parttimer.view.activity.EditResumeActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -77,7 +80,7 @@ public class HomeFragment extends BaseFragment {
         //图片地址集合
         bannerList=new ArrayList<>();
 
-        bannerList.add("http://bmob-cdn-24662.b0.upaiyun.com/2019/04/08/c7d946ff407d188e8044ad53ebf3168e.png");
+        bannerList.add("http://p0.so.qhimgs1.com/sdr/400__/t01120c1234f62b7d80.jpg");
         bannerList.add("http://bmob-cdn-24662.b0.upaiyun.com/2019/04/08/c7d946ff407d188e8044ad53ebf3168e.png");
 
         //图片装载机
@@ -89,7 +92,7 @@ public class HomeFragment extends BaseFragment {
         };
         mBanner.setImageLoader(imageLoader);   //设置图片装载机
         mBanner.setImages(bannerList);  //设置图片地址集合
-        mBanner.setBannerAnimation(Transformer.BackgroundToForeground); //设置轮播图加载的动画效果
+        mBanner.setBannerAnimation(Transformer.Default); //设置轮播图加载的动画效果
         mBanner.setDelayTime(5000);   //设置加载间隔时间
         mBanner.setIndicatorGravity(BannerConfig.CENTER);  //设置指示器位置
         mBanner.start();  //开始执行
@@ -120,11 +123,17 @@ public class HomeFragment extends BaseFragment {
             requestLocation();
         }
 
+        tv_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CityPickerActivity.class);
+                startActivityForResult(intent, 2);
+            }
+        });
+
     }
 
-    /**
-     * 初始化一些定位配置
-     */
+
     @Override
     public void initData() {
 
@@ -167,10 +176,10 @@ public class HomeFragment extends BaseFragment {
             String cityname = location.getCity();    //获取城市
             //获取到定位信息保存到本地储存
             if (cityname != null) {
-                SharedPreferencesUtils.saveStringSharedPreferences(getContext(),cityname);
+                SharedPreferencesUtils.saveStringSharedPreferences(getContext(),"location",cityname);
             }
             //获取已保存的定位信息
-            String city=SharedPreferencesUtils.getStringSharedPreferences(getContext());
+            String city=SharedPreferencesUtils.getStringSharedPreferences(getContext(),"location","定位失败");
             if (city!=null){
                 tv_location.setText(city);
             }else{
@@ -247,6 +256,21 @@ public class HomeFragment extends BaseFragment {
                 }
                 break;
             default:break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2) {
+            if (resultCode == 200) {
+                if (data == null) {
+                    return;
+                }
+                String cityname=data.getStringExtra("cityname");
+                tv_location.setText(cityname);
+                SharedPreferencesUtils.saveStringSharedPreferences(getContext(),"location",cityname);
+            }
         }
     }
 }

@@ -49,10 +49,10 @@ public class SettingActivity extends BaseActivity implements ISettingAView {
         //用户登录成功就显示，否则就隐藏。
         if (BmobUser.isLogin()){
             tv_logout.setVisibility(View.VISIBLE);
-            setting_itemview2.setVisibility(View.VISIBLE);
+            setting_itemview1.setVisibility(View.VISIBLE);
         }else {
             tv_logout.setVisibility(View.GONE);
-            setting_itemview2.setVisibility(View.GONE);
+            setting_itemview1.setVisibility(View.GONE);
         }
     }
 
@@ -63,13 +63,32 @@ public class SettingActivity extends BaseActivity implements ISettingAView {
                 startActivity(new Intent(SettingActivity.this,ModifyPassWordActivity.class));
                 break;
             case R.id.setting_itemview2:
-                startActivity(new Intent(SettingActivity.this,ModifyPassWordActivity.class));
+                startActivity(new Intent(SettingActivity.this,HelpActivity.class));
                 break;
             case R.id.setting_itemview3:
-                ToastUtils.setOkToast(SettingActivity.this,"清除缓存成功");
+                final OptionMaterialDialog mMaterialDialog0 = new OptionMaterialDialog(SettingActivity.this);
+                mMaterialDialog0.setTitle("温馨提示：")
+                        .setMessage("确定清除缓存吗？")
+                        .setPositiveButton("确定", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ToastUtils.setOkToast(SettingActivity.this,"清除缓存成功");
+                                mMaterialDialog0.dismiss();
+                            }
+                        })
+                        .setNegativeButton("取消",
+                                new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        mMaterialDialog0.dismiss();
+                                    }
+                                })
+                        .setCanceledOnTouchOutside(true)
+                        .show();
+
                 break;
             case R.id.setting_itemview4:
-                ToastUtils.setOkToast(SettingActivity.this,"已经是最新版本");
+                ToastUtils.setOkToast(SettingActivity.this,"已经是最新版本~.");
                 break;
             case R.id.tv_logout:
 
