@@ -46,7 +46,7 @@
                             android:id="@+id/tv_username"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="未知小蜜蜂"
+                            android:text="登录/注册"
                             android:textColor="@color/black"
                             android:textSize="22sp"
                             android:textStyle="bold" />

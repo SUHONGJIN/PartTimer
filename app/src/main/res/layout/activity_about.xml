@@ -17,7 +17,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
@@ -39,14 +39,23 @@
                 android:id="@+id/tv_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="版本更新 V1.0"
+                android:layout_marginTop="20dp"
+                android:text="版本V1.0"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:textColor="@color/somber"
                 android:textSize="13sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_about_text"
+                android:textSize="15sp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:lineHeight="25dp"
+                android:layout_marginTop="80dp"/>
 
         </LinearLayout>
 

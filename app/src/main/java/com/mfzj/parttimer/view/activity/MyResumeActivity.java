@@ -25,8 +25,10 @@ public class MyResumeActivity extends BaseActivity {
 
     @BindView(R.id.mImage)
     ImageView mImage;
-    @BindView(R.id.iv_show_sex)
-    ImageView iv_show_sex;
+    @BindView(R.id.iv_show_men)
+    ImageView iv_show_men;
+    @BindView(R.id.iv_show_women)
+    ImageView iv_show_women;
     @BindView(R.id.civ_head)
     CircleImageView civ_head;
     @BindView(R.id.tv_to_edit_resume)
@@ -111,16 +113,18 @@ public class MyResumeActivity extends BaseActivity {
             tv_name.setText(user.getName());
             tv_show_name.setText(user.getName());
             tv_show_name.setVisibility(View.VISIBLE);
-            iv_show_sex.setVisibility(View.VISIBLE);
-        }
-        if (user.getGender()!=null){
-            String sex=user.getGender();
-            if(sex.equals("男")){
-                iv_show_sex.setImageResource(R.mipmap.icon_men);
-            }else if (sex.equals("女")){
-                iv_show_sex.setImageResource(R.mipmap.icon_women);
+            if (user.getGender()!=null){
+                String sex=user.getGender();
+                if(sex.equals("男")){
+                    iv_show_men.setVisibility(View.VISIBLE);
+                    iv_show_men.setVisibility(View.GONE);
+                }else if (sex.equals("女")){
+                    iv_show_men.setVisibility(View.GONE);
+                    iv_show_men.setVisibility(View.VISIBLE);
+                }
             }
         }
+
         if (user.getBirth()!=null){
             tv_birth.setText(user.getBirth());
         }

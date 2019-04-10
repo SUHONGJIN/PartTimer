@@ -8,7 +8,7 @@ import com.mfzj.parttimer.base.BaseFragment;
 public class Fragment_MyIntention extends BaseFragment {
     @Override
     public int getLayoutResId() {
-        return R.layout.fragment_tab_attendance;
+        return R.layout.fragment_tab_intention;
     }
 
     @Override

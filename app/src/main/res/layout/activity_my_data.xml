@@ -26,9 +26,9 @@
         <RelativeLayout
             android:id="@+id/rl_modify_user_head"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:padding="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/selector_itemview_bg">
             <TextView
                 android:layout_width="wrap_content"
@@ -41,9 +41,10 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/civ_user_head"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:src="@drawable/head"
                 app:civ_border_color="@color/black"
                 app:civ_border_width="0.1dp" />
@@ -153,7 +154,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:padding="5dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/selector_itemview_bg">
             <TextView
                 android:layout_width="wrap_content"

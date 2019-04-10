@@ -102,7 +102,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void done(User bmobUser, BmobException e) {
                 if (e == null) {
-                    ToastUtils.setOkToast(LoginActivity.this,"登录成功！");
+                    ToastUtils.setOkToast(LoginActivity.this,"登录成功");
                     ActivityCollector.removeAll();
                     finish();
                     startActivity(new Intent(LoginActivity.this,MainActivity.class));

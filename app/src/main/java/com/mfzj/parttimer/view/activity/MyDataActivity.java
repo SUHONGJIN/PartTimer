@@ -241,16 +241,13 @@ public class MyDataActivity extends BaseActivity {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
-                    //加载框
-                    mWeiboDialog = WeiboDialogUtils.createLoadingDialog(MyDataActivity.this, "头像上传中...");
                     //bmobFile.getFileUrl()--返回的上传文件的完整地址
                     setAvatar(bmobFile.getFileUrl());
                 } else {
-                    ToastUtils.setOkToast(MyDataActivity.this, "上传文件失败：" + e.getMessage());
+                    ToastUtils.setOkToast(MyDataActivity.this, "上传图片失败：" + e.getMessage());
                 }
 
             }
-
             @Override
             public void onProgress(Integer value) {
                 // 返回的上传进度（百分比）
@@ -281,7 +278,7 @@ public class MyDataActivity extends BaseActivity {
                     //关闭加载框
                     WeiboDialogUtils.closeDialog(mWeiboDialog);
                     ToastUtils.setOkToast(MyDataActivity.this, "更新头像失败！");
-                    Log.i("tag12",e.getMessage());
+                    //Log.i("tag12",e.getMessage());
                 }
             }
         });
@@ -338,6 +335,8 @@ public class MyDataActivity extends BaseActivity {
                 case CROP_REQUEST_CODE:
                     Log.i("tag2", cropFile.getAbsolutePath());
                     upload(cropFile.getAbsolutePath());
+                    //加载框
+                    mWeiboDialog = WeiboDialogUtils.createLoadingDialog(MyDataActivity.this, "头像上传中...");
                     break;
                 default:
                     break;

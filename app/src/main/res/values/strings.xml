@@ -29,5 +29,7 @@
     <string name="setting_item3_name">清理缓存</string>
     <string name="setting_item4_name">检查更新</string>
 
+    <string name="app_about_text">蜜蜂兼职是一款为用户提供在线兼职信息的APP，宗旨是业界好用，服务大众。做到方便用户，给用户一个优秀好用的兼职平台。</string>
+
 
 </resources>

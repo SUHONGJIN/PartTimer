@@ -30,3 +30,8 @@
 
 -dontwarn cn.jiguang.**
 -keep class cn.jiguang.** { *; }
+
+#Mob的SMSSDK已经做了混淆处理，再次混淆会导致不可预期的错误，添加这个跳过对SMSSDK的混淆操作。
+-keep class com.mob.**{*;}
+-keep class cn.smssdk.**{*;}
+-dontwarn com.mob.**

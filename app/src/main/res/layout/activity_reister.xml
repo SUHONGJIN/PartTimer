@@ -95,6 +95,7 @@
                     android:maxLength="10"
                     />
                 <Button
+                    android:id="@+id/btn_get_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
