@@ -77,24 +77,25 @@
                         android:layout_centerHorizontal="true"
                         android:textSize="22sp"
                         android:textStyle="bold"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:textColor="@color/white"
                         android:layout_marginTop="10dp"/>
                     <ImageView
                         android:id="@+id/iv_show_men"
-                        android:layout_width="19dp"
-                        android:layout_height="19dp"
-                        android:src="@mipmap/icon_men"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_sex_men"
                         android:visibility="gone"
                         android:layout_toRightOf="@id/tv_show_name"
                         android:layout_below="@id/civ_head"
                         android:layout_marginTop="16dp"
                         android:layout_marginLeft="2dp"/>
+
                     <ImageView
                         android:id="@+id/iv_show_women"
-                        android:layout_width="19dp"
-                        android:layout_height="19dp"
-                        android:src="@mipmap/icon_women"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_sex_women"
                         android:visibility="gone"
                         android:layout_toRightOf="@id/tv_show_name"
                         android:layout_below="@id/civ_head"

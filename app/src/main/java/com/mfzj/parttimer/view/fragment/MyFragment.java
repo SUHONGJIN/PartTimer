@@ -9,15 +9,14 @@ import android.widget.TextView;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseFragment;
 import com.mfzj.parttimer.bean.User;
-import com.mfzj.parttimer.utils.ToastUtils;
 import com.mfzj.parttimer.view.activity.AboutActivity;
 import com.mfzj.parttimer.view.activity.AuthenticationActivity;
 import com.mfzj.parttimer.view.activity.CollectActivity;
 import com.mfzj.parttimer.view.activity.FeedBackActivity;
 import com.mfzj.parttimer.view.activity.LoginActivity;
 import com.mfzj.parttimer.view.activity.MyDataActivity;
+import com.mfzj.parttimer.view.activity.postjob.MyPostPartTimerActivity;
 import com.mfzj.parttimer.view.activity.MyStateActivity;
-import com.mfzj.parttimer.view.activity.PostPartTimerActivity;
 import com.mfzj.parttimer.view.activity.SettingActivity;
 import com.mfzj.parttimer.view.activity.MyResumeActivity;
 import com.mfzj.parttimer.view.activity.WalletActivity;
@@ -192,7 +191,13 @@ public class MyFragment extends BaseFragment {
                 startActivity(new Intent(getContext(), AboutActivity.class));
                 break;
             case R.id.itemview_item7:
-                startActivity(new Intent(getContext(), PostPartTimerActivity.class));
+                //判断用户是否登录
+                if (BmobUser.isLogin()) {
+                    startActivity(new Intent(getContext(), MyPostPartTimerActivity.class));
+                } else {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
+
                 break;
             case R.id.itemview_item8:
                 //跳转到设置界面
@@ -224,7 +229,7 @@ public class MyFragment extends BaseFragment {
                 tv_motto.setText(user.getMotto());
             }
             //用户身份标识
-            iv_vip.setVisibility(View.VISIBLE);
+            //iv_vip.setVisibility(View.VISIBLE);
         }
 
     }

@@ -35,7 +35,7 @@ public class PostFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
-        float_btn=(FloatingActionButton)view.findViewById(R.id.float_btn);
+
         float_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

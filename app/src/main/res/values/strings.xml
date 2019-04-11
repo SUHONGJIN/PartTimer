@@ -30,6 +30,7 @@
     <string name="setting_item4_name">检查更新</string>
 
     <string name="app_about_text">蜜蜂兼职是一款为用户提供在线兼职信息的APP，宗旨是业界好用，服务大众。做到方便用户，给用户一个优秀好用的兼职平台。</string>
+    <string name="app_job_text">温馨提示：若商家要求缴纳费用或押金，请勿支付并向我们举报！</string>
 
 
 </resources>

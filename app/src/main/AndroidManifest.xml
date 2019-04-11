@@ -45,21 +45,25 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.AuthenticationActivity"></activity>
+        <activity android:name=".view.activity.postjob.ApplyDetailsActivity"></activity>
+        <activity android:name=".view.activity.postjob.AddPartTimerActivity" />
+        <activity android:name=".view.activity.JobDetailsActivity" />
+        <activity android:name=".view.activity.SearchActivity" />
+        <activity android:name=".view.activity.WebDetailsActivity" />
+        <activity android:name=".view.activity.AuthenticationActivity" />
         <activity android:name=".view.activity.WalletActivity" />
         <activity android:name=".view.activity.EditResumeActivity" />
         <activity android:name=".view.activity.CollectActivity" />
         <activity android:name=".view.activity.MyStateActivity" />
         <activity android:name=".view.activity.FeedBackActivity" />
         <activity android:name=".view.activity.AboutActivity" />
-        <activity android:name=".view.activity.PostPartTimerActivity" />
+        <activity android:name=".view.activity.postjob.JobPostDetailsActivity" />
+        <activity android:name=".view.activity.postjob.MyPostPartTimerActivity" />
         <activity android:name=".view.activity.ModifyUserDataActivity" />
         <activity android:name=".view.activity.ModifyPassWordActivity" />
         <activity android:name=".CitySelect.CityPickerActivity" />
         <activity android:name=".view.activity.MyDataActivity" />
-        <activity android:name=".view.activity.HelpActivity"/>
-
-        <!-- 百度定位SDK -->
+        <activity android:name=".view.activity.HelpActivity" /> <!-- 百度定位SDK -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="cvdvo8Gi07ouq2r60Kujmgtg5KQpu8F1" />

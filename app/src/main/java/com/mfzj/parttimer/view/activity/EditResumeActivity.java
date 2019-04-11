@@ -164,6 +164,7 @@ public class EditResumeActivity extends BaseActivity {
      * 选择身份
      */
     private void setIdentity() {
+
         final ArrayList<String> list = new ArrayList<>();
         list.add("在校学生");
         list.add("上班族");

@@ -51,10 +51,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/app_about_text"
-                android:textSize="15sp"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                android:lineHeight="25dp"
+                android:textSize="14sp"
+                android:paddingRight="25dp"
+                android:paddingLeft="25dp"
+                android:lineHeight="20dp"
                 android:layout_marginTop="80dp"/>
 
         </LinearLayout>
@@ -81,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="Developed by the small bee team"
+                    android:text="版权所有-苏宏金"
                     android:textColor="@color/gray"
                     android:textSize="11sp" />
 

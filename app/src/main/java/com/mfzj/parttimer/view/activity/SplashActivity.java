@@ -51,7 +51,7 @@ public class SplashActivity extends BaseActivity {
                 }
 
             }
-        },3000);//表示延时3秒进行跳转
+        },1000);//表示延时3秒进行跳转
     }
 
     @Override

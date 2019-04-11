@@ -2,8 +2,6 @@ package com.mfzj.parttimer.utils;
 
 import android.app.Application;
 
-import com.mob.MobSDK;
-
 import cn.bmob.v3.Bmob;
 
 import cn.jpush.android.api.JPushInterface;
@@ -20,6 +18,6 @@ public class MyApplication extends Application {
         JPushInterface.init(this);
 
         //mob初始化
-        MobSDK.init(this);
+       // MobSDK.init(this);
     }
 }

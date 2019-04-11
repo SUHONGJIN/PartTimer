@@ -26,7 +26,7 @@
         <RelativeLayout
             android:id="@+id/rl_modify_user_head"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:padding="5dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/selector_itemview_bg">

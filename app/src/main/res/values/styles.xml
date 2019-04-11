@@ -9,13 +9,8 @@
     </style>
 
 
-    <style name="MyTablayoutstyle" parent="Base.Widget.Design.TabLayout">
-        <item name="tabBackground">@color/white</item>
-        <item name="tabIndicatorColor">@color/yellow</item>
-        <item name="tabIndicatorHeight">2dp</item>
-        <item name="tabSelectedTextColor">@color/yellow</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/black</item>
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">16sp</item>
     </style>
 
     <!--底部导航栏样式-->

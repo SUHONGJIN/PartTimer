@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".view.activity.postjob.MyPostPartTimerActivity">
+
+   <include layout="@layout/view_main_titlebar_layout"/>
+
+    <include layout="@layout/item_line_layout"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/float_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/yellow"
+            app:rippleColor="@color/gray"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            app:maxImageSize="30dp"
+            android:src="@mipmap/ic_post_d"/>
+
+    </FrameLayout>
+
+</LinearLayout>

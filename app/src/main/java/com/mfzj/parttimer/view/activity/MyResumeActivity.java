@@ -112,15 +112,15 @@ public class MyResumeActivity extends BaseActivity {
         if (user.getName()!=null){
             tv_name.setText(user.getName());
             tv_show_name.setText(user.getName());
-            tv_show_name.setVisibility(View.VISIBLE);
+
             if (user.getGender()!=null){
                 String sex=user.getGender();
                 if(sex.equals("男")){
                     iv_show_men.setVisibility(View.VISIBLE);
-                    iv_show_men.setVisibility(View.GONE);
+                    iv_show_women.setVisibility(View.GONE);
                 }else if (sex.equals("女")){
                     iv_show_men.setVisibility(View.GONE);
-                    iv_show_men.setVisibility(View.VISIBLE);
+                    iv_show_women.setVisibility(View.VISIBLE);
                 }
             }
         }

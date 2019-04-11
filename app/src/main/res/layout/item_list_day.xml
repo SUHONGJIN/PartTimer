@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@drawable/selector_itemview_bg"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:paddingTop="20dp">
@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/tv_job_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="酒店一个月短期服务员"
@@ -20,9 +21,11 @@
             android:textSize="16sp"
             android:layout_alignParentLeft="true"/>
         <TextView
+            android:id="@+id/tv_job_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="100元/天"
+            android:textStyle="bold"
             android:textSize="14sp"
             android:textColor="@color/red"
             android:layout_alignParentRight="true"/>
@@ -32,13 +35,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
         <TextView
+            android:id="@+id/tv_job_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4月9日"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:text="2019年4月9日-2019年4月9日"
+            android:textColor="@color/gray"
+            android:layout_centerVertical="true"
+            android:textSize="14sp"
             android:layout_alignParentLeft="true"/>
         <TextView
+            android:id="@+id/tv_job_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="日结"
@@ -61,11 +67,14 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@mipmap/d"/>
+                android:src="@mipmap/ic_vip"/>
             <TextView
+                android:id="@+id/tv_job_company"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="广州视翰科技有限公司"
+                android:lines="1"
+                android:enabled="true"
                 android:textSize="14sp"
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/somber"/>
@@ -82,6 +91,7 @@
                 android:layout_height="16dp"
                 android:src="@mipmap/icon_near"/>
             <TextView
+                android:id="@+id/tv_job_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"

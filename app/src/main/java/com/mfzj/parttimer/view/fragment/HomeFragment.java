@@ -10,6 +10,8 @@ import android.support.transition.TransitionManager;
 import android.support.transition.TransitionSet;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -28,39 +30,44 @@ import com.baidu.location.LocationClientOption;
 import com.bumptech.glide.Glide;
 import com.mfzj.parttimer.CitySelect.CityPickerActivity;
 import com.mfzj.parttimer.R;
+import com.mfzj.parttimer.adapter.SelectionAdapter;
 import com.mfzj.parttimer.base.BaseFragment;
 import com.mfzj.parttimer.bean.BannerBean;
+import com.mfzj.parttimer.bean.JobSelection;
 import com.mfzj.parttimer.utils.SharedPreferencesUtils;
 import com.mfzj.parttimer.utils.ToastUtils;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
-import com.youth.banner.listener.OnBannerListener;
-import com.youth.banner.loader.ImageLoaderInterface;
+import com.mfzj.parttimer.view.activity.JobDetailsActivity;
+import com.mfzj.parttimer.view.activity.SearchActivity;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
 public class HomeFragment extends BaseFragment {
 
-    @BindView(R.id.mBanner)
-    Banner mBanner;
     @BindView(R.id.tv_location)
     TextView tv_location;
     @BindView(R.id.tv_search)
     TextView tvSearch;
     @BindView(R.id.ll_search)
     LinearLayout mSearchLayout;
-    @BindView(R.id.scrollView)
-    ScrollView mScrollView;
+    @BindView(R.id.ll_load_state)
+    LinearLayout ll_load_state;
+    @BindView(R.id.rl_network_error)
+    RelativeLayout rl_network_error;
     boolean isExpand = false;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.mRecyclerView)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.mSmartRefreshLayout)
+    SmartRefreshLayout mSmartRefreshLayout;
 
     private TransitionSet mSet;
     //轮播图的集合
@@ -73,6 +80,8 @@ public class HomeFragment extends BaseFragment {
     //创建权限集合
     private List<String> permissionList = new ArrayList<>();
 
+    private List<JobSelection> datalist;
+    private SelectionAdapter adapter;
     @Override
     public int getLayoutResId() {
         return R.layout.fragment_home;
@@ -80,21 +89,17 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
-
         //获取轮播图
         getBannerData();
-
         //配置定位信息
         configLcation();
-
         //检查权限的获取状态并开始定位
         checkPermission();
-
-        tv_location.setOnClickListener(new View.OnClickListener() {
+        mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), CityPickerActivity.class);
-                startActivityForResult(intent, 2);
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                getJobList();
+                mSmartRefreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
             }
         });
 
@@ -151,9 +156,11 @@ public class HomeFragment extends BaseFragment {
                         //添加数据到集合
                         titles_list.add(bannerbean.getBanner_title());
                         images_list.add(bannerbean.getBanner_image_url());
-                        web_list.add(bannerbean.getBanner_image_url());
-                        setBanner(titles_list, images_list, web_list);
+                        web_list.add(bannerbean.getBanner_web_url());
                     }
+                    //获取兼职信息列表
+                    getJobList();
+
                 } else {
                     Log.e("banner", "轮播图数据获取失败----" + e);
                 }
@@ -161,79 +168,71 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
-    /**
-     * 设置轮播图
-     *
-     * @param titlesList
-     * @param titles_list
-     * @param images_list
-     */
-    private void setBanner(ArrayList<String> titlesList, ArrayList<String> titles_list, ArrayList<String> images_list) {
-        //设置banner样式
-        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
-        //设置图片加载器，图片加载器在下方
-        mBanner.setImageLoader(new MyLoader());
-        //设置图片地址集合
-        mBanner.setImages(this.images_list);
-        //设置标题的集合
-        mBanner.setBannerTitles(this.titles_list);
-        //设置轮播间隔时间
-        mBanner.setDelayTime(3000);
-        //设置轮播动画效果
-        mBanner.setBannerAnimation(Transformer.Default);
-        //设置轮播
-        mBanner.isAutoPlay(true);
-        //设置指示器位置
-        mBanner.setIndicatorGravity(BannerConfig.CENTER);
-        //设置监听
-        //mBanner.setOnBannerListener(this);
-        //启动轮播图
-        mBanner.start();
-        //轮播图的点击事件
-        mBanner.setOnBannerListener(new OnBannerListener() {
+
+    private void getJobList() {
+        datalist = new ArrayList<>();
+        //获取后台数据
+        BmobQuery<JobSelection> query = new BmobQuery<JobSelection>();
+        query.findObjects(new FindListener<JobSelection>() {
             @Override
-            public void OnBannerClick(int position) {
-                ToastUtils.setOkToast(getContext(), web_list.get(position));
+            public void done(final List<JobSelection> list, BmobException e) {
+                if (e == null) {
+
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                    ll_load_state.setVisibility(View.GONE);
+                    rl_network_error.setVisibility(View.GONE);
+
+                    //添加数据到集合
+                    datalist.addAll(list);
+                    //适配器
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                    adapter = new SelectionAdapter(getContext(),datalist,titles_list, images_list, web_list);
+                    mRecyclerView.setLayoutManager(layoutManager);
+                    mRecyclerView.setAdapter(adapter);
+
+                    adapter.setOnItemClickListener(new SelectionAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            Intent intent = new Intent(getContext(), JobDetailsActivity.class);
+                            intent.putExtra("job_title",datalist.get(position).getJob_title());
+                            intent.putExtra("job_pay",datalist.get(position).getJob_pay());
+                            intent.putExtra("job_time",datalist.get(position).getJob_time());
+                            intent.putExtra("job_type",datalist.get(position).getJob_type());
+                            intent.putExtra("job_company",datalist.get(position).getJob_company());
+                            intent.putExtra("job_address",datalist.get(position).getJob_address());
+                            intent.putExtra("job_describe",datalist.get(position).getJob_describe());
+                            intent.putExtra("job_people",datalist.get(position).getJob_people());
+                            intent.putExtra("ObjectId",datalist.get(position).getObjectId());
+                            startActivity(intent);
+                        }
+                    });
+                } else {
+                    ToastUtils.setOkToast(getContext(), "请检查网络！");
+                    ll_load_state.setVisibility(View.GONE);
+                    mRecyclerView.setVisibility(View.GONE);
+                    rl_network_error.setVisibility(View.VISIBLE);
+
+                }
             }
         });
     }
 
-    //轮播图图片加载器
-    private class MyLoader implements ImageLoaderInterface {
-        @Override
-        public void displayImage(Context context, Object path, View imageView) {
-            Glide.with(context).load(path).into((ImageView) imageView);
-        }
-
-        @Override
-        public View createImageView(Context context) {
-            return null;
-        }
-    }
 
     @Override
     public void initData() {
+    }
 
-        //设置toolbar初始透明度为0
-        toolbar.getBackground().mutate().setAlpha(0);
-        //scrollview滚动状态监听
-        mScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-                //改变toolbar的透明度
-                changeToolbarAlpha();
-                //滚动距离>=大图高度-toolbar高度 即toolbar完全盖住大图的时候 且不是伸展状态 进行伸展操作
-                if (mScrollView.getScrollY() >= mBanner.getHeight() - toolbar.getHeight() && !isExpand) {
-                    expand();
-                    isExpand = true;
-                }
-                //滚动距离<=0时 即滚动到顶部时  且当前伸展状态 进行收缩操作
-                else if (mScrollView.getScrollY() <= 0 && isExpand) {
-                    reduce();
-                    isExpand = false;
-                }
-            }
-        });
+    @OnClick({R.id.tv_location,R.id.ll_search})
+    public void Onlick(View view){
+        switch (view.getId()){
+            case R.id.tv_location:
+                Intent intent = new Intent(getContext(), CityPickerActivity.class);
+                startActivityForResult(intent, 2);
+                break;
+            case R.id.ll_search:
+                startActivity(new Intent(getContext(), SearchActivity.class));
+                break;
+        }
     }
 
     /**
@@ -264,54 +263,6 @@ public class HomeFragment extends BaseFragment {
             }
 
         }
-    }
-
-    private void changeToolbarAlpha() {
-        int scrollY = mScrollView.getScrollY();
-        //快速下拉会引起瞬间scrollY<0
-        if (scrollY < 0) {
-            toolbar.getBackground().mutate().setAlpha(0);
-            return;
-        }
-        //计算当前透明度比率
-        float radio = Math.min(1, scrollY / (mBanner.getHeight() - toolbar.getHeight() * 1f));
-        //设置透明度
-        toolbar.getBackground().mutate().setAlpha((int) (radio * 0xFF));
-    }
-
-    private void expand() {
-        //设置伸展状态时的布局
-        tvSearch.setText("搜索附近兼职");
-        tv_location.setVisibility(View.GONE);
-        RelativeLayout.LayoutParams LayoutParams = (RelativeLayout.LayoutParams) mSearchLayout.getLayoutParams();
-        LayoutParams.width = LayoutParams.MATCH_PARENT;
-        LayoutParams.setMargins(dip2px(10), dip2px(10), dip2px(10), dip2px(10));
-        mSearchLayout.setLayoutParams(LayoutParams);
-        //开始动画
-        beginDelayedTransition(mSearchLayout);
-    }
-
-    private void reduce() {
-        //设置收缩状态时的布局
-        tvSearch.setText("搜索");
-        tv_location.setVisibility(View.VISIBLE);
-        RelativeLayout.LayoutParams LayoutParams = (RelativeLayout.LayoutParams) mSearchLayout.getLayoutParams();
-        LayoutParams.width = dip2px(80);
-        LayoutParams.setMargins(dip2px(10), dip2px(10), dip2px(10), dip2px(10));
-        mSearchLayout.setLayoutParams(LayoutParams);
-        //开始动画
-        beginDelayedTransition(mSearchLayout);
-    }
-
-    void beginDelayedTransition(ViewGroup view) {
-        mSet = new AutoTransition();
-        mSet.setDuration(300);
-        TransitionManager.beginDelayedTransition(view, mSet);
-    }
-
-    private int dip2px(float dpVale) {
-        final float scale = getResources().getDisplayMetrics().density;
-        return (int) (dpVale * scale + 0.5f);
     }
 
     /**

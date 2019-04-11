@@ -245,7 +245,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/french_grey"
+                    android:textColor="@color/gray"
                     android:text="客服电话 400-098-8888 工作时间 9:30-18:30"
                     android:textSize="12sp" />
 
@@ -253,7 +253,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="@color/french_grey"
+                    android:textColor="@color/gray"
                     android:text="用户协议及隐私政策 | 防骗指南 "
                     android:textSize="12sp" />
             </LinearLayout>
