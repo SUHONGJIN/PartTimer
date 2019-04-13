@@ -12,6 +12,7 @@ import com.mfzj.parttimer.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 public class WebDetailsActivity extends BaseActivity {
 
@@ -81,11 +82,34 @@ public class WebDetailsActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.iv_share:
-
+                showShare();
                 break;
             default:
                 break;
         }
     }
 
+    private void showShare() {
+
+        String url = (String) getIntent().getExtras().get("url");
+
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+        // title标题，微信、QQ和QQ空间等平台使用
+        oks.setTitle("蜜蜂兼职");
+        // titleUrl QQ和QQ空间跳转链接
+        oks.setTitleUrl(url);
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("我发现了一个有趣的内容，快来蜜蜂兼职看看吧！");
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+        // url在微信、微博，Facebook等平台中使用
+        oks.setUrl(url);
+        // comment是我对这条分享的评论，仅在人人网使用
+        oks.setComment("我发现了一个有趣的内容，快来蜜蜂兼职看看吧！");
+        // 启动分享GUI
+        oks.show(this);
+    }
 }

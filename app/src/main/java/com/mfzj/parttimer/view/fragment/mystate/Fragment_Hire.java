@@ -5,10 +5,10 @@ import android.view.View;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseFragment;
 
-public class Fragment_SeeMe extends BaseFragment {
+public class Fragment_Hire extends BaseFragment {
     @Override
     public int getLayoutResId() {
-        return R.layout.fragment_tab_seeme;
+        return R.layout.fragment_tab_hire;
     }
 
     @Override

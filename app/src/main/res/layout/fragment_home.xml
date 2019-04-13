@@ -58,57 +58,17 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:orientation="vertical">
+
            <android.support.v7.widget.RecyclerView
                android:id="@+id/mRecyclerView"
                android:layout_width="match_parent"
                android:visibility="gone"
                android:layout_height="match_parent">
            </android.support.v7.widget.RecyclerView>
-           <LinearLayout
-               android:id="@+id/ll_load_state"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:orientation="vertical"
-               android:visibility="visible"
-               android:gravity="center">
-               <ProgressBar
-                   android:layout_width="35dp"
-                   android:layout_height="35dp"
-                   />
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="Load..."
-                   android:layout_marginTop="10dp"/>
-           </LinearLayout>
 
-           <RelativeLayout
-               android:id="@+id/rl_network_error"
-               android:layout_width="match_parent"
-               android:visibility="visible"
-               android:layout_marginTop="50dp"
-               android:layout_height="match_parent">
-               <LinearLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical"
-                   android:gravity="center"
-                   android:layout_centerInParent="true">
-                   <ImageView
-                       android:layout_width="120dp"
-                       android:layout_height="120dp"
-                       android:src="@drawable/no_network"/>
-                   <Button
-                       android:id="@+id/btn_load"
-                       android:layout_width="100dp"
-                       android:layout_height="35dp"
-                       android:text="下拉刷新"
-                       android:background="@drawable/selector_btn_bg"
-                       android:textColor="@color/black"
-                       android:layout_marginTop="5dp"
-                       />
-               </LinearLayout>
-           </RelativeLayout>
+          <include layout="@layout/load_state_layout"/>
+
+         <include layout="@layout/no_network_layout"/>
 
        </LinearLayout>
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter

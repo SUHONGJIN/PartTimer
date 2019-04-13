@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseActivity;
-import com.mfzj.parttimer.view.fragment.mystate.Fragment_Attendance;
+import com.mfzj.parttimer.view.fragment.mystate.Fragment_Hire;
 import com.mfzj.parttimer.view.fragment.mystate.Fragment_MyApply;
-import com.mfzj.parttimer.view.fragment.mystate.Fragment_MyIntention;
-import com.mfzj.parttimer.view.fragment.mystate.Fragment_SeeMe;
+import com.mfzj.parttimer.view.fragment.mystate.Fragment_Duty;
+import com.mfzj.parttimer.view.fragment.mystate.Fragment_Finish;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +32,10 @@ public class MyStateActivity extends BaseActivity {
     TabLayout mTabLayout;
     @BindView(R.id.mViewpager)
     ViewPager mViewpager;
-    private Fragment_Attendance fragmentAttendance;
-    private Fragment_MyApply fragmentApply;
-    private Fragment_MyIntention fragmentIntention;
-    private Fragment_SeeMe fragmentSeeMe;
+    private Fragment_Hire hire;
+    private Fragment_MyApply myApply;
+    private Fragment_Duty duty;
+    private Fragment_Finish fragment_finish;
     private List<Fragment> fragments;
     private List<String> titles;
 
@@ -47,25 +47,26 @@ public class MyStateActivity extends BaseActivity {
     @Override
     public void initView(Bundle savedInstanceState) {
 
-        tv_title.setText("我的兼职");
+        tv_title.setText("我参与的兼职");
 
-        fragmentAttendance=new Fragment_Attendance();
-        fragmentApply=new Fragment_MyApply();
-        fragmentIntention=new Fragment_MyIntention();
-        fragmentSeeMe=new Fragment_SeeMe();
+        hire=new Fragment_Hire();
+        myApply=new Fragment_MyApply();
+        duty=new Fragment_Duty();
+        fragment_finish=new Fragment_Finish();
+
         //添加碎片
         fragments=new ArrayList<>();
-        fragments.add(fragmentAttendance);
-        fragments.add(fragmentApply);
-        fragments.add(fragmentIntention);
-        fragments.add(fragmentSeeMe);
+        fragments.add(myApply);
+        fragments.add(hire);
+        fragments.add(duty);
+        fragments.add(fragment_finish);
+
         //添加标题
         titles=new ArrayList<>();
-
         titles.add("已报名");
         titles.add("已录用");
         titles.add("已到岗");
-        titles.add("已结算");
+        titles.add("已完成");
 
         mViewpager.setAdapter(new MyAdapter(getSupportFragmentManager()));
         mTabLayout.setupWithViewPager(mViewpager);

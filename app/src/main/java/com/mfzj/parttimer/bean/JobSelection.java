@@ -14,6 +14,24 @@ public class JobSelection extends BmobObject {
     private String job_time;
     private User boss;
     private BmobRelation collect;
+    private BmobRelation apply;
+    private String job_logo;
+
+    public String getJob_logo() {
+        return job_logo;
+    }
+
+    public void setJob_logo(String job_logo) {
+        this.job_logo = job_logo;
+    }
+
+    public BmobRelation getApply() {
+        return apply;
+    }
+
+    public void setApply(BmobRelation apply) {
+        this.apply = apply;
+    }
 
     public BmobRelation getCollect() {
         return collect;

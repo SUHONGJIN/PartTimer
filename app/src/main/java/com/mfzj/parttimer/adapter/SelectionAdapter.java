@@ -10,11 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.bean.JobSelection;
+import com.mfzj.parttimer.view.activity.JobStrategyActivity;
 import com.mfzj.parttimer.view.activity.WebDetailsActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.datatype.BmobPointer;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener{
 
@@ -86,6 +89,7 @@ public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
         if (viewHolder instanceof MyHeaderHolder) {
+
             //设置banner样式
             ((MyHeaderHolder) viewHolder).mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
             //设置图片加载器，图片加载器在下方
@@ -116,6 +120,47 @@ public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 }
             });
 
+            ((MyHeaderHolder) viewHolder).ll_strategy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, JobStrategyActivity.class));
+                }
+            });
+
+            ((MyHeaderHolder) viewHolder).tv_banner1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, WebDetailsActivity.class);
+                    intent.putExtra("url", "http://bmob-cdn-24662.b0.upaiyun.com/2019/04/10/23a356ee408a954d805ab18f247ac5bd.html");
+                    context.startActivity(intent);
+                }
+            });
+            ((MyHeaderHolder) viewHolder).tv_banner2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, WebDetailsActivity.class);
+                    intent.putExtra("url", "http://bmob-cdn-24662.b0.upaiyun.com/2019/04/10/23a356ee408a954d805ab18f247ac5bd.html");
+                    context.startActivity(intent);
+                }
+            });
+            ((MyHeaderHolder) viewHolder).tv_banner3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, WebDetailsActivity.class);
+                    intent.putExtra("url", "http://bmob-cdn-24662.b0.upaiyun.com/2019/04/10/23a356ee408a954d805ab18f247ac5bd.html");
+                    context.startActivity(intent);
+                }
+            });
+            ((MyHeaderHolder) viewHolder).tv_banner4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, WebDetailsActivity.class);
+                    intent.putExtra("url", "http://bmob-cdn-24662.b0.upaiyun.com/2019/04/10/23a356ee408a954d805ab18f247ac5bd.html");
+                    context.startActivity(intent);
+                }
+            });
+
+
         }
 
         if (viewHolder instanceof MyHolder) {
@@ -129,6 +174,7 @@ public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             String type = datalist.get(pos).getJob_type();
             String company = datalist.get(pos).getJob_company();
             String address = datalist.get(pos).getJob_address();
+            String logo = datalist.get(pos).getJob_logo();
 
             ((MyHolder) viewHolder).tv_job_title.setText(title);
             ((MyHolder) viewHolder).tv_job_pay.setText(pay);
@@ -136,6 +182,10 @@ public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ((MyHolder) viewHolder).tv_job_type.setText(type);
             ((MyHolder) viewHolder).tv_job_company.setText(company);
             ((MyHolder) viewHolder).tv_job_address.setText(address);
+            if (logo!=null){
+                Glide.with(context).load(logo).error(R.drawable.head).into(((MyHolder) viewHolder).civ_boss_logo);
+            }
+
 
         }
     }
@@ -168,6 +218,7 @@ public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         TextView tv_job_type;
         TextView tv_job_company;
         TextView tv_job_address;
+        CircleImageView civ_boss_logo;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
@@ -177,15 +228,27 @@ public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tv_job_type = (TextView) itemView.findViewById(R.id.tv_job_type);
             tv_job_company = (TextView) itemView.findViewById(R.id.tv_job_company);
             tv_job_address = (TextView) itemView.findViewById(R.id.tv_job_address);
+            civ_boss_logo = (CircleImageView) itemView.findViewById(R.id.civ_boss_logo);
         }
     }
 
     class MyHeaderHolder extends RecyclerView.ViewHolder {
 
         Banner mBanner;
+        LinearLayout ll_strategy;
+        TextView tv_banner1;
+        TextView tv_banner2;
+        TextView tv_banner3;
+        TextView tv_banner4;
+
         public MyHeaderHolder(@NonNull View itemView) {
             super(itemView);
             mBanner = (Banner) itemView.findViewById(R.id.mBanner);
+            ll_strategy = (LinearLayout) itemView.findViewById(R.id.ll_strategy);
+            tv_banner1= (TextView)itemView.findViewById(R.id.tv_banner1);
+            tv_banner2= (TextView)itemView.findViewById(R.id.tv_banner2);
+            tv_banner3= (TextView)itemView.findViewById(R.id.tv_banner3);
+            tv_banner4= (TextView)itemView.findViewById(R.id.tv_banner4);
         }
     }
 

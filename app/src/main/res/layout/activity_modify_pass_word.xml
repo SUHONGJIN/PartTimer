@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/white"
     android:fitsSystemWindows="true"
-    tools:context="com.mfzj.parttimer.view.activity.ModifyPassWordActivity">
+    tools:context="com.mfzj.parttimer.view.activity.setting.ModifyPassWordActivity">
     <include layout="@layout/view_main_titlebar_layout"/>
     <LinearLayout
         android:layout_width="match_parent"

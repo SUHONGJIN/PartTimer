@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -68,6 +69,8 @@ public class HomeFragment extends BaseFragment {
     RecyclerView mRecyclerView;
     @BindView(R.id.mSmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
+    @BindView(R.id.btn_load)
+    Button btn_load;
 
     private TransitionSet mSet;
     //轮播图的集合
@@ -82,6 +85,7 @@ public class HomeFragment extends BaseFragment {
 
     private List<JobSelection> datalist;
     private SelectionAdapter adapter;
+
     @Override
     public int getLayoutResId() {
         return R.layout.fragment_home;
@@ -91,6 +95,7 @@ public class HomeFragment extends BaseFragment {
     public void initView(View view) {
         //获取轮播图
         getBannerData();
+        //getJobList();
         //配置定位信息
         configLcation();
         //检查权限的获取状态并开始定位
@@ -98,8 +103,17 @@ public class HomeFragment extends BaseFragment {
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                getJobList();
+                getBannerData();
+                //getJobList();
                 mSmartRefreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
+        btn_load.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_load.setText("加载中...");
+                getBannerData();
+                //getJobList();
             }
         });
 
@@ -186,7 +200,7 @@ public class HomeFragment extends BaseFragment {
                     datalist.addAll(list);
                     //适配器
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                    adapter = new SelectionAdapter(getContext(),datalist,titles_list, images_list, web_list);
+                    adapter = new SelectionAdapter(getContext(), datalist, titles_list, images_list, web_list);
                     mRecyclerView.setLayoutManager(layoutManager);
                     mRecyclerView.setAdapter(adapter);
 
@@ -194,23 +208,24 @@ public class HomeFragment extends BaseFragment {
                         @Override
                         public void onItemClick(View view, int position) {
                             Intent intent = new Intent(getContext(), JobDetailsActivity.class);
-                            intent.putExtra("job_title",datalist.get(position).getJob_title());
-                            intent.putExtra("job_pay",datalist.get(position).getJob_pay());
-                            intent.putExtra("job_time",datalist.get(position).getJob_time());
-                            intent.putExtra("job_type",datalist.get(position).getJob_type());
-                            intent.putExtra("job_company",datalist.get(position).getJob_company());
-                            intent.putExtra("job_address",datalist.get(position).getJob_address());
-                            intent.putExtra("job_describe",datalist.get(position).getJob_describe());
-                            intent.putExtra("job_people",datalist.get(position).getJob_people());
-                            intent.putExtra("ObjectId",datalist.get(position).getObjectId());
+                            intent.putExtra("job_title", datalist.get(position).getJob_title());
+                            intent.putExtra("job_pay", datalist.get(position).getJob_pay());
+                            intent.putExtra("job_time", datalist.get(position).getJob_time());
+                            intent.putExtra("job_type", datalist.get(position).getJob_type());
+                            intent.putExtra("job_company", datalist.get(position).getJob_company());
+                            intent.putExtra("job_address", datalist.get(position).getJob_address());
+                            intent.putExtra("job_describe", datalist.get(position).getJob_describe());
+                            intent.putExtra("job_people", datalist.get(position).getJob_people());
+                            intent.putExtra("job_logo", datalist.get(position).getJob_logo());
+                            intent.putExtra("object_id", datalist.get(position).getObjectId());
                             startActivity(intent);
                         }
                     });
                 } else {
                     ToastUtils.setOkToast(getContext(), "请检查网络！");
+                    rl_network_error.setVisibility(View.VISIBLE);
                     ll_load_state.setVisibility(View.GONE);
                     mRecyclerView.setVisibility(View.GONE);
-                    rl_network_error.setVisibility(View.VISIBLE);
 
                 }
             }
@@ -222,9 +237,9 @@ public class HomeFragment extends BaseFragment {
     public void initData() {
     }
 
-    @OnClick({R.id.tv_location,R.id.ll_search})
-    public void Onlick(View view){
-        switch (view.getId()){
+    @OnClick({R.id.tv_location, R.id.ll_search})
+    public void Onlick(View view) {
+        switch (view.getId()) {
             case R.id.tv_location:
                 Intent intent = new Intent(getContext(), CityPickerActivity.class);
                 startActivityForResult(intent, 2);

@@ -88,11 +88,11 @@
                 <com.mfzj.parttimer.widget.WaveViewBySinCos
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    app:waveColor="@color/yellow2"
-                    app:waveAmplitude="12dp"
+                    app:waveColor="@color/yellow3"
+                    app:waveAmplitude="11dp"
                     app:waveSpeed="3"
                     app:waveStart="true"
-                    app:waveStartPeriod="0.5"
+                    app:waveStartPeriod="0.7"
                     app:waveType="sin" />
 
                 <com.mfzj.parttimer.widget.WaveViewBySinCos
@@ -102,7 +102,7 @@
                     app:waveAmplitude="12dp"
                     app:waveSpeed="3"
                     app:waveStart="true"
-                    app:waveStartPeriod="1"
+                    app:waveStartPeriod="2"
                     app:waveType="sin" />
 
             </FrameLayout>

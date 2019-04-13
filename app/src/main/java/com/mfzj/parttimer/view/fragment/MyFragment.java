@@ -17,7 +17,7 @@ import com.mfzj.parttimer.view.activity.LoginActivity;
 import com.mfzj.parttimer.view.activity.MyDataActivity;
 import com.mfzj.parttimer.view.activity.postjob.MyPostPartTimerActivity;
 import com.mfzj.parttimer.view.activity.MyStateActivity;
-import com.mfzj.parttimer.view.activity.SettingActivity;
+import com.mfzj.parttimer.view.activity.setting.SettingActivity;
 import com.mfzj.parttimer.view.activity.MyResumeActivity;
 import com.mfzj.parttimer.view.activity.WalletActivity;
 import com.mfzj.parttimer.widget.ItemMenu;

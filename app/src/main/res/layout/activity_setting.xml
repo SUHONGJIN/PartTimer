@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.mfzj.parttimer.view.activity.SettingActivity">
+    tools:context="com.mfzj.parttimer.view.activity.setting.SettingActivity">
 
     <include layout="@layout/view_main_titlebar_layout"/>
     <View

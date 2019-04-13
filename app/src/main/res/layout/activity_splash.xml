@@ -17,12 +17,14 @@
         <ImageView
             android:layout_width="55dp"
             android:layout_height="55dp"
+            android:visibility="gone"
             android:src="@mipmap/ic_launcher_foreground"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="@color/gray"
+            android:visibility="gone"
             android:layout_marginTop="5dp"
             android:text="V1.0"/>
     </LinearLayout>

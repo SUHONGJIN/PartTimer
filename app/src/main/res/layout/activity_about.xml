@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".view.activity.AboutActivity">
 
     <include layout="@layout/view_main_titlebar_layout" />
@@ -39,29 +39,29 @@
                 android:id="@+id/tv_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="版本V1.0"
+                android:layout_marginTop="0dp"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp"
                 android:paddingTop="5dp"
+                android:paddingRight="10dp"
                 android:paddingBottom="5dp"
+                android:text="版本V1.0"
                 android:textColor="@color/somber"
                 android:textSize="13sp" />
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:lineHeight="25dp"
+                android:padding="30dp"
+                android:textColor="@color/gray"
                 android:text="@string/app_about_text"
-                android:textSize="14sp"
-                android:paddingRight="25dp"
-                android:paddingLeft="25dp"
-                android:lineHeight="20dp"
-                android:layout_marginTop="80dp"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,6 +69,7 @@
                 android:layout_marginBottom="30dp"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

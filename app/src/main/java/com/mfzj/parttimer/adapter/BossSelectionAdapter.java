@@ -7,11 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.bean.JobSelection;
+
 import java.util.List;
 
-public class BossSelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener{
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class BossSelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
     private List<JobSelection> datalist;
     private Context context;
@@ -20,7 +25,7 @@ public class BossSelectionAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public BossSelectionAdapter(Context context, List<JobSelection> datalist) {
         this.context = context;
-        this.datalist=datalist;
+        this.datalist = datalist;
     }
 
     @NonNull
@@ -34,22 +39,28 @@ public class BossSelectionAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-            int pos = i;
-            //注意除去头布局
-            viewHolder.itemView.setTag(pos);
+        int pos = i;
+        //注意除去头布局
+        viewHolder.itemView.setTag(pos);
 
-            String title = datalist.get(pos).getJob_title();
-            String pay = datalist.get(pos).getJob_pay();
-            String time = datalist.get(pos).getJob_time();
-            String type = datalist.get(pos).getJob_type();
-            String company = datalist.get(pos).getJob_company();
-            String address = datalist.get(pos).getJob_address();
-            ((MyHolder) viewHolder).tv_job_title.setText(title);
-            ((MyHolder) viewHolder).tv_job_pay.setText(pay);
-            ((MyHolder) viewHolder).tv_job_time.setText(time);
-            ((MyHolder) viewHolder).tv_job_type.setText(type);
-            ((MyHolder) viewHolder).tv_job_company.setText(company);
-            ((MyHolder) viewHolder).tv_job_address.setText(address);
+        String title = datalist.get(pos).getJob_title();
+        String pay = datalist.get(pos).getJob_pay();
+        String time = datalist.get(pos).getJob_time();
+        String type = datalist.get(pos).getJob_type();
+        String company = datalist.get(pos).getJob_company();
+        String address = datalist.get(pos).getJob_address();
+        String logo = datalist.get(pos).getJob_logo();
+
+        ((MyHolder) viewHolder).tv_job_title.setText(title);
+        ((MyHolder) viewHolder).tv_job_pay.setText(pay);
+        ((MyHolder) viewHolder).tv_job_time.setText(time);
+        ((MyHolder) viewHolder).tv_job_type.setText(type);
+        ((MyHolder) viewHolder).tv_job_company.setText(company);
+        ((MyHolder) viewHolder).tv_job_address.setText(address);
+
+        if (logo != null) {
+            Glide.with(context).load(logo).error(R.drawable.head).into(((MyHolder) viewHolder).civ_boss_logo);
+        }
     }
 
     @Override
@@ -64,6 +75,7 @@ public class BossSelectionAdapter extends RecyclerView.Adapter<RecyclerView.View
         TextView tv_job_type;
         TextView tv_job_company;
         TextView tv_job_address;
+        CircleImageView civ_boss_logo;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,21 +85,22 @@ public class BossSelectionAdapter extends RecyclerView.Adapter<RecyclerView.View
             tv_job_type = (TextView) itemView.findViewById(R.id.tv_job_type);
             tv_job_company = (TextView) itemView.findViewById(R.id.tv_job_company);
             tv_job_address = (TextView) itemView.findViewById(R.id.tv_job_address);
+            civ_boss_logo = (CircleImageView) itemView.findViewById(R.id.civ_boss_logo);
         }
     }
 
     @Override
     public void onClick(View view) {
-        if(onItemClickListener!=null){
+        if (onItemClickListener != null) {
             onItemClickListener.onItemClick(view, (Integer) view.getTag());
         }
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
-        this.onItemClickListener=onItemClickListener;
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
 

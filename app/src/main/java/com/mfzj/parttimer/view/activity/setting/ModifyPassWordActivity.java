@@ -1,4 +1,4 @@
-package com.mfzj.parttimer.view.activity;
+package com.mfzj.parttimer.view.activity.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseActivity;
 import com.mfzj.parttimer.utils.ToastUtils;
+import com.mfzj.parttimer.view.activity.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;

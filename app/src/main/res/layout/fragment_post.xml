@@ -4,75 +4,41 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#fff">
+   android:background="@color/white">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:visibility="visible"
+        android:layout_height="40dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="广场"
+            android:text="兼职小广场"
             android:textSize="18sp"
             android:layout_centerInParent="true"
             android:textColor="#000"/>
     </RelativeLayout>
-    <View
+
+    <!--<include layout="@layout/item_line_layout"/>-->
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/my_tab"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#ddd"/>
-    <FrameLayout
+        android:layout_height="48dp"
+        android:background="@color/white"
+        app:tabTextColor="@color/gray"
+        app:tabIndicatorColor="@color/yellow"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabIndicatorHeight="2dp">
+
+    </android.support.design.widget.TabLayout>
+
+    <include layout="@layout/item_line_layout"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/my_viewpager"
+        android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_margin="10dp"
-                            android:src="@drawable/head"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="JIN"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:textColor="@color/black" />
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="今天做兼职赚200，真好！"
-                        android:layout_marginLeft="20dp"/>
-                </LinearLayout>
-
-            </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/float_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:backgroundTint="@color/yellow"
-            app:rippleColor="@color/gray"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            app:maxImageSize="30dp"
-            android:src="@mipmap/ic_post_d"/>
-    </FrameLayout>
-
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

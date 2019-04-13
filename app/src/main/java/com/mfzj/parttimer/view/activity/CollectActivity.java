@@ -89,6 +89,7 @@ public class CollectActivity extends BaseActivity {
                             intent.putExtra("job_address", datalist.get(position).getJob_address());
                             intent.putExtra("job_describe", datalist.get(position).getJob_describe());
                             intent.putExtra("job_people", datalist.get(position).getJob_people());
+                            intent.putExtra("job_logo",datalist.get(position).getJob_logo());
                             intent.putExtra("object_id", datalist.get(position).getObjectId());
                             startActivity(intent);
                         }

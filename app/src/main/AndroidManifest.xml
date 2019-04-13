@@ -38,6 +38,7 @@
 
     <application
         android:name=".utils.MyApplication"
+        tools:replace="android:name"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_foreground"
         android:label="@string/app_name"
@@ -45,7 +46,9 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.postjob.ApplyDetailsActivity"></activity>
+        <activity android:name=".view.activity.CallBossActivity"></activity>
+        <activity android:name=".view.activity.JobStrategyActivity" />
+        <activity android:name=".view.activity.postjob.ApplyDetailsActivity" />
         <activity android:name=".view.activity.postjob.AddPartTimerActivity" />
         <activity android:name=".view.activity.JobDetailsActivity" />
         <activity android:name=".view.activity.SearchActivity" />
@@ -60,7 +63,7 @@
         <activity android:name=".view.activity.postjob.JobPostDetailsActivity" />
         <activity android:name=".view.activity.postjob.MyPostPartTimerActivity" />
         <activity android:name=".view.activity.ModifyUserDataActivity" />
-        <activity android:name=".view.activity.ModifyPassWordActivity" />
+        <activity android:name=".view.activity.setting.ModifyPassWordActivity" />
         <activity android:name=".CitySelect.CityPickerActivity" />
         <activity android:name=".view.activity.MyDataActivity" />
         <activity android:name=".view.activity.HelpActivity" /> <!-- 百度定位SDK -->
@@ -73,7 +76,13 @@
             android:enabled="true"
             android:process=":remote" />
 
-        <activity android:name=".view.activity.MainActivity" />
+        <activity android:name=".view.activity.MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="douyin.callback.action" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -81,7 +90,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.SettingActivity" />
+        <activity android:name=".view.activity.setting.SettingActivity" />
         <activity android:name=".view.activity.WelcomeGuideActivity" />
         <activity android:name=".view.activity.LoginActivity" />
         <activity android:name=".view.activity.MyResumeActivity" />

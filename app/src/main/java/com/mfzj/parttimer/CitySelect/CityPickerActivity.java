@@ -80,7 +80,6 @@ public class CityPickerActivity extends BaseActivity {
         mCityAdapter.setOnCityClickListener(new CityListAdapter.OnCityClickListener() {
             @Override
             public void onCityClick(String name) {//选择城市
-                Log.i("tag1","点击1。。");
                 Intent intentTemp = new Intent();
                 intentTemp.putExtra("cityname",name);
                 setResult(200,intentTemp);
@@ -89,7 +88,6 @@ public class CityPickerActivity extends BaseActivity {
 
             @Override
             public void onLocateClick() {//点击定位按钮
-                Log.i("tag1","点击2。。");
                 mCityAdapter.updateLocateState(LocateState.LOCATING, null);
                 requestLocation();
             }

@@ -128,7 +128,8 @@ public class CityListAdapter extends BaseAdapter {
                         state.setText("正在定位…");
                         break;
                     case LocateState.FAILED:
-                        state.setText("定位失败");
+                        //定位失败
+                        state.setText("定位中...");
                         break;
                     case LocateState.SUCCESS:
                         state.setText(locatedCity);
