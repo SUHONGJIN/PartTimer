@@ -31,7 +31,7 @@ public class BossSelectionAdapter extends RecyclerView.Adapter<RecyclerView.View
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View layout = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list_day, viewGroup, false);
+        View layout = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list_job, viewGroup, false);
         //为每个item添加监听事件
         layout.setOnClickListener(this);
         return new MyHolder(layout);

@@ -291,9 +291,7 @@ public class MyDataActivity extends BaseActivity {
         //获取头像地址
         User user = BmobUser.getCurrentUser(User.class);
         if (user.getAvatar() != null) {
-            Glide.with(MyDataActivity.this)
-                    .load(user.getAvatar())
-                    .into(civ_user_head);
+            Glide.with(MyDataActivity.this).load(user.getAvatar()).error(R.drawable.head).into(civ_user_head);
         }
     }
 

@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,7 +25,6 @@ import com.youth.banner.loader.ImageLoaderInterface;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.datatype.BmobPointer;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener{
@@ -77,7 +74,7 @@ public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             View layout = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_header_layout, viewGroup, false);
             return new MyHeaderHolder(layout);
         } else if (i == TYPE_NORMAL) {
-            View layout = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list_day, viewGroup, false);
+            View layout = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list_job, viewGroup, false);
             //为每个item添加监听事件
             layout.setOnClickListener(this);
             return new MyHolder(layout);
@@ -131,7 +128,7 @@ public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, WebDetailsActivity.class);
-                    intent.putExtra("url", "http://bmob-cdn-24662.b0.upaiyun.com/2019/04/10/23a356ee408a954d805ab18f247ac5bd.html");
+                    intent.putExtra("url", "http://bmob-cdn-24662.b0.upaiyun.com/2019/04/12/cc53499a40f12f8680c28d778804c8eb.html");
                     context.startActivity(intent);
                 }
             });
@@ -139,7 +136,7 @@ public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, WebDetailsActivity.class);
-                    intent.putExtra("url", "http://bmob-cdn-24662.b0.upaiyun.com/2019/04/10/23a356ee408a954d805ab18f247ac5bd.html");
+                    intent.putExtra("url", "http://bmob-cdn-24662.b0.upaiyun.com/2019/04/12/cc53499a40f12f8680c28d778804c8eb.html");
                     context.startActivity(intent);
                 }
             });
@@ -147,7 +144,7 @@ public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, WebDetailsActivity.class);
-                    intent.putExtra("url", "http://bmob-cdn-24662.b0.upaiyun.com/2019/04/10/23a356ee408a954d805ab18f247ac5bd.html");
+                    intent.putExtra("url", "http://bmob-cdn-24662.b0.upaiyun.com/2019/04/12/cc53499a40f12f8680c28d778804c8eb.html");
                     context.startActivity(intent);
                 }
             });
@@ -155,7 +152,7 @@ public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, WebDetailsActivity.class);
-                    intent.putExtra("url", "http://bmob-cdn-24662.b0.upaiyun.com/2019/04/10/23a356ee408a954d805ab18f247ac5bd.html");
+                    intent.putExtra("url", "http://bmob-cdn-24662.b0.upaiyun.com/2019/04/12/cc53499a40f12f8680c28d778804c8eb.html");
                     context.startActivity(intent);
                 }
             });
@@ -213,6 +210,7 @@ public class SelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     class MyHolder extends RecyclerView.ViewHolder {
         TextView tv_job_title;
+
         TextView tv_job_pay;
         TextView tv_job_time;
         TextView tv_job_type;

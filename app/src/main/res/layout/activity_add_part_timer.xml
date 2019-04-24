@@ -197,7 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="0dp"
-                    android:text="开始"
+                    android:text="选择开始时间"
                     android:textSize="16sp"
                     android:textColor="@color/black"
                     android:background="@drawable/selector_btn_bg"
@@ -223,7 +223,7 @@
                     android:paddingTop="4dp"
                     android:paddingRight="10dp"
                     android:paddingBottom="4dp"
-                    android:text="结束"
+                    android:text="选择结束时间"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -259,7 +259,7 @@
                     android:paddingBottom="4dp"/>
             </LinearLayout>
             <EditText
-                android:id="@+id/tv_post_address"
+                android:id="@+id/et_post_address"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/bg_et_input"

@@ -17,6 +17,8 @@ public class User extends BmobUser {
     private String isverify;
     //头像
     private String avatar;
+    //是否提交简历
+    private String isResume;
     //姓名
     private String name;
     //身份
@@ -94,6 +96,14 @@ public class User extends BmobUser {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getIsResume() {
+        return isResume;
+    }
+
+    public void setIsResume(String isResume) {
+        this.isResume = isResume;
     }
 
     public String getName() {

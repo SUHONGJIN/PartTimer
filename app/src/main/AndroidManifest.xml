@@ -66,6 +66,7 @@
         <activity android:name=".view.activity.setting.ModifyPassWordActivity" />
         <activity android:name=".CitySelect.CityPickerActivity" />
         <activity android:name=".view.activity.MyDataActivity" />
+        <activity android:name=".view.activity.postjob.ApplyResumeActivity"/>
         <activity android:name=".view.activity.HelpActivity" /> <!-- 百度定位SDK -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

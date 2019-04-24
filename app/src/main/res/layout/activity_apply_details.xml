@@ -10,7 +10,7 @@
     tools:context=".view.activity.postjob.ApplyDetailsActivity">
 
     <include layout="@layout/view_main_titlebar_layout"/>
-    <include layout="@layout/item_line_layout"/>
+    <!--<include layout="@layout/item_line_layout"/>-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mRecyclerView"

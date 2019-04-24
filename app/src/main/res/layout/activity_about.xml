@@ -82,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="版权所有-苏宏金"
+                    android:text="版权所有-蜜蜂兼职团队"
                     android:textColor="@color/gray"
                     android:textSize="11sp" />
 

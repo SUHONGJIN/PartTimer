@@ -128,7 +128,19 @@ public class EditResumeActivity extends BaseActivity {
                 showDatePickDlg();
                 break;
             case R.id.btn_commit:
-                commitResume();
+                if (et_name.getText().length()==0){
+                    ToastUtils.setOkToast(EditResumeActivity.this,"请填写姓名");
+                }else if (et_phone.getText().length()==0){
+                    ToastUtils.setOkToast(EditResumeActivity.this,"请填写联系电话");
+                }else if (et_email.getText().length()==0){
+                    ToastUtils.setOkToast(EditResumeActivity.this,"请填写邮箱");
+                }else if (et_intro.getText().length()==0){
+                    ToastUtils.setOkToast(EditResumeActivity.this,"请填写简介");
+                }else if (et_experience.getText().length()==0){
+                    ToastUtils.setOkToast(EditResumeActivity.this,"请填写工作经验");
+                } else {
+                    commitResume();
+                }
                 break;
             case R.id.tv_show_city:
                 Intent intent = new Intent(EditResumeActivity.this, CityPickerActivity.class);
@@ -228,6 +240,7 @@ public class EditResumeActivity extends BaseActivity {
         myUser.setValue("experience",et_experience.getText().toString());
         myUser.setValue("gender",tv_show_sex.getText().toString());
         myUser.setValue("city",tv_show_city.getText().toString());
+        myUser.setValue("isResume","有简历");
 
         myUser.update(myUser.getObjectId(), new UpdateListener() {
             @Override

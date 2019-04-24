@@ -14,9 +14,11 @@ import android.widget.TextView;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseActivity;
 import com.mfzj.parttimer.bean.FeedBack;
+import com.mfzj.parttimer.bean.User;
 import com.mfzj.parttimer.utils.ToastUtils;
 
 import butterknife.BindView;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
@@ -94,6 +96,7 @@ public class FeedBackActivity extends BaseActivity {
         FeedBack feedback=new FeedBack();
         feedback.setFeedbackType(tv_feedback_type.getText().toString());
         feedback.setFeedbackContent(et_feedback.getText().toString());
+        feedback.setFeedbackUser(BmobUser.getCurrentUser(User.class).getUsername());
         feedback.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {

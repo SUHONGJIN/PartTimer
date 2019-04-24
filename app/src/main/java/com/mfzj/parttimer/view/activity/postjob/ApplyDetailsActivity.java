@@ -1,5 +1,6 @@
 package com.mfzj.parttimer.view.activity.postjob;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import com.mfzj.parttimer.adapter.ApplyDetailsAdapter;
 import com.mfzj.parttimer.base.BaseActivity;
 import com.mfzj.parttimer.bean.ApplyTable;
 import com.mfzj.parttimer.bean.JobSelection;
+import com.mfzj.parttimer.view.activity.MyResumeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +74,35 @@ public class ApplyDetailsActivity extends BaseActivity {
                 adapter = new ApplyDetailsAdapter(ApplyDetailsActivity.this,datalist);
                 mRecyclerView.setLayoutManager(layoutManager);
                 mRecyclerView.setAdapter(adapter);
+
+                adapter.setOnItemClickListener(new ApplyDetailsAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        String name = datalist.get(position).getUser().getName();
+                        String birth = datalist.get(position).getUser().getBirth();
+                        String city = datalist.get(position).getUser().getCity();
+                        String phone = datalist.get(position).getUser().getPhone();
+                        String email = datalist.get(position).getUser().getMyemail();
+                        String sex = datalist.get(position).getUser().getGender();
+                        String avatar = datalist.get(position).getUser().getAvatar();
+                        String identity = datalist.get(position).getUser().getIdentity();
+                        String intro = datalist.get(position).getUser().getIntro();
+                        String experience = datalist.get(position).getUser().getExperience();
+
+                        Intent intent = new Intent(ApplyDetailsActivity.this, ApplyResumeActivity.class);
+                        intent.putExtra("name",name);
+                        intent.putExtra("birth",birth);
+                        intent.putExtra("city",city);
+                        intent.putExtra("phone",phone);
+                        intent.putExtra("email",email);
+                        intent.putExtra("sex",sex);
+                        intent.putExtra("avatar",avatar);
+                        intent.putExtra("identity",identity);
+                        intent.putExtra("intro",intro);
+                        intent.putExtra("experience",experience);
+                        startActivity(intent);
+                    }
+                });
             }
         });
 

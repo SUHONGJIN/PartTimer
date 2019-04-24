@@ -93,6 +93,22 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                 }else {
                     // 请求验证码，其中country表示国家代码，如“86”；phone表示手机号码，如“13800138000”
                     SMSSDK.getVerificationCode("86", et_register_username.getText().toString());
+                    //倒计时60s
+                    new CountDownTimer(60000,1000) {
+                        @Override
+                        public void onTick(long time) {
+                            // Log.i("TAG","倒计时"+time/1000+"==================");
+                            btn_get_code.setText(time/1000+"秒后重新获取");
+                            btn_get_code.setClickable(false);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            //Log.i("TAG","end---------------------------------------");
+                            btn_get_code.setText("获取验证码");
+                            btn_get_code.setClickable(true);
+                        }
+                    }.start();
                 }
                 break;
             default:
@@ -122,23 +138,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                             if (result == SMSSDK.RESULT_COMPLETE) {
                                 // TODO 处理成功得到验证码的结果
                                 // 请注意，此时只是完成了发送验证码的请求，验证码短信还需要几秒钟之后才送达
-                                ToastUtils.setOkToast(RegisterActivity.this, "验证码已发送");
-                                //倒计时60s
-                                new CountDownTimer(60000,1000) {
-                                    @Override
-                                    public void onTick(long time) {
-                                       // Log.i("TAG","倒计时"+time/1000+"==================");
-                                        btn_get_code.setText(time/1000+"秒后重新获取");
-                                        btn_get_code.setClickable(false);
-                                    }
-
-                                    @Override
-                                    public void onFinish() {
-                                        //Log.i("TAG","end---------------------------------------");
-                                        btn_get_code.setText("获取验证码");
-                                        btn_get_code.setClickable(true);
-                                    }
-                                }.start();
+                                ToastUtils.setOkToast(RegisterActivity.this, "验证码已发送...");
                             } else {
                                 // TODO 处理错误的结果
                                 ((Throwable) data).printStackTrace();
@@ -175,6 +175,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
         user.setUsername(et_register_username.getText().toString());
         user.setPassword(et_register_password.getText().toString());
         user.setIsverify("未实名认证");
+        user.setIsResume("无简历");
         user.signUp(new SaveListener<User>() {
             @Override
             public void done(User user, BmobException e) {

@@ -187,6 +187,7 @@ public class HomeFragment extends BaseFragment {
         datalist = new ArrayList<>();
         //获取后台数据
         BmobQuery<JobSelection> query = new BmobQuery<JobSelection>();
+        query.order("-createdAt");
         query.findObjects(new FindListener<JobSelection>() {
             @Override
             public void done(final List<JobSelection> list, BmobException e) {

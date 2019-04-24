@@ -45,23 +45,20 @@ public class ApplyDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         viewHolder.itemView.setTag(pos);
 
         String name = datalist.get(pos).getUser().getName();
-        String nick = datalist.get(pos).getUser().getNick();
         String birth = datalist.get(pos).getUser().getBirth();
         String city = datalist.get(pos).getUser().getCity();
-        String phone = datalist.get(pos).getUser().getPhone();
-        String email = datalist.get(pos).getUser().getEmail();
         String sex = datalist.get(pos).getUser().getGender();
         String avatar = datalist.get(pos).getUser().getAvatar();
+        String identity = datalist.get(pos).getUser().getIdentity();
+
 
         ((MyHolder) viewHolder).tv_user_name.setText(name);
-        ((MyHolder) viewHolder).tv_user_nick.setText(nick);
+        ((MyHolder) viewHolder).tv_user_identity.setText(identity);
         ((MyHolder) viewHolder).tv_user_birth.setText(birth);
         ((MyHolder) viewHolder).tv_user_city.setText(city);
-        ((MyHolder) viewHolder).tv_user_phone.setText(phone);
-        ((MyHolder) viewHolder).tv_user_email.setText(email);
         ((MyHolder) viewHolder).tv_user_sex.setText(sex);
 
-        Glide.with(context).load(avatar).asBitmap().into(((MyHolder) viewHolder).civ_user_head);
+        Glide.with(context).load(avatar).asBitmap().error(R.drawable.head).into(((MyHolder) viewHolder).civ_user_head);
 
     }
 
@@ -72,11 +69,9 @@ public class ApplyDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     class MyHolder extends RecyclerView.ViewHolder {
         TextView tv_user_name;
-        TextView tv_user_nick;
+        TextView tv_user_identity;
         TextView tv_user_birth;
         TextView tv_user_city;
-        TextView tv_user_phone;
-        TextView tv_user_email;
         TextView tv_user_sex;
         CircleImageView civ_user_head;
 
@@ -84,11 +79,9 @@ public class ApplyDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             tv_user_name = (TextView) itemView.findViewById(R.id.tv_user_name);
-            tv_user_nick = (TextView) itemView.findViewById(R.id.tv_user_nick);
+            tv_user_identity = (TextView) itemView.findViewById(R.id.tv_user_identity);
             tv_user_birth = (TextView) itemView.findViewById(R.id.tv_user_birth);
             tv_user_city = (TextView) itemView.findViewById(R.id.tv_user_city);
-            tv_user_phone = (TextView) itemView.findViewById(R.id.tv_user_phone);
-            tv_user_email = (TextView) itemView.findViewById(R.id.tv_user_email);
             tv_user_sex = (TextView) itemView.findViewById(R.id.tv_user_sex);
             civ_user_head = (CircleImageView) itemView.findViewById(R.id.civ_user_head);
 

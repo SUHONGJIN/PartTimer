@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="兼职攻略"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 android:textColor="@color/somber"/>
             <TextView
@@ -47,59 +47,60 @@
                 <TextView
                     android:id="@+id/tv_banner1"
                     android:layout_width="150dp"
-                    android:layout_height="80dp"
+                    android:layout_height="78dp"
                     android:text="#兼职攻略、一"
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:layout_margin="10dp"
+                    android:layout_margin="0dp"
                     android:background="@drawable/banner1"/>
                 <TextView
                     android:id="@+id/tv_banner2"
                     android:layout_width="150dp"
-                    android:layout_height="80dp"
+                    android:layout_height="78dp"
                     android:text="#兼职攻略、二"
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
                     android:background="@drawable/banner2"/>
                 <TextView
                     android:id="@+id/tv_banner3"
                     android:layout_width="150dp"
-                    android:layout_height="80dp"
+                    android:layout_height="78dp"
                     android:text="#兼职攻略、三"
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
                     android:background="@drawable/banner3"/>
                 <TextView
                     android:id="@+id/tv_banner4"
                     android:layout_width="150dp"
-                    android:layout_height="80dp"
+                    android:layout_height="78dp"
                     android:text="#兼职攻略、四"
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
                     android:background="@drawable/banner4"/>
 
             </LinearLayout>
         </HorizontalScrollView>
     </LinearLayout>
-    <include layout="@layout/item_line_layout"/>
+    <!--<include layout="@layout/item_line_layout"/>-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="全部兼职"
-        android:textSize="18sp"
+        android:textSize="17sp"
         android:textStyle="bold"
         android:textColor="@color/somber"
+        android:layout_marginTop="2dp"
         android:padding="15dp"/>
     <include layout="@layout/item_line_layout"/>
 

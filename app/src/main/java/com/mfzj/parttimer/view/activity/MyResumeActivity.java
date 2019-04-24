@@ -79,71 +79,72 @@ public class MyResumeActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.tv_to_edit_resume,R.id.iv_close,R.id.civ_head})
-    public void OnClickResume(View view){
-        switch (view.getId()){
+    @OnClick({R.id.tv_to_edit_resume, R.id.iv_close, R.id.civ_head})
+    public void OnClickResume(View view) {
+        switch (view.getId()) {
             case R.id.iv_close:
                 finish();
                 break;
             case R.id.tv_to_edit_resume:
-                Intent intent=new Intent(MyResumeActivity.this,EditResumeActivity.class);
-                startActivityForResult(intent,REQUEST_INFO);
+                Intent intent = new Intent(MyResumeActivity.this, EditResumeActivity.class);
+                startActivityForResult(intent, REQUEST_INFO);
                 break;
             case R.id.civ_head:
-                startActivity(new Intent(MyResumeActivity.this,MyDataActivity.class));
+                startActivity(new Intent(MyResumeActivity.this, MyDataActivity.class));
                 break;
-                default:break;
+            default:
+                break;
         }
     }
 
-    private void showUserInfo(){
+    private void showUserInfo() {
 
         User user = BmobUser.getCurrentUser(User.class);
 
         Glide.with(MyResumeActivity.this)
                 .load(user.getAvatar())
-                .bitmapTransform(new BlurTransformation(MyResumeActivity.this,2,5))
+                .bitmapTransform(new BlurTransformation(MyResumeActivity.this, 2, 5))
                 .error(R.color.yellow)
                 .into(mImage);
         Glide.with(MyResumeActivity.this)
                 .load(user.getAvatar())
                 .error(R.drawable.head)
                 .into(civ_head);
-        if (user.getName()!=null){
+        if (user.getName() != null) {
             tv_name.setText(user.getName());
             tv_show_name.setText(user.getName());
 
-            if (user.getGender()!=null){
-                String sex=user.getGender();
-                if(sex.equals("男")){
+            if (user.getGender() != null) {
+                String sex = user.getGender();
+                if (sex.equals("男")) {
                     iv_show_men.setVisibility(View.VISIBLE);
                     iv_show_women.setVisibility(View.GONE);
-                }else if (sex.equals("女")){
+                } else if (sex.equals("女")) {
                     iv_show_men.setVisibility(View.GONE);
                     iv_show_women.setVisibility(View.VISIBLE);
                 }
             }
         }
 
-        if (user.getBirth()!=null){
+        if (user.getBirth() != null) {
             tv_birth.setText(user.getBirth());
         }
-        if (user.getCity()!=null){
+        if (user.getCity() != null) {
             tv_city.setText(user.getCity());
         }
-        if (user.getIdentity()!=null){
+        if (user.getIdentity() != null) {
             tv_identity.setText(user.getIdentity());
         }
-        if (user.getPhone()!=null){
+        if (user.getPhone() != null) {
             tv_phone.setText(user.getPhone());
         }
-        if (user.getMyemail()!=null){
+        if (user.getMyemail() != null) {
             tv_email.setText(user.getMyemail());
         }
-        if (user.getIntro()!=null){
+        if (user.getIntro() != null) {
             tv_intro.setText(user.getIntro());
         }
-        if (user.getExperience()!=null){
+        if (user.getExperience() != null) {
             tv_experience.setText(user.getExperience());
         }
 
@@ -152,13 +153,14 @@ public class MyResumeActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_INFO){
-            switch (resultCode){
+        if (requestCode == REQUEST_INFO) {
+            switch (resultCode) {
                 case 200:
                     //刷新用户信息
                     showUserInfo();
                     break;
-                    default:break;
+                default:
+                    break;
             }
         }
     }

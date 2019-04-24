@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseFragment;
 import com.mfzj.parttimer.bean.User;
+import com.mfzj.parttimer.utils.ToastUtils;
 import com.mfzj.parttimer.view.activity.AboutActivity;
 import com.mfzj.parttimer.view.activity.AuthenticationActivity;
 import com.mfzj.parttimer.view.activity.CollectActivity;
@@ -101,6 +102,7 @@ public class MyFragment extends BaseFragment {
                     intent.putExtra("tag",1);
                     startActivity(intent);
                 }else {
+                    ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
                     startActivity(new Intent(getContext(),LoginActivity.class));
                 }
 
@@ -111,6 +113,7 @@ public class MyFragment extends BaseFragment {
                     intent.putExtra("tag",2);
                     startActivity(intent);
                 }else {
+                    ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
                     startActivity(new Intent(getContext(),LoginActivity.class));
                 }
                 break;
@@ -120,6 +123,7 @@ public class MyFragment extends BaseFragment {
                     intent.putExtra("tag",3);
                     startActivity(intent);
                 }else {
+                    ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
                     startActivity(new Intent(getContext(),LoginActivity.class));
                 }
                 break;
@@ -129,6 +133,7 @@ public class MyFragment extends BaseFragment {
                     intent.putExtra("tag",4);
                     startActivity(intent);
                 }else {
+                    ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
                     startActivity(new Intent(getContext(),LoginActivity.class));
                 }
                 break;
@@ -157,6 +162,7 @@ public class MyFragment extends BaseFragment {
                 if (BmobUser.isLogin()) {
                     startActivity(new Intent(getContext(), MyResumeActivity.class));
                 } else {
+                    ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
@@ -165,6 +171,7 @@ public class MyFragment extends BaseFragment {
                 if (BmobUser.isLogin()) {
                     startActivity(new Intent(getContext(), CollectActivity.class));
                 } else {
+                    ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
@@ -173,6 +180,7 @@ public class MyFragment extends BaseFragment {
                 if (BmobUser.isLogin()) {
                     startActivity(new Intent(getContext(), AuthenticationActivity.class));
                 } else {
+                    ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
@@ -181,11 +189,18 @@ public class MyFragment extends BaseFragment {
                 if (BmobUser.isLogin()) {
                     startActivity(new Intent(getContext(), WalletActivity.class));
                 } else {
+                    ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
                 break;
             case R.id.itemview_item5:
-                startActivity(new Intent(getContext(), FeedBackActivity.class));
+                //判断用户是否登录
+                if (BmobUser.isLogin()) {
+                    startActivity(new Intent(getContext(), FeedBackActivity.class));
+                } else {
+                    ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                }
                 break;
             case R.id.itemview_item6:
                 startActivity(new Intent(getContext(), AboutActivity.class));
@@ -195,6 +210,7 @@ public class MyFragment extends BaseFragment {
                 if (BmobUser.isLogin()) {
                     startActivity(new Intent(getContext(), MyPostPartTimerActivity.class));
                 } else {
+                    ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
                     startActivity(new Intent(getContext(), LoginActivity.class));
                 }
 

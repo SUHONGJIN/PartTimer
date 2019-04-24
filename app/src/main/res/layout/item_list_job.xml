@@ -5,8 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/selector_itemview_bg"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
     android:paddingTop="10dp">
 
     <RelativeLayout
@@ -37,7 +37,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="6dp">
         <TextView
             android:id="@+id/tv_job_time"
             android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="6dp">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,42 +75,45 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/head"
-                app:civ_border_color="@color/black"
-                app:civ_border_width="0.1dp" />
+                app:civ_border_color="@color/yellow"
+                app:civ_border_width="1dp" />
 
             <TextView
                 android:id="@+id/tv_job_company"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="广州视翰科技有限公司"
+                android:text="广州科技有限公司"
                 android:lines="1"
                 android:enabled="true"
                 android:textSize="14sp"
                 android:maxLength="10"
                 android:layout_marginLeft="2dp"
-                android:textColor="@color/somber"/>
+                android:textColor="@color/black"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
             <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@mipmap/icon_near"/>
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icon_near" />
+
             <TextView
                 android:id="@+id/tv_job_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:layout_marginLeft="2dp"
                 android:enabled="true"
                 android:maxLength="8"
-                android:layout_marginLeft="2dp"
-                android:textColor="@color/gray"
-                android:text="广州天河区广州天河区广州天河区"/>
+                android:text="广州天河区广州天河区广州天河区"
+                android:textColor="@color/somber"
+                android:textSize="14sp" />
         </LinearLayout>
 
     </RelativeLayout>

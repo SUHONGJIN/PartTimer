@@ -21,11 +21,15 @@ import com.mfzj.parttimer.utils.ToastUtils;
 import com.mfzj.parttimer.view.activity.postjob.JobPostDetailsActivity;
 import com.mfzj.parttimer.widget.WeiboDialogUtils;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobRelation;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -110,6 +114,26 @@ public class JobDetailsActivity extends BaseActivity {
             Glide.with(JobDetailsActivity.this).load(job_logo).error(R.drawable.head).into(civ_boss_logo);
         }
 
+        //已报名的情况
+        String id = (String) getIntent().getExtras().get("object_id");
+        BmobQuery<ApplyTable> bmobQuery = new BmobQuery<ApplyTable>();
+        bmobQuery.addWhereEqualTo("user", BmobUser.getCurrentUser(User.class));
+        bmobQuery.addWhereEqualTo("job", id);
+        bmobQuery.findObjects(new FindListener<ApplyTable>() {
+            @Override
+            public void done(List<ApplyTable> object, BmobException e) {
+                if(e==null){
+                    //注意：这里的Person对象中只有指定列的数据。
+                    if (object.get(0).getApply().equals("已报名")){
+                        btn_apply.setText("已报名");
+                        btn_apply.setClickable(false);
+                    }
+                }else{
+                    Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+                }
+            }
+        });
+
     }
 
     @Override
@@ -117,7 +141,7 @@ public class JobDetailsActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.iv_back, R.id.iv_collect, R.id.iv_call, R.id.iv_share, R.id.tv_report, R.id.btn_apply,R.id.tv_job_details_address})
+    @OnClick({R.id.iv_back, R.id.iv_collect, R.id.iv_call, R.id.iv_share, R.id.tv_report, R.id.btn_apply, R.id.tv_job_details_address})
     public void OnclickDedatils(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -147,30 +171,35 @@ public class JobDetailsActivity extends BaseActivity {
             case R.id.btn_apply:
 
                 if (BmobUser.isLogin()) {
-                    //加载框
-                    mWeiboDialog = WeiboDialogUtils.createLoadingDialog(JobDetailsActivity.this, "报名中...");
-
                     User user = BmobUser.getCurrentUser(User.class);
-                    JobSelection apply = new JobSelection();
-                    String id = (String) getIntent().getExtras().get("object_id");
-                    apply.setObjectId(id);
-                    ApplyTable applyTable = new ApplyTable();
-                    applyTable.setUser(user);
-                    applyTable.setJob(apply);
-                    applyTable.setApply("已报名");
-                    applyTable.save(new SaveListener<String>() {
-                        @Override
-                        public void done(String objectId, BmobException e) {
-                            if (e == null) {
-                                setApply();
-                            } else {
-                                //Log.i("bmob","失败："+e.getMessage());
-                                ToastUtils.setOkToast(JobDetailsActivity.this, "报名失败!");
-                                //关闭加载框
-                                WeiboDialogUtils.closeDialog(mWeiboDialog);
+                    if (user.getIsResume().equals("有简历")) {
+                        //加载框
+                        mWeiboDialog = WeiboDialogUtils.createLoadingDialog(JobDetailsActivity.this, "报名中...");
+                        JobSelection apply = new JobSelection();
+                        String id = (String) getIntent().getExtras().get("object_id");
+                        apply.setObjectId(id);
+                        ApplyTable applyTable = new ApplyTable();
+                        applyTable.setUser(user);
+                        applyTable.setJob(apply);
+                        applyTable.setApply("已报名");
+                        applyTable.save(new SaveListener<String>() {
+                            @Override
+                            public void done(String objectId, BmobException e) {
+                                if (e == null) {
+                                    setApply();
+                                } else {
+                                    //Log.i("bmob","失败："+e.getMessage());
+                                    ToastUtils.setOkToast(JobDetailsActivity.this, "报名失败!");
+                                    //关闭加载框
+                                    WeiboDialogUtils.closeDialog(mWeiboDialog);
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else if (user.getIsResume().equals("无简历")) {
+                        ToastUtils.setOkToast(JobDetailsActivity.this, "完善简历才能报名兼职哦~");
+                        startActivity(new Intent(JobDetailsActivity.this, MyResumeActivity.class));
+                    }
+
 
                 } else {
                     startActivity(new Intent(JobDetailsActivity.this, LoginActivity.class));
@@ -180,7 +209,7 @@ public class JobDetailsActivity extends BaseActivity {
                 //调用百度地图导航到工作地点
                 Intent i1 = new Intent();
                 // 地址解析
-                i1.setData(Uri.parse("baidumap://map/geocoder?src=andr.baidu.openAPIdemo&address="+tv_job_details_address.getText()));
+                i1.setData(Uri.parse("baidumap://map/geocoder?src=andr.baidu.openAPIdemo&address=" + tv_job_details_address.getText()));
                 startActivity(i1);
                 break;
             default:
@@ -251,6 +280,7 @@ public class JobDetailsActivity extends BaseActivity {
 
         });
     }
+
     private void showShare() {
 
         String job_title = (String) getIntent().getExtras().get("job_title");
@@ -261,7 +291,7 @@ public class JobDetailsActivity extends BaseActivity {
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
         // title标题，微信、QQ和QQ空间等平台使用
-        oks.setTitle("我发现了一个有趣的兼职"+job_title+"你也来吧！"+job_describe);
+        oks.setTitle("我发现了一个有趣的兼职" + job_title + "你也来吧！" + job_describe);
         // titleUrl QQ和QQ空间跳转链接
         oks.setTitleUrl(job_logo);
         // text是分享文本，所有平台都需要这个字段

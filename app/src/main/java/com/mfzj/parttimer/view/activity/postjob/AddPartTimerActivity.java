@@ -73,8 +73,8 @@ public class AddPartTimerActivity extends BaseActivity {
     TextView tv_post_city;
     @BindView(R.id.tv_post_pay_type)
     TextView tv_post_pay_type;
-    @BindView(R.id.tv_post_address)
-    TextView tv_post_address;
+    @BindView(R.id.et_post_address)
+    EditText et_post_address;
     @BindView(R.id.btn_post_job)
     Button btn_post_job;
     @BindView(R.id.iv_boss_pic)
@@ -119,7 +119,23 @@ public class AddPartTimerActivity extends BaseActivity {
     public void Onclick(View view) {
         switch (view.getId()) {
             case R.id.btn_post_job:
-                savePost();
+                if (et_post_title.getText().length() == 0) {
+                    ToastUtils.setOkToast(AddPartTimerActivity.this, "请填写兼职标题");
+                } else if (et_post_people.getText().length() == 0) {
+                    ToastUtils.setOkToast(AddPartTimerActivity.this, "请填写兼职招聘人数");
+                } else if (et_post_pay.getText().length() == 0) {
+                    ToastUtils.setOkToast(AddPartTimerActivity.this, "请填写兼职薪资");
+                } else if (et_post_describe.getText().length() == 0) {
+                    ToastUtils.setOkToast(AddPartTimerActivity.this, "请填写兼职描述");
+                } else if (et_post_address.getText().length() == 0) {
+                    ToastUtils.setOkToast(AddPartTimerActivity.this, "请填写详细的地址");
+                } else if (et_post_company.getText().length() == 0) {
+                    ToastUtils.setOkToast(AddPartTimerActivity.this, "请填写雇主名称");
+                } else if (BOSS_IMAGE_URL.isEmpty()) {
+                    ToastUtils.setOkToast(AddPartTimerActivity.this, "请选择雇主的商标");
+                } else {
+                    savePost();
+                }
                 break;
             case R.id.iv_back:
                 finish();
@@ -245,14 +261,14 @@ public class AddPartTimerActivity extends BaseActivity {
             String time1 = tv_post_time1.getText().toString();
             String time2 = tv_post_time2.getText().toString();
             String city = tv_post_city.getText().toString();
-            String address = tv_post_address.getText().toString();
+            String address = et_post_address.getText().toString();
             String pay = et_post_pay.getText().toString();
             String pay_type = tv_post_pay_type.getText().toString();
 
             JobSelection post = new JobSelection();
             post.setJob_title(et_post_title.getText().toString());
             post.setJob_people(et_post_people.getText().toString());
-            post.setJob_pay(pay + "/" + pay_type);
+            post.setJob_pay(pay + "元/" + pay_type);
             post.setJob_type(tv_post_type.getText().toString());
             post.setJob_describe(et_post_describe.getText().toString());
             post.setJob_time(time1 + " - " + time2);
