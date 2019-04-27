@@ -13,6 +13,7 @@ import com.mfzj.parttimer.adapter.ApplyDetailsAdapter;
 import com.mfzj.parttimer.base.BaseActivity;
 import com.mfzj.parttimer.bean.ApplyTable;
 import com.mfzj.parttimer.bean.JobSelection;
+import com.mfzj.parttimer.bean.User;
 import com.mfzj.parttimer.view.activity.MyResumeActivity;
 
 import java.util.ArrayList;
@@ -88,6 +89,8 @@ public class ApplyDetailsActivity extends BaseActivity {
                         String identity = datalist.get(position).getUser().getIdentity();
                         String intro = datalist.get(position).getUser().getIntro();
                         String experience = datalist.get(position).getUser().getExperience();
+                        String object_id = (String) getIntent().getExtras().get("object_id");
+                        User user = datalist.get(position).getUser();
 
                         Intent intent = new Intent(ApplyDetailsActivity.this, ApplyResumeActivity.class);
                         intent.putExtra("name",name);
@@ -100,6 +103,8 @@ public class ApplyDetailsActivity extends BaseActivity {
                         intent.putExtra("identity",identity);
                         intent.putExtra("intro",intro);
                         intent.putExtra("experience",experience);
+                        intent.putExtra("object_id",object_id);
+                        intent.putExtra("user",user);
                         startActivity(intent);
                     }
                 });

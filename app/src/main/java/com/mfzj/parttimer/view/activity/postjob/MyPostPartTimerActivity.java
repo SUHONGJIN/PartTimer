@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mfzj.parttimer.R;
@@ -71,12 +72,12 @@ public class MyPostPartTimerActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        mSmartRefreshLayout.autoRefresh();
         getMyPost();
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 getMyPost();
-                mSmartRefreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
             }
         });
     }
@@ -97,6 +98,7 @@ public class MyPostPartTimerActivity extends BaseActivity {
                 @Override
                 public void done(List<JobSelection> object, BmobException e) {
                     if (e == null) {
+                        mSmartRefreshLayout.finishRefresh();
                         //添加数据到集合
                         datalist.addAll(object);
                         //适配器
@@ -104,6 +106,7 @@ public class MyPostPartTimerActivity extends BaseActivity {
                         adapter = new BossSelectionAdapter(MyPostPartTimerActivity.this, datalist);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setAdapter(adapter);
+
                         adapter.setOnItemClickListener(new BossSelectionAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
@@ -113,6 +116,7 @@ public class MyPostPartTimerActivity extends BaseActivity {
                                 intent.putExtra("job_time", datalist.get(position).getJob_time());
                                 intent.putExtra("job_type", datalist.get(position).getJob_type());
                                 intent.putExtra("job_company", datalist.get(position).getJob_company());
+                                intent.putExtra("job_phone", datalist.get(position).getJob_phone());
                                 intent.putExtra("job_address", datalist.get(position).getJob_address());
                                 intent.putExtra("job_describe", datalist.get(position).getJob_describe());
                                 intent.putExtra("job_people", datalist.get(position).getJob_people());

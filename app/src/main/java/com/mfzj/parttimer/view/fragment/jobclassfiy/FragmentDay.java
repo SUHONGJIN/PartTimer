@@ -47,11 +47,14 @@ public class FragmentDay extends BaseFragment {
 
     @Override
     public void initView(View view) {
+
+       // mSmartRefreshLayout.autoRefresh();
+
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 getDayJob();
-                mSmartRefreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+                mRecyclerView.setClickable(false);
             }
         });
         btn_load.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +77,7 @@ public class FragmentDay extends BaseFragment {
     private void getDayJob() {
         datalist = new ArrayList<>();
         BmobQuery<JobSelection> categoryBmobQuery = new BmobQuery<>();
+        categoryBmobQuery.order("-createdAt");
         categoryBmobQuery.addWhereEqualTo("job_type", "日结");
         categoryBmobQuery.findObjects(new FindListener<JobSelection>() {
             @Override
@@ -100,6 +104,7 @@ public class FragmentDay extends BaseFragment {
                             intent.putExtra("job_time", datalist.get(position).getJob_time());
                             intent.putExtra("job_type", datalist.get(position).getJob_type());
                             intent.putExtra("job_company", datalist.get(position).getJob_company());
+                            intent.putExtra("job_phone", datalist.get(position).getJob_phone());
                             intent.putExtra("job_address", datalist.get(position).getJob_address());
                             intent.putExtra("job_describe", datalist.get(position).getJob_describe());
                             intent.putExtra("job_people", datalist.get(position).getJob_people());
@@ -109,6 +114,8 @@ public class FragmentDay extends BaseFragment {
                         }
 
                     });
+
+                    mSmartRefreshLayout.finishRefresh();
 
                 } else {
                     //Log.e("BMOB", e.toString());

@@ -198,15 +198,29 @@
                             android:src="@drawable/head"
                             app:civ_border_color="@color/black"
                             app:civ_border_width="0.1dp" />
-
-                        <TextView
-                            android:id="@+id/tv_job_details_company"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:text="星巴克公司"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:orientation="vertical"
+                            android:layout_marginLeft="8dp">
+                            <TextView
+                                android:id="@+id/tv_job_details_company"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="星巴克公司"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+                            <TextView
+                                android:id="@+id/tv_job_details_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:paddingRight="6dp"
+                                android:textColor="@color/gray"
+                                android:text="18127253900"/>
+
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <include layout="@layout/item_line_layout" />

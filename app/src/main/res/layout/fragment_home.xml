@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="定位中..."
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:textColor="@color/somber"
             android:drawableLeft="@mipmap/ic_item1"
             android:layout_centerVertical="true"
@@ -41,11 +41,14 @@
                 android:drawableLeft="@mipmap/icon_search"
                 android:gravity="center_vertical"
                 android:text="搜索"
-                android:drawablePadding="5dp"
+                android:drawablePadding="4dp"
                 android:textColor="#8A8A8A" />
 
         </LinearLayout>
     </RelativeLayout>
+
+    <include layout="@layout/item_line_layout"/>
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/mSmartRefreshLayout"
         android:layout_width="match_parent"

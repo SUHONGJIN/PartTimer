@@ -3,16 +3,18 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="4dp"
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp"
+    android:layout_margin="2dp"
     android:background="@drawable/selector_itemview_bg">
     <ImageView
         android:id="@+id/iv_str_img"
-        android:layout_width="200dp"
-        android:layout_height="140dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:scaleType="centerCrop" />
     <TextView
         android:id="@+id/tv_str_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:padding="4dp"
@@ -25,7 +27,7 @@
       android:layout_height="wrap_content"
       android:orientation="horizontal"
       android:padding="6dp"
-      android:layout_marginBottom="20dp">
+      android:layout_marginBottom="10dp">
       <TextView
           android:id="@+id/tv_str_read"
           android:layout_width="0dp"
@@ -34,6 +36,7 @@
           android:textSize="14sp"
           android:drawableLeft="@mipmap/icon_read"
           android:drawablePadding="4dp"
+          android:padding="6dp"
           android:textColor="@color/gray"
           android:text="0"/>
       <TextView
@@ -44,6 +47,7 @@
           android:layout_height="wrap_content"
           android:drawableLeft="@mipmap/icon_like"
           android:drawablePadding="4dp"
+          android:padding="6dp"
           android:textSize="14sp"
           android:text="0"/>
   </LinearLayout>

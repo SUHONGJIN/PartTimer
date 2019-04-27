@@ -4,11 +4,12 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical">
+
     <com.youth.banner.Banner
         android:id="@+id/mBanner"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="1dp">
+        android:layout_margin="0dp">
     </com.youth.banner.Banner>
 
     <LinearLayout

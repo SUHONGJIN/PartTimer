@@ -138,7 +138,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                             if (result == SMSSDK.RESULT_COMPLETE) {
                                 // TODO 处理成功得到验证码的结果
                                 // 请注意，此时只是完成了发送验证码的请求，验证码短信还需要几秒钟之后才送达
-                                ToastUtils.setOkToast(RegisterActivity.this, "验证码已发送...");
+                                ToastUtils.setOkToast(RegisterActivity.this, "验证码已发送，请注意查收~");
                             } else {
                                 // TODO 处理错误的结果
                                 ((Throwable) data).printStackTrace();

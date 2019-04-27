@@ -2,6 +2,7 @@ package com.mfzj.parttimer.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,6 +34,8 @@ public class CollectActivity extends BaseActivity {
     RecyclerView mRecyclerView;
     private List<JobSelection> datalist;
     private BossSelectionAdapter adapter;
+    private final int RESULT_DATE_CODE = 200;
+    private final int UPDATE_DATE_CODE = 2;
 
     @Override
     public int getContentViewResId() {
@@ -86,12 +89,13 @@ public class CollectActivity extends BaseActivity {
                             intent.putExtra("job_time", datalist.get(position).getJob_time());
                             intent.putExtra("job_type", datalist.get(position).getJob_type());
                             intent.putExtra("job_company", datalist.get(position).getJob_company());
+                            intent.putExtra("job_phone", datalist.get(position).getJob_phone());
                             intent.putExtra("job_address", datalist.get(position).getJob_address());
                             intent.putExtra("job_describe", datalist.get(position).getJob_describe());
                             intent.putExtra("job_people", datalist.get(position).getJob_people());
                             intent.putExtra("job_logo",datalist.get(position).getJob_logo());
                             intent.putExtra("object_id", datalist.get(position).getObjectId());
-                            startActivity(intent);
+                            startActivityForResult(intent,UPDATE_DATE_CODE);
                         }
 
                     });
@@ -104,4 +108,16 @@ public class CollectActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == UPDATE_DATE_CODE){
+            switch (resultCode){
+                case RESULT_DATE_CODE:
+                    getMyCollect();
+                    break;
+                    default:break;
+            }
+        }
+    }
 }

@@ -8,6 +8,7 @@ public class JobSelection extends BmobObject {
     private String job_pay;
     private String job_address;
     private String job_company;
+    private String job_phone;
     private String job_type;
     private String job_describe;
     private String job_people;
@@ -16,38 +17,6 @@ public class JobSelection extends BmobObject {
     private BmobRelation collect;
     private BmobRelation apply;
     private String job_logo;
-
-    public String getJob_logo() {
-        return job_logo;
-    }
-
-    public void setJob_logo(String job_logo) {
-        this.job_logo = job_logo;
-    }
-
-    public BmobRelation getApply() {
-        return apply;
-    }
-
-    public void setApply(BmobRelation apply) {
-        this.apply = apply;
-    }
-
-    public BmobRelation getCollect() {
-        return collect;
-    }
-
-    public void setCollect(BmobRelation collect) {
-        this.collect = collect;
-    }
-
-    public User getBoss() {
-        return boss;
-    }
-
-    public void setBoss(User boss) {
-        this.boss = boss;
-    }
 
     public String getJob_title() {
         return job_title;
@@ -81,6 +50,14 @@ public class JobSelection extends BmobObject {
         this.job_company = job_company;
     }
 
+    public String getJob_phone() {
+        return job_phone;
+    }
+
+    public void setJob_phone(String job_phone) {
+        this.job_phone = job_phone;
+    }
+
     public String getJob_type() {
         return job_type;
     }
@@ -111,5 +88,37 @@ public class JobSelection extends BmobObject {
 
     public void setJob_time(String job_time) {
         this.job_time = job_time;
+    }
+
+    public User getBoss() {
+        return boss;
+    }
+
+    public void setBoss(User boss) {
+        this.boss = boss;
+    }
+
+    public BmobRelation getCollect() {
+        return collect;
+    }
+
+    public void setCollect(BmobRelation collect) {
+        this.collect = collect;
+    }
+
+    public BmobRelation getApply() {
+        return apply;
+    }
+
+    public void setApply(BmobRelation apply) {
+        this.apply = apply;
+    }
+
+    public String getJob_logo() {
+        return job_logo;
+    }
+
+    public void setJob_logo(String job_logo) {
+        this.job_logo = job_logo;
     }
 }

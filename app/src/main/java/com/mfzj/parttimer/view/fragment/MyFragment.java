@@ -99,7 +99,7 @@ public class MyFragment extends BaseFragment {
             case R.id.itemmenu_item1:
                 if (BmobUser.isLogin()) {
                     Intent intent=new Intent(getContext(),MyStateActivity.class);
-                    intent.putExtra("tag",1);
+                    intent.putExtra("tag",0);
                     startActivity(intent);
                 }else {
                     ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
@@ -110,7 +110,7 @@ public class MyFragment extends BaseFragment {
             case R.id.itemmenu_item2:
                 if (BmobUser.isLogin()) {
                     Intent intent=new Intent(getContext(),MyStateActivity.class);
-                    intent.putExtra("tag",2);
+                    intent.putExtra("tag",1);
                     startActivity(intent);
                 }else {
                     ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
@@ -120,7 +120,7 @@ public class MyFragment extends BaseFragment {
             case R.id.itemmenu_item3:
                 if (BmobUser.isLogin()) {
                     Intent intent=new Intent(getContext(),MyStateActivity.class);
-                    intent.putExtra("tag",3);
+                    intent.putExtra("tag",2);
                     startActivity(intent);
                 }else {
                     ToastUtils.setOkToast(getContext(),"登录体验更多内容~");
@@ -130,7 +130,7 @@ public class MyFragment extends BaseFragment {
             case R.id.itemmenu_item4:
                 if (BmobUser.isLogin()) {
                     Intent intent=new Intent(getContext(),MyStateActivity.class);
-                    intent.putExtra("tag",4);
+                    intent.putExtra("tag",3);
                     startActivity(intent);
                 }else {
                     ToastUtils.setOkToast(getContext(),"登录体验更多内容~");

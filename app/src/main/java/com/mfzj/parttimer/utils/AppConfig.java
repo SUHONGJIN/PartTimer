@@ -13,6 +13,8 @@ public class AppConfig {
     /**
      * 网络请求地址
      */
-    public static final String API_URL="";
+
+    public static final String BMOB_APP_KEY="867ea944e58d62bbe33e3324f5f03abe";  //bmob的appkey
+
     public static final String PIC_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/TakePhotoPic";
 }

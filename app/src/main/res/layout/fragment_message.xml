@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/bg_color"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@color/white">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -17,15 +18,15 @@
             android:textColor="#000"
             android:textSize="18sp" />
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="10dp"
-            android:visibility="gone"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:src="@mipmap/icon_notify" />
+        <!--<ImageView-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:padding="10dp"-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:src="@mipmap/icon_notify" />-->
     </RelativeLayout>
 
    <include layout="@layout/item_line_layout"/>
@@ -43,17 +44,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="0dp">
-            <include layout="@layout/item_line_layout"/>
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
+                android:background="@drawable/selector_itemview_bg"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingRight="10dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp">
+                android:orientation="horizontal">
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -62,7 +60,8 @@
                     />
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
                     android:orientation="vertical">
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -77,13 +76,62 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="04-05 16:22"
+                            android:visibility="gone"
                             android:textSize="12sp"
                             android:layout_alignParentRight="true"/>
                     </RelativeLayout>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="欢迎使用蜜蜂兼职APP。"
+                        android:text="欢迎使用蜜蜂兼职APP"
+                        android:maxLines="1"
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"
+                        android:enabled="true"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/item_line_layout"/>
+
+            <LinearLayout
+                android:id="@+id/ll_call_qq"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/selector_itemview_bg"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:padding="17dp"
+                    android:src="@mipmap/icon_to_qq"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="小蜜客服"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="04-05 16:22"
+                            android:textSize="12sp"
+                            android:visibility="gone"
+                            android:layout_alignParentRight="true"/>
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="小蜜在线为您服务哦~"
                         android:maxLines="1"
                         android:textSize="14sp"
                         android:layout_marginTop="4dp"
@@ -111,7 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:text="无最新消息"/>
+                        android:text="暂无消息"/>
                 </LinearLayout>
 
             </RelativeLayout>

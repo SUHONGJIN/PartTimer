@@ -24,7 +24,8 @@ public class Fragment_MyApply extends BaseFragment {
     private BossSelectionAdapter adapter;
     @BindView(R.id.mRecyclerView)
     RecyclerView mRecyclerView;
-
+    private final int UPDATE_DATE_CODE = 1;
+    private final int RESULT_DATE_CODE = 100;
 
     @Override
     public int getLayoutResId() {
@@ -71,12 +72,13 @@ public class Fragment_MyApply extends BaseFragment {
                             intent.putExtra("job_time", datalist.get(position).getJob_time());
                             intent.putExtra("job_type", datalist.get(position).getJob_type());
                             intent.putExtra("job_company", datalist.get(position).getJob_company());
+                            intent.putExtra("job_phone", datalist.get(position).getJob_phone());
                             intent.putExtra("job_address", datalist.get(position).getJob_address());
                             intent.putExtra("job_describe", datalist.get(position).getJob_describe());
                             intent.putExtra("job_people", datalist.get(position).getJob_people());
                             intent.putExtra("job_logo",datalist.get(position).getJob_logo());
                             intent.putExtra("object_id", datalist.get(position).getObjectId());
-                            startActivity(intent);
+                            startActivityForResult(intent,UPDATE_DATE_CODE);
                         }
 
                     });
@@ -87,5 +89,20 @@ public class Fragment_MyApply extends BaseFragment {
             }
 
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==UPDATE_DATE_CODE){
+            switch (resultCode){
+                case RESULT_DATE_CODE:
+                    //刷新数据
+                    getMyApply();
+                    break;
+                    default:
+                        break;
+            }
+        }
     }
 }

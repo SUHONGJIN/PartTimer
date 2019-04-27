@@ -63,6 +63,8 @@ public class AddPartTimerActivity extends BaseActivity {
     EditText et_post_describe;
     @BindView(R.id.et_post_company)
     EditText et_post_company;
+    @BindView(R.id.et_post_phone)
+    EditText et_post_phone;
     @BindView(R.id.tv_post_type)
     TextView tv_post_type;
     @BindView(R.id.tv_post_time1)
@@ -131,6 +133,8 @@ public class AddPartTimerActivity extends BaseActivity {
                     ToastUtils.setOkToast(AddPartTimerActivity.this, "请填写详细的地址");
                 } else if (et_post_company.getText().length() == 0) {
                     ToastUtils.setOkToast(AddPartTimerActivity.this, "请填写雇主名称");
+                } else if (et_post_phone.getText().length() == 0) {
+                    ToastUtils.setOkToast(AddPartTimerActivity.this, "请填写雇主联系电话");
                 } else if (BOSS_IMAGE_URL.isEmpty()) {
                     ToastUtils.setOkToast(AddPartTimerActivity.this, "请选择雇主的商标");
                 } else {
@@ -274,6 +278,7 @@ public class AddPartTimerActivity extends BaseActivity {
             post.setJob_time(time1 + " - " + time2);
             post.setJob_address(city + address);
             post.setJob_company(et_post_company.getText().toString());
+            post.setJob_phone(et_post_phone.getText().toString());
             post.setJob_logo(BOSS_IMAGE_URL);
 
             //添加一对一关联，用户关联帖子

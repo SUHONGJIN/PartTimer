@@ -31,6 +31,8 @@ public class JobPostDetailsActivity extends BaseActivity {
     TextView tv_job_details_pay;
     @BindView(R.id.tv_job_details_company)
     TextView tv_job_details_company;
+    @BindView(R.id.tv_job_details_phone)
+    TextView tv_job_details_phone;
     @BindView(R.id.tv_job_details_address)
     TextView tv_job_details_address;
     @BindView(R.id.tv_job_details_describe)
@@ -63,6 +65,7 @@ public class JobPostDetailsActivity extends BaseActivity {
         String job_time= (String) getIntent().getExtras().get("job_time");
         String job_type= (String) getIntent().getExtras().get("job_type");
         String job_company= (String) getIntent().getExtras().get("job_company");
+        String job_phone= (String) getIntent().getExtras().get("job_phone");
         String job_address= (String) getIntent().getExtras().get("job_address");
         String job_describe= (String) getIntent().getExtras().get("job_describe");
         String job_people= (String) getIntent().getExtras().get("job_people");
@@ -82,6 +85,9 @@ public class JobPostDetailsActivity extends BaseActivity {
         }
         if (job_company!=null){
             tv_job_details_company.setText(job_company);
+        }
+        if (job_phone!=null){
+            tv_job_details_phone.setText(job_phone);
         }
         if (job_address!=null){
             tv_job_details_address.setText(job_address);

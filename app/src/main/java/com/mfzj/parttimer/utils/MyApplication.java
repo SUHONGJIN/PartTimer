@@ -13,7 +13,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         //bmob默认初始化
-        Bmob.initialize(this, "867ea944e58d62bbe33e3324f5f03abe");
+        Bmob.initialize(this,AppConfig.BMOB_APP_KEY);
 
         //极光推送配置
         JPushInterface.setDebugMode(false);

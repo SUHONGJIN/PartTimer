@@ -27,6 +27,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.datatype.BmobRelation;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
@@ -44,6 +45,8 @@ public class JobDetailsActivity extends BaseActivity {
     TextView tv_job_details_pay;
     @BindView(R.id.tv_job_details_company)
     TextView tv_job_details_company;
+    @BindView(R.id.tv_job_details_phone)
+    TextView tv_job_details_phone;
     @BindView(R.id.tv_job_details_address)
     TextView tv_job_details_address;
     @BindView(R.id.tv_job_details_describe)
@@ -54,6 +57,8 @@ public class JobDetailsActivity extends BaseActivity {
     TextView tv_job_details_type;
     @BindView(R.id.btn_apply)
     Button btn_apply;
+    @BindView(R.id.btn_cancel_apply)
+    Button btn_cancel_apply;
     @BindView(R.id.tv_report)
     TextView tv_report;
     @BindView(R.id.iv_back)
@@ -66,7 +71,11 @@ public class JobDetailsActivity extends BaseActivity {
     ImageView iv_share;
     @BindView(R.id.civ_boss_logo)
     CircleImageView civ_boss_logo;
+
     private Dialog mWeiboDialog;
+    private final int RESULT_DATE_CODE = 100;
+    private final int RESULT_COLLECT_CODE = 200;
+    private boolean isCollect = false;
 
     @Override
     public int getContentViewResId() {
@@ -75,12 +84,21 @@ public class JobDetailsActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        setView();
+        initApply();
+        initCollect();
+    }
 
+    /**
+     * 填充数据到控件
+     */
+    private void setView() {
         String job_title = (String) getIntent().getExtras().get("job_title");
         String job_pay = (String) getIntent().getExtras().get("job_pay");
         String job_time = (String) getIntent().getExtras().get("job_time");
         String job_type = (String) getIntent().getExtras().get("job_type");
         String job_company = (String) getIntent().getExtras().get("job_company");
+        String job_phone = (String) getIntent().getExtras().get("job_phone");
         String job_address = (String) getIntent().getExtras().get("job_address");
         String job_describe = (String) getIntent().getExtras().get("job_describe");
         String job_people = (String) getIntent().getExtras().get("job_people");
@@ -101,6 +119,9 @@ public class JobDetailsActivity extends BaseActivity {
         if (job_company != null) {
             tv_job_details_company.setText(job_company);
         }
+        if (job_phone != null) {
+            tv_job_details_phone.setText(job_phone);
+        }
         if (job_address != null) {
             tv_job_details_address.setText(job_address);
         }
@@ -113,27 +134,61 @@ public class JobDetailsActivity extends BaseActivity {
         if (job_logo != null) {
             Glide.with(JobDetailsActivity.this).load(job_logo).error(R.drawable.head).into(civ_boss_logo);
         }
+    }
 
-        //已报名的情况
+    /**
+     * 初始化收藏
+     */
+    private void initCollect() {
         String id = (String) getIntent().getExtras().get("object_id");
-        BmobQuery<ApplyTable> bmobQuery = new BmobQuery<ApplyTable>();
-        bmobQuery.addWhereEqualTo("user", BmobUser.getCurrentUser(User.class));
-        bmobQuery.addWhereEqualTo("job", id);
-        bmobQuery.findObjects(new FindListener<ApplyTable>() {
+        BmobQuery<User> query2 = new BmobQuery<User>();
+        JobSelection jobSelection = new JobSelection();
+        jobSelection.setObjectId(id);
+        query2.addWhereRelatedTo("collect", new BmobPointer(jobSelection));
+        query2.findObjects(new FindListener<User>() {
             @Override
-            public void done(List<ApplyTable> object, BmobException e) {
-                if(e==null){
-                    //注意：这里的Person对象中只有指定列的数据。
-                    if (object.get(0).getApply().equals("已报名")){
-                        btn_apply.setText("已报名");
-                        btn_apply.setClickable(false);
+            public void done(List<User> object, BmobException e) {
+                if (e == null) {
+                    for (User myuser : object) {
+                        if (myuser.getUsername().equals(BmobUser.getCurrentUser(User.class).getUsername())) {
+                            iv_collect.setImageResource(R.mipmap.icon_collect_s);
+                            isCollect = true;
+                        }
                     }
-                }else{
-                    Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+                } else {
+                    Log.i("bmob2", "失败：" + e.getMessage());
                 }
             }
-        });
 
+        });
+    }
+
+    /**
+     * 初始化报名
+     */
+    private void initApply() {
+        String id = (String) getIntent().getExtras().get("object_id");
+        BmobQuery<User> query = new BmobQuery<User>();
+        JobSelection post = new JobSelection();
+        post.setObjectId(id);
+        query.addWhereRelatedTo("apply", new BmobPointer(post));
+        query.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> object, BmobException e) {
+                if (e == null) {
+                    for (User myuser : object) {
+                        if (myuser.getUsername().equals(BmobUser.getCurrentUser(User.class).getUsername())) {
+                            btn_apply.setVisibility(View.GONE);
+                            btn_cancel_apply.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                } else {
+                    Log.i("bmob2", "失败：" + e.getMessage());
+                }
+            }
+
+        });
     }
 
     @Override
@@ -141,7 +196,11 @@ public class JobDetailsActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.iv_back, R.id.iv_collect, R.id.iv_call, R.id.iv_share, R.id.tv_report, R.id.btn_apply, R.id.tv_job_details_address})
+    /**
+     * 点击事件
+     * @param view
+     */
+    @OnClick({R.id.iv_back, R.id.iv_collect, R.id.iv_call, R.id.iv_share, R.id.tv_report, R.id.btn_apply, R.id.tv_job_details_address, R.id.btn_cancel_apply,R.id.tv_job_details_phone})
     public void OnclickDedatils(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -149,7 +208,11 @@ public class JobDetailsActivity extends BaseActivity {
                 break;
             case R.id.iv_collect:
                 if (BmobUser.isLogin()) {
-                    setCollect();
+                    if (isCollect) {
+                        cancelCollect();
+                    } else {
+                        setCollect();
+                    }
                 } else {
                     startActivity(new Intent(JobDetailsActivity.this, LoginActivity.class));
                 }
@@ -212,9 +275,71 @@ public class JobDetailsActivity extends BaseActivity {
                 i1.setData(Uri.parse("baidumap://map/geocoder?src=andr.baidu.openAPIdemo&address=" + tv_job_details_address.getText()));
                 startActivity(i1);
                 break;
+            case R.id.btn_cancel_apply:
+                cancelApply();
+                break;
+            case R.id.tv_job_details_phone:
+                String phoneNumber = (String) getIntent().getExtras().get("job_phone");
+                Intent dialIntent =  new Intent(Intent.ACTION_DIAL,Uri.parse("tel:" + phoneNumber));//跳转到拨号界面，同时传递电话号码
+                startActivity(dialIntent);
+                break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 取消报名
+     */
+    private void cancelApply() {
+        JobSelection post = new JobSelection();
+        String id = (String) getIntent().getExtras().get("object_id");
+        post.setObjectId(id);
+        User user = BmobUser.getCurrentUser(User.class);
+        BmobRelation relation = new BmobRelation();
+        relation.remove(user);
+        post.setApply(relation);
+        post.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    btn_apply.setVisibility(View.VISIBLE);
+                    btn_cancel_apply.setVisibility(View.GONE);
+                    setResult(RESULT_DATE_CODE);
+                    ToastUtils.setOkToast(JobDetailsActivity.this, "已经取消报名！");
+                    finish();
+                } else {
+                    Log.i("bmob", "失败：" + e.getMessage());
+                }
+            }
+        });
+    }
+
+    /**
+     * 取消收藏
+     */
+    private void cancelCollect() {
+        JobSelection post = new JobSelection();
+        String id = (String) getIntent().getExtras().get("object_id");
+        post.setObjectId(id);
+        User user = BmobUser.getCurrentUser(User.class);
+        BmobRelation relation = new BmobRelation();
+        relation.remove(user);
+        post.setCollect(relation);
+        post.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    iv_collect.setImageResource(R.mipmap.icon_collect);
+                    ToastUtils.setOkToast(JobDetailsActivity.this, "已取消收藏！");
+                    isCollect = false;
+                    setResult(RESULT_COLLECT_CODE);
+                    finish();
+                } else {
+                    Log.i("bmob", "失败：" + e.getMessage());
+                }
+            }
+        });
     }
 
     /**
@@ -225,21 +350,17 @@ public class JobDetailsActivity extends BaseActivity {
         User user = User.getCurrentUser(User.class);
         JobSelection job = new JobSelection();
         job.setObjectId(id);
-//将当前用户添加到Post表中的likes字段值中，表明当前用户喜欢该帖子
         BmobRelation relation = new BmobRelation();
-//将当前用户添加到多对多关联中
         relation.add(user);
-//多对多关联指向`post`的`likes`字段
         job.setCollect(relation);
         job.update(new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
-                    Log.i("bmob", "多对多关联添加成功");
                     iv_collect.setImageResource(R.mipmap.icon_collect_s);
+                    isCollect = true;
                     ToastUtils.setOkToast(JobDetailsActivity.this, "收藏成功！");
                 } else {
-                    Log.i("bmob", "失败：" + e.getMessage());
                     ToastUtils.setOkToast(JobDetailsActivity.this, "收藏失败!");
                 }
             }
@@ -248,7 +369,7 @@ public class JobDetailsActivity extends BaseActivity {
     }
 
     /**
-     * 把报名信息和本地用户关联
+     * 报名兼职
      */
     private void setApply() {
         String id = (String) getIntent().getExtras().get("object_id");
@@ -265,8 +386,8 @@ public class JobDetailsActivity extends BaseActivity {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
-                    btn_apply.setClickable(false);
-                    btn_apply.setText("已报名");
+                    btn_apply.setVisibility(View.GONE);
+                    btn_cancel_apply.setVisibility(View.VISIBLE);
                     ToastUtils.setOkToast(JobDetailsActivity.this, "报名成功");
                     //关闭加载框
                     WeiboDialogUtils.closeDialog(mWeiboDialog);
@@ -281,6 +402,9 @@ public class JobDetailsActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 分享操作
+     */
     private void showShare() {
 
         String job_title = (String) getIntent().getExtras().get("job_title");
@@ -291,9 +415,9 @@ public class JobDetailsActivity extends BaseActivity {
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
         // title标题，微信、QQ和QQ空间等平台使用
-        oks.setTitle("我发现了一个有趣的兼职" + job_title + "你也来吧！" + job_describe);
+        oks.setTitle("我在蜜蜂兼职APP发现了一个有趣的兼职" + job_title + "你也来吧！" + job_describe);
         // titleUrl QQ和QQ空间跳转链接
-        oks.setTitleUrl(job_logo);
+        oks.setTitleUrl("我在蜜蜂兼APP职发现了一个有趣的兼职" + job_title + "你也来吧！" + job_describe);
         // text是分享文本，所有平台都需要这个字段
         oks.setText("我发现了一个有趣的兼职，快来蜜蜂兼职看看吧！");
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数

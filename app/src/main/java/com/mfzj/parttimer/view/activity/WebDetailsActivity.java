@@ -79,6 +79,7 @@ public class WebDetailsActivity extends BaseActivity {
     public void Onclick(View view){
         switch (view.getId()){
             case R.id.iv_back:
+                setResult(200);
                 finish();
                 break;
             case R.id.iv_share:

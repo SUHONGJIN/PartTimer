@@ -72,6 +72,10 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.btn_load)
     Button btn_load;
 
+    private final int UPDATE_DATE_CODE = 2;
+    private final int RESULT_DATE_CODE = 100;
+    private final int RESULT_LOCATION_CODE = 200;
+
     private TransitionSet mSet;
     //轮播图的集合
     private ArrayList<String> images_list;
@@ -100,12 +104,14 @@ public class HomeFragment extends BaseFragment {
         configLcation();
         //检查权限的获取状态并开始定位
         checkPermission();
+
+        mSmartRefreshLayout.autoRefresh();
+
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 getBannerData();
                 //getJobList();
-                mSmartRefreshLayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
             }
         });
         btn_load.setOnClickListener(new View.OnClickListener() {
@@ -196,7 +202,9 @@ public class HomeFragment extends BaseFragment {
                     mRecyclerView.setVisibility(View.VISIBLE);
                     ll_load_state.setVisibility(View.GONE);
                     rl_network_error.setVisibility(View.GONE);
+                    mSmartRefreshLayout.finishRefresh();
 
+                    datalist.clear();
                     //添加数据到集合
                     datalist.addAll(list);
                     //适配器
@@ -214,12 +222,13 @@ public class HomeFragment extends BaseFragment {
                             intent.putExtra("job_time", datalist.get(position).getJob_time());
                             intent.putExtra("job_type", datalist.get(position).getJob_type());
                             intent.putExtra("job_company", datalist.get(position).getJob_company());
+                            intent.putExtra("job_phone", datalist.get(position).getJob_phone());
                             intent.putExtra("job_address", datalist.get(position).getJob_address());
                             intent.putExtra("job_describe", datalist.get(position).getJob_describe());
                             intent.putExtra("job_people", datalist.get(position).getJob_people());
                             intent.putExtra("job_logo", datalist.get(position).getJob_logo());
                             intent.putExtra("object_id", datalist.get(position).getObjectId());
-                            startActivity(intent);
+                            startActivityForResult(intent, UPDATE_DATE_CODE);
                         }
                     });
                 } else {
@@ -227,10 +236,11 @@ public class HomeFragment extends BaseFragment {
                     rl_network_error.setVisibility(View.VISIBLE);
                     ll_load_state.setVisibility(View.GONE);
                     mRecyclerView.setVisibility(View.GONE);
-
+                    mSmartRefreshLayout.finishRefresh();
                 }
             }
         });
+
     }
 
 
@@ -243,7 +253,7 @@ public class HomeFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.tv_location:
                 Intent intent = new Intent(getContext(), CityPickerActivity.class);
-                startActivityForResult(intent, 2);
+                startActivityForResult(intent, UPDATE_DATE_CODE);
                 break;
             case R.id.ll_search:
                 startActivity(new Intent(getContext(), SearchActivity.class));
@@ -319,14 +329,21 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 2) {
-            if (resultCode == 200) {
-                if (data == null) {
-                    return;
-                }
-                String cityname = data.getStringExtra("cityname");
-                tv_location.setText(cityname);
-                SharedPreferencesUtils.saveStringSharedPreferences(getContext(), "location", cityname);
+        if (requestCode == UPDATE_DATE_CODE) {
+            switch (resultCode) {
+                case RESULT_DATE_CODE:
+                    getBannerData();
+                    break;
+                case RESULT_LOCATION_CODE:
+                    if (data == null) {
+                        return;
+                    }
+                    String cityname = data.getStringExtra("cityname");
+                    tv_location.setText(cityname);
+                    SharedPreferencesUtils.saveStringSharedPreferences(getContext(), "location", cityname);
+                    break;
+                default:
+                    break;
             }
         }
     }

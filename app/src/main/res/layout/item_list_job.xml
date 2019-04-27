@@ -42,10 +42,12 @@
             android:id="@+id/tv_job_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2019年4月9日-2019年4月9日"
-            android:textColor="@color/gray"
+            android:gravity="center_vertical"
+            android:text="2019年4月9日"
+            android:textColor="@color/goldenrod"
             android:layout_centerVertical="true"
-            android:textSize="13sp"
+            android:textSize="14sp"
+            android:drawablePadding="4dp"
             android:layout_alignParentLeft="true"/>
         <TextView
             android:id="@+id/tv_job_type"
@@ -72,11 +74,11 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/civ_boss_logo"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
                 android:src="@drawable/head"
-                app:civ_border_color="@color/yellow"
-                app:civ_border_width="1dp" />
+                app:civ_border_color="@color/black"
+                app:civ_border_width="0.2dp" />
 
             <TextView
                 android:id="@+id/tv_job_company"
@@ -87,7 +89,7 @@
                 android:enabled="true"
                 android:textSize="14sp"
                 android:maxLength="10"
-                android:layout_marginLeft="2dp"
+                android:layout_marginLeft="4dp"
                 android:textColor="@color/black"/>
         </LinearLayout>
 
@@ -100,8 +102,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:src="@mipmap/icon_near" />
 
             <TextView

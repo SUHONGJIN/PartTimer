@@ -190,14 +190,28 @@
                             android:src="@drawable/head"
                             app:civ_border_color="@color/black"
                             app:civ_border_width="0.1dp" />
-                        <TextView
-                            android:id="@+id/tv_job_details_company"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:layout_marginLeft="10dp"
-                            android:text="星巴克公司"/>
+                            android:orientation="vertical"
+                            android:layout_marginLeft="8dp">
+                            <TextView
+                                android:id="@+id/tv_job_details_company"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="@color/black"
+                                android:text="星巴克公司"/>
+                            <TextView
+                                android:id="@+id/tv_job_details_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:paddingRight="6dp"
+                                android:textColor="@color/gray"
+                                android:text="18127253900"/>
+                        </LinearLayout>
+
                     </LinearLayout>
 
                    <include layout="@layout/item_line_layout"/>
@@ -237,12 +251,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:orientation="vertical"
             android:layout_alignParentBottom="true">
             <Button
                 android:id="@+id/btn_apply"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="立即报名"
+                android:background="@drawable/selector_btn_bg"
+                android:textSize="16sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+            <Button
+                android:id="@+id/btn_cancel_apply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="取消报名"
                 android:background="@drawable/selector_btn_bg"
                 android:textSize="16sp"
                 android:layout_marginRight="20dp"

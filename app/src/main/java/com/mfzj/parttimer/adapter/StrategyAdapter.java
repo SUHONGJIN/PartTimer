@@ -12,8 +12,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.bean.StrategyTable;
+import com.mfzj.parttimer.utils.ToastUtils;
 
 import java.util.List;
+
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class StrategyAdapter extends RecyclerView.Adapter<StrategyAdapter.MyViewHolder> implements View.OnClickListener {
 
@@ -37,7 +41,7 @@ public class StrategyAdapter extends RecyclerView.Adapter<StrategyAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
         myViewHolder.itemView.setTag(i);
 
         ((MyViewHolder)myViewHolder).tv_str_title.setText(datalist.get(i).getStrategy_title());
@@ -50,6 +54,23 @@ public class StrategyAdapter extends RecyclerView.Adapter<StrategyAdapter.MyView
             ((MyViewHolder)myViewHolder).tv_str_like.setText("0");
         }else {
             ((MyViewHolder)myViewHolder).tv_str_like.setText(""+datalist.get(i).getStrategy_like());
+            ((MyViewHolder)myViewHolder).tv_str_like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    StrategyTable strategyTable = new StrategyTable();
+                    strategyTable.setStrategy_like(datalist.get(i).getStrategy_like()+1);
+                    strategyTable.update(datalist.get(i).getObjectId(), new UpdateListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if (e==null){
+                                ToastUtils.setOkToast(context,"点赞+1");
+                            }else {
+                                ToastUtils.setOkToast(context,"点赞失败！");
+                            }
+                        }
+                    });
+                }
+            });
         }
 
         Glide.with(context).load(datalist.get(i).getStrategy_image_url()).asBitmap().into(((MyViewHolder)myViewHolder).iv_str_img);

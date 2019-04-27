@@ -3,6 +3,7 @@ package com.mfzj.parttimer.view.activity.setting;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -73,6 +74,9 @@ public class ModifyPassWordActivity extends BaseActivity {
                                 Intent intent=new Intent(ModifyPassWordActivity.this, LoginActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
+                            }else {
+                                ToastUtils.setOkToast(ModifyPassWordActivity.this,"修改密码失败！");
+                                Log.i("tag6",e.getMessage());
                             }
                         }
                     });

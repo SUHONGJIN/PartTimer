@@ -53,7 +53,7 @@ public class BossSelectionAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         ((MyHolder) viewHolder).tv_job_title.setText(title);
         ((MyHolder) viewHolder).tv_job_pay.setText(pay);
-        ((MyHolder) viewHolder).tv_job_time.setText(time);
+        ((MyHolder) viewHolder).tv_job_time.setText(time.substring(0,10));
         ((MyHolder) viewHolder).tv_job_type.setText(type);
         ((MyHolder) viewHolder).tv_job_company.setText(company);
         ((MyHolder) viewHolder).tv_job_address.setText(address);
