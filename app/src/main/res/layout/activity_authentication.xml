@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".view.activity.AuthenticationActivity"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_main_titlebar_layout"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/item_color"
+        />
+
+    <LinearLayout
+        android:id="@+id/ll_verify_init"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:background="@color/bg_color">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名："
+                    android:textSize="18sp"
+                    android:paddingLeft="20dp"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/et_au_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="请输入真实姓名"
+                    android:textSize="18sp"
+                    android:background="@color/white"
+                    android:paddingLeft="10dp"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_color"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身份证号码："
+                    android:textSize="18sp"
+                    android:paddingLeft="20dp"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/et_id_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="请输入身份证号码"
+                    android:textSize="18sp"
+                    android:background="@color/white"
+                    android:paddingLeft="10dp"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/item_color"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上传证件照"
+                android:textSize="18sp"
+                android:padding="20dp"
+                android:textColor="@color/black"/>
+            <ProgressBar
+                android:id="@+id/mProgressBar"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                android:progress="10"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:orientation="horizontal"
+                android:layout_margin="20dp">
+
+                <ImageView
+                    android:id="@+id/iv_id_card_z"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/auth_z"
+                    android:layout_marginRight="10dp"/>
+
+                <ImageView
+                    android:id="@+id/iv_id_card_f"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/auth_f"
+                    android:layout_marginLeft="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="正面"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="反面"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:textSize="14sp"
+            android:textColor="@color/gray"
+            android:text="注：上传证件照为身份证正反面，我们会对您的隐私资料进行保护，绝对不对外公布"/>
+
+        <Button
+            android:id="@+id/btn_commit_audit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="提交审核"
+            android:background="@drawable/selector_btn_bg"
+            android:layout_marginLeft="20dp"
+            android:textSize="18sp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_verify_now"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="120dp">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/icon_wait"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="认证审核中"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/somber"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上传后1-5个工作日内处理，请耐心等待审核结果，审核期间不影响兼职报名"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:lineHeight="30dp"
+            android:layout_margin="20dp"
+            android:textColor="@color/gray"/>
+    </LinearLayout>
+
+
+</LinearLayout>
