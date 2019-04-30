@@ -15,6 +15,7 @@ import com.mfzj.parttimer.adapter.BossSelectionAdapter;
 import com.mfzj.parttimer.base.BaseActivity;
 import com.mfzj.parttimer.bean.JobSelection;
 import com.mfzj.parttimer.bean.User;
+import com.mfzj.parttimer.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,9 +100,8 @@ public class CollectActivity extends BaseActivity {
                         }
 
                     });
-
                 } else {
-
+                    ToastUtils.setOkToast(CollectActivity.this,"获取数据失败");
                 }
             }
 

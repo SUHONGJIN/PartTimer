@@ -5,7 +5,6 @@ import android.app.Application;
 import com.mob.MobSDK;
 
 import cn.bmob.v3.Bmob;
-
 import cn.jpush.android.api.JPushInterface;
 
 public class MyApplication extends Application {
@@ -13,7 +12,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         //bmob默认初始化
-        Bmob.initialize(this,AppConfig.BMOB_APP_KEY);
+        Bmob.initialize(this, AppConfig.BMOB_APP_KEY);
 
         //极光推送配置
         JPushInterface.setDebugMode(false);
@@ -21,5 +20,6 @@ public class MyApplication extends Application {
 
         //mob初始化
         MobSDK.init(this);
+
     }
 }

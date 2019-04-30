@@ -110,8 +110,8 @@ public class HomeFragment extends BaseFragment {
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                mRecyclerView.setClickable(false);
                 getBannerData();
-                //getJobList();
             }
         });
         btn_load.setOnClickListener(new View.OnClickListener() {
@@ -119,10 +119,115 @@ public class HomeFragment extends BaseFragment {
             public void onClick(View v) {
                 btn_load.setText("加载中...");
                 getBannerData();
-                //getJobList();
             }
         });
 
+    }
+
+
+    @Override
+    public void initData() {
+
+    }
+
+    //获取轮播图后台数据
+    private void getBannerData() {
+        //放图片地址和标题的集合
+        titles_list = new ArrayList<>();
+        images_list = new ArrayList<>();
+        web_list = new ArrayList<>();
+        BmobQuery<BannerBean> query = new BmobQuery<BannerBean>();
+        query.findObjects(new FindListener<BannerBean>() {
+            @Override
+            public void done(List<BannerBean> list, BmobException e) {
+                if (e == null) {
+                    for (BannerBean bannerbean : list) {
+                        //添加数据到集合
+                        titles_list.add(bannerbean.getBanner_title());
+                        images_list.add(bannerbean.getBanner_image_url());
+                        web_list.add(bannerbean.getBanner_web_url());
+                    }
+                    //获取兼职信息列表
+                    getJobList();
+
+                } else {
+                    Log.e("banner", "轮播图数据获取失败----" + e);
+                    ToastUtils.setOkToast(getContext(), "请检查网络！");
+                }
+                mSmartRefreshLayout.finishRefresh();
+            }
+        });
+    }
+
+
+    private void getJobList() {
+        datalist = new ArrayList<>();
+        //获取后台数据
+        BmobQuery<JobSelection> query = new BmobQuery<JobSelection>();
+        query.order("-createdAt");
+        query.findObjects(new FindListener<JobSelection>() {
+            @Override
+            public void done(final List<JobSelection> list, BmobException e) {
+                if (e == null) {
+
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                    ll_load_state.setVisibility(View.GONE);
+                    rl_network_error.setVisibility(View.GONE);
+
+                    datalist.clear();
+                    //添加数据到集合
+                    datalist.addAll(list);
+                    //适配器
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                    adapter = new SelectionAdapter(getContext(), datalist, titles_list, images_list, web_list);
+                    mRecyclerView.setLayoutManager(layoutManager);
+                    mRecyclerView.setAdapter(adapter);
+
+                    mSmartRefreshLayout.finishRefresh();
+                    mRecyclerView.setClickable(true);
+
+                    adapter.setOnItemClickListener(new SelectionAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            Intent intent = new Intent(getContext(), JobDetailsActivity.class);
+                            intent.putExtra("job_title", datalist.get(position).getJob_title());
+                            intent.putExtra("job_pay", datalist.get(position).getJob_pay());
+                            intent.putExtra("job_time", datalist.get(position).getJob_time());
+                            intent.putExtra("job_type", datalist.get(position).getJob_type());
+                            intent.putExtra("job_company", datalist.get(position).getJob_company());
+                            intent.putExtra("job_phone", datalist.get(position).getJob_phone());
+                            intent.putExtra("job_address", datalist.get(position).getJob_address());
+                            intent.putExtra("job_describe", datalist.get(position).getJob_describe());
+                            intent.putExtra("job_people", datalist.get(position).getJob_people());
+                            intent.putExtra("job_logo", datalist.get(position).getJob_logo());
+                            intent.putExtra("object_id", datalist.get(position).getObjectId());
+                            startActivityForResult(intent, UPDATE_DATE_CODE);
+                        }
+                    });
+                } else {
+                    ToastUtils.setOkToast(getContext(), "请检查网络！");
+                    rl_network_error.setVisibility(View.VISIBLE);
+                    ll_load_state.setVisibility(View.GONE);
+                    mRecyclerView.setVisibility(View.GONE);
+                }
+                mSmartRefreshLayout.finishRefresh();
+            }
+        });
+
+    }
+
+
+    @OnClick({R.id.tv_location, R.id.ll_search})
+    public void Onlick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_location:
+                Intent intent = new Intent(getContext(), CityPickerActivity.class);
+                startActivityForResult(intent, UPDATE_DATE_CODE);
+                break;
+            case R.id.ll_search:
+                startActivity(new Intent(getContext(), SearchActivity.class));
+                break;
+        }
     }
 
     /**
@@ -148,7 +253,6 @@ public class HomeFragment extends BaseFragment {
             requestLocation();
         }
     }
-
     /**
      * 配置定位信息
      */
@@ -160,107 +264,6 @@ public class HomeFragment extends BaseFragment {
         option.setIsNeedAddress(true);
         mLocationClient.setLocOption(option);
     }
-
-    //获取轮播图后台数据
-    private void getBannerData() {
-        //放图片地址和标题的集合
-        titles_list = new ArrayList<>();
-        images_list = new ArrayList<>();
-        web_list = new ArrayList<>();
-        BmobQuery<BannerBean> query = new BmobQuery<BannerBean>();
-        query.findObjects(new FindListener<BannerBean>() {
-            @Override
-            public void done(List<BannerBean> list, BmobException e) {
-                if (e == null) {
-                    for (BannerBean bannerbean : list) {
-                        //添加数据到集合
-                        titles_list.add(bannerbean.getBanner_title());
-                        images_list.add(bannerbean.getBanner_image_url());
-                        web_list.add(bannerbean.getBanner_web_url());
-                    }
-                    //获取兼职信息列表
-                    getJobList();
-
-                } else {
-                    Log.e("banner", "轮播图数据获取失败----" + e);
-                }
-            }
-        });
-    }
-
-
-    private void getJobList() {
-        datalist = new ArrayList<>();
-        //获取后台数据
-        BmobQuery<JobSelection> query = new BmobQuery<JobSelection>();
-        query.order("-createdAt");
-        query.findObjects(new FindListener<JobSelection>() {
-            @Override
-            public void done(final List<JobSelection> list, BmobException e) {
-                if (e == null) {
-
-                    mRecyclerView.setVisibility(View.VISIBLE);
-                    ll_load_state.setVisibility(View.GONE);
-                    rl_network_error.setVisibility(View.GONE);
-                    mSmartRefreshLayout.finishRefresh();
-
-                    datalist.clear();
-                    //添加数据到集合
-                    datalist.addAll(list);
-                    //适配器
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                    adapter = new SelectionAdapter(getContext(), datalist, titles_list, images_list, web_list);
-                    mRecyclerView.setLayoutManager(layoutManager);
-                    mRecyclerView.setAdapter(adapter);
-
-                    adapter.setOnItemClickListener(new SelectionAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View view, int position) {
-                            Intent intent = new Intent(getContext(), JobDetailsActivity.class);
-                            intent.putExtra("job_title", datalist.get(position).getJob_title());
-                            intent.putExtra("job_pay", datalist.get(position).getJob_pay());
-                            intent.putExtra("job_time", datalist.get(position).getJob_time());
-                            intent.putExtra("job_type", datalist.get(position).getJob_type());
-                            intent.putExtra("job_company", datalist.get(position).getJob_company());
-                            intent.putExtra("job_phone", datalist.get(position).getJob_phone());
-                            intent.putExtra("job_address", datalist.get(position).getJob_address());
-                            intent.putExtra("job_describe", datalist.get(position).getJob_describe());
-                            intent.putExtra("job_people", datalist.get(position).getJob_people());
-                            intent.putExtra("job_logo", datalist.get(position).getJob_logo());
-                            intent.putExtra("object_id", datalist.get(position).getObjectId());
-                            startActivityForResult(intent, UPDATE_DATE_CODE);
-                        }
-                    });
-                } else {
-                    ToastUtils.setOkToast(getContext(), "请检查网络！");
-                    rl_network_error.setVisibility(View.VISIBLE);
-                    ll_load_state.setVisibility(View.GONE);
-                    mRecyclerView.setVisibility(View.GONE);
-                    mSmartRefreshLayout.finishRefresh();
-                }
-            }
-        });
-
-    }
-
-
-    @Override
-    public void initData() {
-    }
-
-    @OnClick({R.id.tv_location, R.id.ll_search})
-    public void Onlick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_location:
-                Intent intent = new Intent(getContext(), CityPickerActivity.class);
-                startActivityForResult(intent, UPDATE_DATE_CODE);
-                break;
-            case R.id.ll_search:
-                startActivity(new Intent(getContext(), SearchActivity.class));
-                break;
-        }
-    }
-
     /**
      * 开始定位的方法
      */

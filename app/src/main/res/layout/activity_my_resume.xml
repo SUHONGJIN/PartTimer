@@ -7,12 +7,13 @@
     tools:context="com.mfzj.parttimer.view.activity.MyResumeActivity">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/refreshLayout">
+        android:layout_height="match_parent">
+
         <com.scwang.smartrefresh.layout.header.FalsifyHeader
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -24,8 +25,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginBottom="200dp">
+                android:layout_marginBottom="200dp"
+                android:orientation="vertical">
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -34,77 +36,81 @@
                         android:id="@+id/mImage"
                         android:layout_width="match_parent"
                         android:layout_height="280dp"
-                        android:scaleType="centerCrop"
                         android:background="@color/yellow"
-                        />
+                        android:scaleType="centerCrop" />
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center">
+
                         <ImageView
                             android:id="@+id/iv_close"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@mipmap/icon_back"
                             android:layout_alignParentLeft="true"
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="30dp"
-                            android:padding="15dp"/>
+                            android:padding="15dp"
+                            android:src="@mipmap/icon_back" />
+
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/civ_head"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/head"
-                            app:civ_border_width="2dp"
-                            app:civ_border_color="@color/white"
                             android:layout_centerInParent="true"
-                            />
+                            android:src="@drawable/head"
+                            app:civ_border_color="@color/white"
+                            app:civ_border_width="2dp" />
+
                         <TextView
                             android:id="@+id/tv_to_edit_resume"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="编辑简历"
-                            android:background="@drawable/bg_et_input"
-                            android:textSize="14sp"
-                            android:padding="8dp"
-                            android:textColor="@color/white"
-                            android:layout_alignParentRight="true"
                             android:layout_below="@id/civ_head"
-                            android:layout_marginRight="15dp"/>
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/bg_et_input"
+                            android:drawableLeft="@mipmap/icon_edit"
+                            android:padding="8dp"
+                            android:text="编辑简历"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/tv_show_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="未填写"
                             android:layout_below="@id/civ_head"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:text="未填写"
+                            android:textColor="@color/white"
                             android:textSize="22sp"
                             android:textStyle="bold"
-                            android:visibility="visible"
-                            android:textColor="@color/white"
-                            android:layout_marginTop="10dp"/>
+                            android:visibility="visible" />
+
                         <ImageView
                             android:id="@+id/iv_show_men"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@mipmap/ic_sex_men"
-                            android:visibility="gone"
-                            android:layout_toRightOf="@id/tv_show_name"
                             android:layout_below="@id/civ_head"
+                            android:layout_marginLeft="2dp"
                             android:layout_marginTop="16dp"
-                            android:layout_marginLeft="2dp"/>
+                            android:layout_toRightOf="@id/tv_show_name"
+                            android:src="@mipmap/ic_sex_men"
+                            android:visibility="gone" />
 
                         <ImageView
                             android:id="@+id/iv_show_women"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@mipmap/ic_sex_women"
-                            android:visibility="gone"
-                            android:layout_toRightOf="@id/tv_show_name"
                             android:layout_below="@id/civ_head"
+                            android:layout_marginLeft="2dp"
                             android:layout_marginTop="16dp"
-                            android:layout_marginLeft="2dp"/>
+                            android:layout_toRightOf="@id/tv_show_name"
+                            android:src="@mipmap/ic_sex_women"
+                            android:visibility="gone" />
 
                     </RelativeLayout>
 
@@ -114,9 +120,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="0dp"
                     android:background="@color/white"
-                    android:orientation="vertical"
-                    android:layout_marginTop="0dp">
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -132,16 +138,16 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18dp"
-                                android:textStyle="bold"
+                                android:text="基本资料"
                                 android:textColor="@color/black"
-                                android:text="基本资料" />
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="information"
-                                android:textStyle="italic"/>
+                                android:textStyle="italic" />
 
                         </LinearLayout>
 
@@ -168,8 +174,8 @@
                                     android:layout_height="wrap_content"
                                     android:text="姓名:"
                                     android:textColor="@color/black"
-                                    android:textStyle="bold"
-                                    android:textSize="17sp" />
+                                    android:textSize="17sp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/tv_name"
@@ -193,8 +199,8 @@
                                     android:layout_height="wrap_content"
                                     android:text="生日:"
                                     android:textColor="@color/black"
-                                    android:textStyle="bold"
-                                    android:textSize="17sp" />
+                                    android:textSize="17sp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/tv_birth"
@@ -205,6 +211,7 @@
                                     android:textColor="@color/gray"
                                     android:textSize="17sp" />
                             </LinearLayout>
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
@@ -217,8 +224,8 @@
                                     android:layout_height="wrap_content"
                                     android:text="城市:"
                                     android:textColor="@color/black"
-                                    android:textStyle="bold"
-                                    android:textSize="17sp" />
+                                    android:textSize="17sp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/tv_city"
@@ -241,9 +248,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="身份:"
-                                    android:textStyle="bold"
                                     android:textColor="@color/black"
-                                    android:textSize="17sp" />
+                                    android:textSize="17sp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/tv_identity"
@@ -277,16 +284,16 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18dp"
-                                android:textStyle="bold"
+                                android:text="联系方式"
                                 android:textColor="@color/black"
-                                android:text="联系方式" />
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Contact"
-                                android:textStyle="italic"/>
+                                android:textStyle="italic" />
 
                         </LinearLayout>
 
@@ -313,8 +320,8 @@
                                     android:layout_height="wrap_content"
                                     android:text="电话:"
                                     android:textColor="@color/black"
-                                    android:textStyle="bold"
-                                    android:textSize="17sp" />
+                                    android:textSize="17sp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/tv_phone"
@@ -337,9 +344,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="邮箱:"
-                                    android:textStyle="bold"
                                     android:textColor="@color/black"
-                                    android:textSize="17sp" />
+                                    android:textSize="17sp"
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/tv_email"
@@ -373,16 +380,16 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18dp"
-                                android:textStyle="bold"
+                                android:text="个人简介"
                                 android:textColor="@color/black"
-                                android:text="个人简介" />
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Profile"
-                                android:textStyle="italic"/>
+                                android:textStyle="italic" />
 
                         </LinearLayout>
 
@@ -401,20 +408,20 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="简介:"
-                                android:textStyle="bold"
                                 android:textColor="@color/black"
-                                android:textSize="17sp" />
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/tv_intro"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
                                 android:maxLines="10"
                                 android:paddingRight="20dp"
-                                android:textSize="17sp"
-                                android:layout_marginTop="5dp"
+                                android:text="介绍自己..."
                                 android:textColor="@color/gray"
-                                android:text="介绍自己..." />
+                                android:textSize="17sp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -439,16 +446,16 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18dp"
-                                android:textStyle="bold"
+                                android:text="工作经验"
                                 android:textColor="@color/black"
-                                android:text="工作经验" />
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Work experience"
-                                android:textStyle="italic"/>
+                                android:textStyle="italic" />
 
                         </LinearLayout>
 
@@ -467,23 +474,24 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="经验:"
-                                android:textStyle="bold"
                                 android:textColor="@color/black"
-                                android:textSize="17sp" />
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/tv_experience"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:maxLines="10"
-                                android:textSize="17sp"
-                                android:paddingRight="20dp"
                                 android:layout_marginTop="5dp"
+                                android:maxLines="10"
+                                android:paddingRight="20dp"
+                                android:text="工作经验..."
                                 android:textColor="@color/gray"
-                                android:text="工作经验..." />
+                                android:textSize="17sp" />
                         </LinearLayout>
 
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.4dp"
@@ -500,37 +508,33 @@
         android:id="@+id/ll_show_apply_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="bottom"
-        android:visibility="gone"
-        android:gravity="center_vertical">
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/btn_no"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:background="@drawable/selector_exit_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/dark_red"
+            android:gravity="center"
             android:text="拒绝TA"
             android:textColor="@color/white"
-            android:textSize="15sp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"/>
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/btn_yes"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:background="@drawable/selector_btn_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/green"
+            android:gravity="center"
             android:text="录用TA"
             android:textColor="@color/white"
-            android:textSize="15sp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="15sp" />
     </LinearLayout>
 
 

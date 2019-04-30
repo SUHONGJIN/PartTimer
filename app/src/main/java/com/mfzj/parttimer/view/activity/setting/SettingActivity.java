@@ -95,6 +95,7 @@ public class SettingActivity extends BaseActivity implements ISettingAView {
 
                 break;
             case R.id.setting_itemview4:
+                //检查APP更新
                 ToastUtils.setOkToast(SettingActivity.this,"已经是最新版本~");
                 break;
             case R.id.tv_logout:

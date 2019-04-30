@@ -104,7 +104,7 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:textColor="@color/white"
-                    android:background="@drawable/selector_btn_yz_bg"/>
+                    android:background="@drawable/selector_btn_bg"/>
 
             </RelativeLayout>
 
@@ -130,7 +130,7 @@
             android:layout_centerHorizontal="true"
             android:textSize="12sp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="15dp"/>
     </RelativeLayout>
 
 

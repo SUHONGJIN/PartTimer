@@ -47,6 +47,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ll_system_message"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/selector_itemview_bg"

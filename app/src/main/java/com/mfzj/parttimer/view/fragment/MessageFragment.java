@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseFragment;
 import com.mfzj.parttimer.utils.ToastUtils;
+import com.mfzj.parttimer.view.activity.SystemMessageActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -23,6 +24,8 @@ public class MessageFragment extends BaseFragment {
 
     @BindView(R.id.ll_call_qq)
     LinearLayout ll_call_qq;
+    @BindView(R.id.ll_system_message)
+    LinearLayout ll_system_message;
 
     @BindView(R.id.mSmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
@@ -34,12 +37,16 @@ public class MessageFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
-
-        //mSmartRefreshLayout.autoRefresh();
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 mSmartRefreshLayout.finishRefresh(1000);
+            }
+        });
+        ll_system_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), SystemMessageActivity.class));
             }
         });
         ll_call_qq.setOnClickListener(new View.OnClickListener() {

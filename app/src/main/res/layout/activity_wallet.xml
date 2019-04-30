@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:waveAmplitude="12dp"
-                app:waveColor="@color/yellow2"
+                app:waveColor="@color/yellow3"
                 app:waveFillType="top"
                 app:waveSpeed="3"
                 app:waveStart="true"

@@ -58,7 +58,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="2dp"
                         android:text="男"
-                        android:textColor="@color/orange"
+                        android:textColor="@color/gray"
                         android:textSize="16sp" />
 
                     <View
@@ -73,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
                         android:text="2019-4-11"
-                        android:textColor="@color/orange"
+                        android:textColor="@color/gray"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -98,8 +98,7 @@
                         android:layout_height="wrap_content"
                         android:text="身份："
                         android:textColor="@color/somber"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_user_identity"
@@ -114,10 +113,9 @@
                     android:id="@+id/tv_user_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:drawableLeft="@mipmap/icon_near"
-                    android:drawablePadding="5dp"
                     android:text="广州市"
+                    android:drawableLeft="@mipmap/icon_city"
+                    android:drawablePadding="4dp"
                     android:textColor="@color/somber"
                     android:textSize="16sp" />
 

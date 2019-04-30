@@ -101,8 +101,9 @@
         android:textSize="17sp"
         android:textStyle="bold"
         android:textColor="@color/somber"
-        android:layout_marginTop="2dp"
-        android:padding="15dp"/>
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"/>
     <include layout="@layout/item_line_layout"/>
 
 </LinearLayout>
