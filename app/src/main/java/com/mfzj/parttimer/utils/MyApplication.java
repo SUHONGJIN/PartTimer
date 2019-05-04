@@ -8,9 +8,15 @@ import cn.bmob.v3.Bmob;
 import cn.jpush.android.api.JPushInterface;
 
 public class MyApplication extends Application {
+
+    private static MyApplication instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        instance = this;
+
         //bmob默认初始化
         Bmob.initialize(this, AppConfig.BMOB_APP_KEY);
 
@@ -21,5 +27,11 @@ public class MyApplication extends Application {
         //mob初始化
         MobSDK.init(this);
 
+    }
+    public static MyApplication getInstance() {
+        if (instance == null) {
+            return new MyApplication();
+        }
+        return instance;
     }
 }

@@ -33,10 +33,9 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/mImage"
+                        android:id="@+id/iv_head_bg"
                         android:layout_width="match_parent"
                         android:layout_height="280dp"
-                        android:background="@color/yellow"
                         android:scaleType="centerCrop" />
 
                     <RelativeLayout
@@ -419,7 +418,7 @@
                                 android:layout_marginTop="5dp"
                                 android:maxLines="10"
                                 android:paddingRight="20dp"
-                                android:text="介绍自己..."
+                                android:text="你的教育经历、个人特长、自我评价等..."
                                 android:textColor="@color/gray"
                                 android:textSize="17sp" />
                         </LinearLayout>
@@ -485,7 +484,7 @@
                                 android:layout_marginTop="5dp"
                                 android:maxLines="10"
                                 android:paddingRight="20dp"
-                                android:text="工作经验..."
+                                android:text="让人印象深刻的成就、获奖经历等..."
                                 android:textColor="@color/gray"
                                 android:textSize="17sp" />
                         </LinearLayout>

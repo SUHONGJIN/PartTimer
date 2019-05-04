@@ -73,7 +73,7 @@ public class StrategyAdapter extends RecyclerView.Adapter<StrategyAdapter.MyView
             });
         }
 
-        Glide.with(context).load(datalist.get(i).getStrategy_image_url()).asBitmap().into(((MyViewHolder)myViewHolder).iv_str_img);
+        Glide.with(context).load(datalist.get(i).getStrategy_image_url()).placeholder(R.drawable.banner_default).error(R.drawable.banner_default).into(((MyViewHolder)myViewHolder).iv_str_img);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.mfzj.parttimer.view.activity.postjob;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,30 +10,22 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseActivity;
-import com.mfzj.parttimer.bean.ApplyTable;
-import com.mfzj.parttimer.bean.JobSelection;
-import com.mfzj.parttimer.bean.User;
-import com.mfzj.parttimer.utils.ToastUtils;
-import com.mfzj.parttimer.view.activity.JobDetailsActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.datatype.BmobPointer;
-import cn.bmob.v3.datatype.BmobRelation;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.UpdateListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
+
+
 public class ApplyResumeActivity extends BaseActivity {
 
-    @BindView(R.id.mImage)
-    ImageView mImage;
+    @BindView(R.id.iv_head_bg)
+    ImageView iv_head_bg;
     @BindView(R.id.iv_show_men)
     ImageView iv_show_men;
     @BindView(R.id.iv_show_women)
@@ -133,13 +124,19 @@ public class ApplyResumeActivity extends BaseActivity {
         String intro = getIntent().getStringExtra("intro");
         String experience = getIntent().getStringExtra("experience");
 
+
         Glide.with(ApplyResumeActivity.this)
                 .load(avatar)
-                .bitmapTransform(new BlurTransformation(ApplyResumeActivity.this, 2, 5))
-                .error(R.color.yellow)
-                .into(mImage);
+                .centerCrop()
+                .placeholder(R.drawable.banner_default)
+                .error(R.drawable.banner_default)
+                .apply(bitmapTransform(new BlurTransformation(22,2)))
+                .into(iv_head_bg);
+
         Glide.with(ApplyResumeActivity.this)
                 .load(avatar)
+                .centerCrop()
+                .placeholder(R.drawable.head)
                 .error(R.drawable.head)
                 .into(civ_head);
 

@@ -278,7 +278,6 @@ public class MyDataActivity extends BaseActivity {
                     //关闭加载框
                     WeiboDialogUtils.closeDialog(mWeiboDialog);
                     ToastUtils.setOkToast(MyDataActivity.this, "更新头像失败！");
-                    //Log.i("tag12",e.getMessage());
                 }
             }
         });
@@ -291,7 +290,13 @@ public class MyDataActivity extends BaseActivity {
         //获取头像地址
         User user = BmobUser.getCurrentUser(User.class);
         if (user.getAvatar() != null) {
-            Glide.with(MyDataActivity.this).load(user.getAvatar()).error(R.drawable.head).into(civ_user_head);
+
+            Glide.with(MyDataActivity.this)
+                    .load(user.getAvatar())
+                    .centerCrop()
+                    .placeholder(R.drawable.head)
+                    .error(R.drawable.head)
+                    .into(civ_user_head);
         }
     }
 
@@ -301,7 +306,6 @@ public class MyDataActivity extends BaseActivity {
         switch (requestCode) {
             case CAMERA_PERMISSION_CODE:
                 takePhoto();
-                ToastUtils.setOkToast(MyDataActivity.this, "相机权限已申请");
                 break;
         }
     }

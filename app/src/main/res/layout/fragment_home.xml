@@ -48,36 +48,29 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/item_line_layout"/>
+    <!--<include layout="@layout/item_line_layout"/>-->
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/mSmartRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        <com.scwang.smartrefresh.header.DeliveryHeader
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+        </com.scwang.smartrefresh.header.DeliveryHeader>
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:orientation="vertical">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mRecyclerView"
+            android:layout_width="match_parent"
+            android:visibility="visible"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
 
-           <android.support.v7.widget.RecyclerView
-               android:id="@+id/mRecyclerView"
-               android:layout_width="match_parent"
-               android:visibility="gone"
-               android:layout_height="match_parent">
-           </android.support.v7.widget.RecyclerView>
-
-          <include layout="@layout/load_state_layout"/>
-
-         <include layout="@layout/no_network_layout"/>
-
-       </LinearLayout>
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.scwang.smartrefresh.layout.footer.ClassicsFooter>
+
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

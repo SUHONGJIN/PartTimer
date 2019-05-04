@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.adapter.SystemMessageAdapter;
 import com.mfzj.parttimer.base.BaseActivity;
@@ -115,13 +114,6 @@ public class SystemMessageActivity extends BaseActivity {
                         mSmartRefreshLayout.finishLoadMore();
                     }
                 });
-            }
-        });
-
-        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                ToastUtils.setOkToast(SystemMessageActivity.this,"000");
             }
         });
 

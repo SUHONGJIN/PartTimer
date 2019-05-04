@@ -251,7 +251,7 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/bg_et_input"
                 android:gravity="top"
-                android:hint="请输入个人简介。"
+                android:hint="你的教育经历、个人特长、自我评价等..."
                 android:padding="10dp"
                 android:textColor="@color/somber" />
 
@@ -274,7 +274,7 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/bg_et_input"
                 android:gravity="top"
-                android:hint="请输入工作经验。"
+                android:hint="让人印象深刻的成就、获奖经历等..."
                 android:padding="10dp"
                 android:textColor="@color/somber" />
 

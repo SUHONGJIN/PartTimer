@@ -9,11 +9,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mfzj.parttimer.R;
-import com.mfzj.parttimer.adapter.BossSelectionAdapter;
+import com.mfzj.parttimer.adapter.BossPostAdapter;
 import com.mfzj.parttimer.base.BaseActivity;
 import com.mfzj.parttimer.bean.JobSelection;
 import com.mfzj.parttimer.bean.User;
@@ -37,7 +36,7 @@ public class MyPostPartTimerActivity extends BaseActivity {
     @BindView(R.id.mRecyclerView)
     RecyclerView mRecyclerView;
     private List<JobSelection> datalist;
-    private BossSelectionAdapter adapter;
+    private BossPostAdapter adapter;
     @BindView(R.id.iv_back)
     ImageView iv_back;
     @BindView(R.id.tv_title)
@@ -103,11 +102,11 @@ public class MyPostPartTimerActivity extends BaseActivity {
                         datalist.addAll(object);
                         //适配器
                         LinearLayoutManager layoutManager = new LinearLayoutManager(MyPostPartTimerActivity.this);
-                        adapter = new BossSelectionAdapter(MyPostPartTimerActivity.this, datalist);
+                        adapter = new BossPostAdapter(MyPostPartTimerActivity.this, datalist);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setAdapter(adapter);
 
-                        adapter.setOnItemClickListener(new BossSelectionAdapter.OnItemClickListener() {
+                        adapter.setOnItemClickListener(new BossPostAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
                                 Intent intent = new Intent(MyPostPartTimerActivity.this, JobPostDetailsActivity.class);

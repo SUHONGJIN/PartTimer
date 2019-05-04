@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">蜜蜂兼职</string>
 
-    <string name="copyright_date">Copyright © 2019</string>
-    <string name="copyright_name">APP版权所有-苏宏金</string>
+    <string name="copyright_date">Copyright © 2018-2019</string>
+    <string name="copyright_name">蜜蜂兼职团队 版权所有</string>
 
     <!--四个菜单项-->
     <string name="my_menu1_name">附近兼职</string>

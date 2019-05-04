@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="148dp"
+    android:layout_height="90dp"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/dp_4"
+    android:background="@drawable/selector_itemview_bg">
+
+    <ImageView
+        android:id="@+id/iv_str_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:id="@+id/tv_str_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:textSize="16sp"
+        android:padding="6dp"
+        android:text="兼职攻略标题兼职攻略标题兼职攻略标题兼职攻略标题兼职攻略标题"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textColor="@color/white"/>
+
+</RelativeLayout>

@@ -112,8 +112,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:enabled="true"
-                android:maxLength="8"
+                android:maxLength="5"
                 android:text="广州天河区广州天河区广州天河区"
+                android:ellipsize="end"
                 android:textColor="@color/somber"
                 android:textSize="14sp" />
         </LinearLayout>

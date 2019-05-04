@@ -12,13 +12,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mfzj.parttimer.R;
-import com.mfzj.parttimer.adapter.SelectionAdapter;
 import com.mfzj.parttimer.base.BaseActivity;
 import com.mfzj.parttimer.bean.ApplyTable;
 import com.mfzj.parttimer.bean.JobSelection;
 import com.mfzj.parttimer.bean.User;
 import com.mfzj.parttimer.utils.ToastUtils;
-import com.mfzj.parttimer.view.activity.postjob.JobPostDetailsActivity;
 import com.mfzj.parttimer.widget.WeiboDialogUtils;
 
 import java.util.List;
@@ -132,7 +130,13 @@ public class JobDetailsActivity extends BaseActivity {
             tv_job_details_people.setText(job_people);
         }
         if (job_logo != null) {
-            Glide.with(JobDetailsActivity.this).load(job_logo).error(R.drawable.head).into(civ_boss_logo);
+
+            Glide.with(JobDetailsActivity.this)
+                    .load(job_logo)
+                    .centerCrop()
+                    .placeholder(R.drawable.banner_default)
+                    .error(R.drawable.banner_default)
+                    .into(civ_boss_logo);
         }
     }
 
@@ -307,7 +311,6 @@ public class JobDetailsActivity extends BaseActivity {
                     btn_cancel_apply.setVisibility(View.GONE);
                     setResult(RESULT_DATE_CODE);
                     ToastUtils.setOkToast(JobDetailsActivity.this, "已经取消报名！");
-                    finish();
                 } else {
                     Log.i("bmob", "失败：" + e.getMessage());
                 }
@@ -334,7 +337,6 @@ public class JobDetailsActivity extends BaseActivity {
                     ToastUtils.setOkToast(JobDetailsActivity.this, "已取消收藏！");
                     isCollect = false;
                     setResult(RESULT_COLLECT_CODE);
-                    finish();
                 } else {
                     Log.i("bmob", "失败：" + e.getMessage());
                 }

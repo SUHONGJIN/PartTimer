@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseActivity;
-import com.bumptech.glide.Glide;
 import com.mfzj.parttimer.bean.User;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -21,10 +21,12 @@ import cn.bmob.v3.BmobUser;
 import de.hdodenhof.circleimageview.CircleImageView;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
+
 public class MyResumeActivity extends BaseActivity {
 
-    @BindView(R.id.mImage)
-    ImageView mImage;
+    @BindView(R.id.iv_head_bg)
+    ImageView iv_head_bg;
     @BindView(R.id.iv_show_men)
     ImageView iv_show_men;
     @BindView(R.id.iv_show_women)
@@ -101,15 +103,23 @@ public class MyResumeActivity extends BaseActivity {
 
         User user = BmobUser.getCurrentUser(User.class);
 
+
+
         Glide.with(MyResumeActivity.this)
                 .load(user.getAvatar())
-                .bitmapTransform(new BlurTransformation(MyResumeActivity.this, 2, 5))
-                .error(R.color.yellow)
-                .into(mImage);
+                .centerCrop()
+                .placeholder(R.drawable.banner_default)
+                .error(R.drawable.banner_default)
+                .apply(bitmapTransform(new BlurTransformation(22,2)))
+                .into(iv_head_bg);
+
         Glide.with(MyResumeActivity.this)
                 .load(user.getAvatar())
+                .centerCrop()
+                .placeholder(R.drawable.head)
                 .error(R.drawable.head)
                 .into(civ_head);
+
         if (user.getName() != null) {
             tv_name.setText(user.getName());
             tv_show_name.setText(user.getName());

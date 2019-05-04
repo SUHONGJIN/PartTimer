@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import com.mfzj.parttimer.R;
-import com.mfzj.parttimer.adapter.BossSelectionAdapter;
+import com.mfzj.parttimer.adapter.BossPostAdapter;
 import com.mfzj.parttimer.base.BaseFragment;
 import com.mfzj.parttimer.bean.JobSelection;
 import com.mfzj.parttimer.bean.User;
@@ -21,7 +21,7 @@ import cn.bmob.v3.listener.FindListener;
 
 public class Fragment_MyApply extends BaseFragment {
     private List<JobSelection> datalist;
-    private BossSelectionAdapter adapter;
+    private BossPostAdapter adapter;
     @BindView(R.id.mRecyclerView)
     RecyclerView mRecyclerView;
     private final int UPDATE_DATE_CODE = 1;
@@ -60,10 +60,10 @@ public class Fragment_MyApply extends BaseFragment {
                     datalist.addAll(object);
                     //适配器
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                    adapter = new BossSelectionAdapter(getContext(), datalist);
+                    adapter = new BossPostAdapter(getContext(), datalist);
                     mRecyclerView.setLayoutManager(layoutManager);
                     mRecyclerView.setAdapter(adapter);
-                    adapter.setOnItemClickListener(new BossSelectionAdapter.OnItemClickListener() {
+                    adapter.setOnItemClickListener(new BossPostAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
                             Intent intent = new Intent(getContext(), JobDetailsActivity.class);

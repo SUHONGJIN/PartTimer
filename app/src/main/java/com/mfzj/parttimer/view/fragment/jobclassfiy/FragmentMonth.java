@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.mfzj.parttimer.R;
-import com.mfzj.parttimer.adapter.BossSelectionAdapter;
+import com.mfzj.parttimer.adapter.BossPostAdapter;
 import com.mfzj.parttimer.base.BaseFragment;
 import com.mfzj.parttimer.bean.JobSelection;
 import com.mfzj.parttimer.view.activity.JobDetailsActivity;
@@ -30,7 +30,7 @@ public class FragmentMonth extends BaseFragment {
     @BindView(R.id.mRecyclerView)
     RecyclerView mRecyclerView;
     private List<JobSelection> datalist;
-    private BossSelectionAdapter adapter;
+    private BossPostAdapter adapter;
     @BindView(R.id.ll_load_state)
     LinearLayout ll_load_state;
     @BindView(R.id.rl_network_error)
@@ -86,7 +86,7 @@ public class FragmentMonth extends BaseFragment {
                     datalist.addAll(object);
                     //适配器
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                    adapter = new BossSelectionAdapter(getContext(), datalist);
+                    adapter = new BossPostAdapter(getContext(), datalist);
                     mRecyclerView.setLayoutManager(layoutManager);
                     mRecyclerView.setAdapter(adapter);
 
@@ -94,7 +94,7 @@ public class FragmentMonth extends BaseFragment {
                     ll_load_state.setVisibility(View.GONE);
                     mRecyclerView.setVisibility(View.VISIBLE);
 
-                    adapter.setOnItemClickListener(new BossSelectionAdapter.OnItemClickListener() {
+                    adapter.setOnItemClickListener(new BossPostAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
                             Intent intent = new Intent(getContext(), JobDetailsActivity.class);

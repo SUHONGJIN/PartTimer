@@ -13,8 +13,6 @@ import com.mfzj.parttimer.R;
 import com.mfzj.parttimer.base.BaseActivity;
 import com.mfzj.parttimer.bean.JobSelection;
 import com.mfzj.parttimer.utils.ToastUtils;
-import com.mfzj.parttimer.view.activity.JobDetailsActivity;
-import com.mfzj.parttimer.view.activity.setting.SettingActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -99,7 +97,12 @@ public class JobPostDetailsActivity extends BaseActivity {
             tv_job_details_people.setText(job_people);
         }
         if (job_logo != null) {
-            Glide.with(JobPostDetailsActivity.this).load(job_logo).error(R.drawable.head).into(civ_boss_logo);
+            Glide.with(JobPostDetailsActivity.this)
+                    .load(job_logo)
+                    .centerCrop()
+                    .placeholder(R.drawable.banner_default)
+                    .error(R.drawable.banner_default)
+                    .into(civ_boss_logo);
         }
     }
 

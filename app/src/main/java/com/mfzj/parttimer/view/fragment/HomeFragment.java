@@ -1,47 +1,45 @@
 package com.mfzj.parttimer.view.fragment;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.transition.AutoTransition;
-import android.support.transition.TransitionManager;
-import android.support.transition.TransitionSet;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzj.parttimer.CitySelect.CityPickerActivity;
 import com.mfzj.parttimer.R;
-import com.mfzj.parttimer.adapter.SelectionAdapter;
+import com.mfzj.parttimer.adapter.BannerViewHolder;
+import com.mfzj.parttimer.adapter.GLAdapter;
+import com.mfzj.parttimer.adapter.HomeAdapter;
 import com.mfzj.parttimer.base.BaseFragment;
 import com.mfzj.parttimer.bean.BannerBean;
 import com.mfzj.parttimer.bean.JobSelection;
+import com.mfzj.parttimer.bean.StrategyTable;
 import com.mfzj.parttimer.utils.SharedPreferencesUtils;
 import com.mfzj.parttimer.utils.ToastUtils;
 import com.mfzj.parttimer.view.activity.JobDetailsActivity;
+import com.mfzj.parttimer.view.activity.JobStrategyActivity;
 import com.mfzj.parttimer.view.activity.SearchActivity;
+import com.mfzj.parttimer.view.activity.WebDetailsActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.zhouwei.mzbanner.MZBannerView;
+import com.zhouwei.mzbanner.holder.MZHolderCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,35 +58,28 @@ public class HomeFragment extends BaseFragment {
     TextView tvSearch;
     @BindView(R.id.ll_search)
     LinearLayout mSearchLayout;
-    @BindView(R.id.ll_load_state)
-    LinearLayout ll_load_state;
-    @BindView(R.id.rl_network_error)
-    RelativeLayout rl_network_error;
-    boolean isExpand = false;
     @BindView(R.id.mRecyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.mSmartRefreshLayout)
     SmartRefreshLayout mSmartRefreshLayout;
-    @BindView(R.id.btn_load)
-    Button btn_load;
+    private MZBannerView mBanner;
+    private RecyclerView sRecyclerView;
 
     private final int UPDATE_DATE_CODE = 2;
     private final int RESULT_DATE_CODE = 100;
     private final int RESULT_LOCATION_CODE = 200;
 
-    private TransitionSet mSet;
-    //轮播图的集合
-    private ArrayList<String> images_list;
-    private ArrayList<String> titles_list;
-    private ArrayList<String> web_list;
     //百度定位
     public LocationClient mLocationClient = null;
     private MyLocationListener myListener = new MyLocationListener();
     //创建权限集合
     private List<String> permissionList = new ArrayList<>();
 
-    private List<JobSelection> datalist;
-    private SelectionAdapter adapter;
+    private List<JobSelection> datalist = new ArrayList<>();
+    private List<StrategyTable> strategyList = new ArrayList<>();
+    private HomeAdapter adapter;
+    private GLAdapter sAdapter;
+    private RelativeLayout rl_strategy;
 
     @Override
     public int getLayoutResId() {
@@ -97,120 +88,182 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
-        //获取轮播图
-        getBannerData();
-        //getJobList();
+
         //配置定位信息
         configLcation();
+
         //检查权限的获取状态并开始定位
         checkPermission();
 
+        adapter = new HomeAdapter(datalist, getContext());
+        sAdapter = new GLAdapter(strategyList, getContext());
+
+        headPart();
+
+        //自动刷新
         mSmartRefreshLayout.autoRefresh();
-
-        mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                mRecyclerView.setClickable(false);
-                getBannerData();
-            }
-        });
-        btn_load.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btn_load.setText("加载中...");
-                getBannerData();
-            }
-        });
-
     }
 
+    /**
+     * 头部内容
+     */
+    private void headPart() {
+        View headView = LayoutInflater.from(getContext()).inflate(R.layout.item_header_layout, null);
+        mBanner = (MZBannerView) headView.findViewById(R.id.mBanner);
+        sRecyclerView = (RecyclerView) headView.findViewById(R.id.sRecyclerView);
+        rl_strategy = (RelativeLayout) headView.findViewById(R.id.rl_strategy);
+        rl_strategy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), JobStrategyActivity.class));
+            }
+        });
+        getBannerData();
+        getStrategy();
+        adapter.setHeaderView(headView);
+    }
+
+    /**
+     * 获取兼职攻略
+     */
+    private void getStrategy() {
+        BmobQuery<StrategyTable> bmobQuery = new BmobQuery<>();
+        bmobQuery.order("-createdAt");
+        bmobQuery.findObjects(new FindListener<StrategyTable>() {
+            @Override
+            public void done(List<StrategyTable> list, BmobException e) {
+                if (e == null) {
+                    strategyList.clear();
+                    strategyList.addAll(list);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                    layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    sRecyclerView.setLayoutManager(layoutManager);
+                    sRecyclerView.setAdapter(sAdapter);
+                } else {
+
+                }
+            }
+        });
+        sAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(getContext(), WebDetailsActivity.class);
+                intent.putExtra("url", strategyList.get(position).getStrategy_web_url());
+                startActivity(intent);
+            }
+        });
+    }
 
     @Override
     public void initData() {
 
-    }
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 
-    //获取轮播图后台数据
-    private void getBannerData() {
-        //放图片地址和标题的集合
-        titles_list = new ArrayList<>();
-        images_list = new ArrayList<>();
-        web_list = new ArrayList<>();
-        BmobQuery<BannerBean> query = new BmobQuery<BannerBean>();
-        query.findObjects(new FindListener<BannerBean>() {
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setAdapter(adapter);
+
+        mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
-            public void done(List<BannerBean> list, BmobException e) {
-                if (e == null) {
-                    for (BannerBean bannerbean : list) {
-                        //添加数据到集合
-                        titles_list.add(bannerbean.getBanner_title());
-                        images_list.add(bannerbean.getBanner_image_url());
-                        web_list.add(bannerbean.getBanner_web_url());
-                    }
-                    //获取兼职信息列表
-                    getJobList();
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
 
-                } else {
-                    Log.e("banner", "轮播图数据获取失败----" + e);
-                    ToastUtils.setOkToast(getContext(), "请检查网络！");
-                }
+                //刷新兼职攻略数据
+                getStrategy();
+
+                BmobQuery<JobSelection> query = new BmobQuery<>();
+                query.order("-createdAt");
+                query.setSkip(0);
+                query.setLimit(10);
+                query.findObjects(new FindListener<JobSelection>() {
+                    @Override
+                    public void done(List<JobSelection> list, BmobException e) {
+                        if (e == null) {
+                            datalist.clear();
+                            datalist.addAll(list);
+                            adapter.replaceData(datalist);
+                        } else {
+                            ToastUtils.setOkToast(getContext(), "获取数据失败，请重试~");
+                        }
+                    }
+                });
                 mSmartRefreshLayout.finishRefresh();
+            }
+        });
+        mSmartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                BmobQuery<JobSelection> query = new BmobQuery<>();
+                query.order("-createdAt");
+                query.setSkip(datalist.size());
+                query.setLimit(10);
+                query.findObjects(new FindListener<JobSelection>() {
+                    @Override
+                    public void done(List<JobSelection> list, BmobException e) {
+                        if (e == null) {
+                            datalist.addAll(list);
+                            adapter.replaceData(datalist);
+                        } else {
+                            ToastUtils.setOkToast(getContext(), "获取数据失败，请重试~");
+                        }
+                    }
+                });
+                mSmartRefreshLayout.finishLoadMore();
+            }
+        });
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(getContext(), JobDetailsActivity.class);
+                intent.putExtra("job_title", datalist.get(position).getJob_title());
+                intent.putExtra("job_pay", datalist.get(position).getJob_pay());
+                intent.putExtra("job_time", datalist.get(position).getJob_time());
+                intent.putExtra("job_type", datalist.get(position).getJob_type());
+                intent.putExtra("job_company", datalist.get(position).getJob_company());
+                intent.putExtra("job_phone", datalist.get(position).getJob_phone());
+                intent.putExtra("job_address", datalist.get(position).getJob_address());
+                intent.putExtra("job_describe", datalist.get(position).getJob_describe());
+                intent.putExtra("job_people", datalist.get(position).getJob_people());
+                intent.putExtra("job_logo", datalist.get(position).getJob_logo());
+                intent.putExtra("object_id", datalist.get(position).getObjectId());
+                startActivityForResult(intent, UPDATE_DATE_CODE);
             }
         });
     }
 
-
-    private void getJobList() {
-        datalist = new ArrayList<>();
-        //获取后台数据
-        BmobQuery<JobSelection> query = new BmobQuery<JobSelection>();
+    /**
+     * 获取轮播图后台数据
+     */
+    private void getBannerData() {
+        BmobQuery<BannerBean> query = new BmobQuery<>();
         query.order("-createdAt");
-        query.findObjects(new FindListener<JobSelection>() {
+        query.findObjects(new FindListener<BannerBean>() {
             @Override
-            public void done(final List<JobSelection> list, BmobException e) {
+            public void done(final List<BannerBean> list, BmobException e) {
                 if (e == null) {
-
-                    mRecyclerView.setVisibility(View.VISIBLE);
-                    ll_load_state.setVisibility(View.GONE);
-                    rl_network_error.setVisibility(View.GONE);
-
-                    datalist.clear();
-                    //添加数据到集合
-                    datalist.addAll(list);
-                    //适配器
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                    adapter = new SelectionAdapter(getContext(), datalist, titles_list, images_list, web_list);
-                    mRecyclerView.setLayoutManager(layoutManager);
-                    mRecyclerView.setAdapter(adapter);
-
-                    mSmartRefreshLayout.finishRefresh();
-                    mRecyclerView.setClickable(true);
-
-                    adapter.setOnItemClickListener(new SelectionAdapter.OnItemClickListener() {
+                    // 设置数据
+                    mBanner.setPages(list, new MZHolderCreator<BannerViewHolder>() {
                         @Override
-                        public void onItemClick(View view, int position) {
-                            Intent intent = new Intent(getContext(), JobDetailsActivity.class);
-                            intent.putExtra("job_title", datalist.get(position).getJob_title());
-                            intent.putExtra("job_pay", datalist.get(position).getJob_pay());
-                            intent.putExtra("job_time", datalist.get(position).getJob_time());
-                            intent.putExtra("job_type", datalist.get(position).getJob_type());
-                            intent.putExtra("job_company", datalist.get(position).getJob_company());
-                            intent.putExtra("job_phone", datalist.get(position).getJob_phone());
-                            intent.putExtra("job_address", datalist.get(position).getJob_address());
-                            intent.putExtra("job_describe", datalist.get(position).getJob_describe());
-                            intent.putExtra("job_people", datalist.get(position).getJob_people());
-                            intent.putExtra("job_logo", datalist.get(position).getJob_logo());
-                            intent.putExtra("object_id", datalist.get(position).getObjectId());
-                            startActivityForResult(intent, UPDATE_DATE_CODE);
+                        public BannerViewHolder createViewHolder() {
+                            return new BannerViewHolder();
                         }
                     });
+                    mBanner.setIndicatorVisible(false);
+                    //添加Page点击事件
+//                    mBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
+//                        @Override
+//                        public void onPageClick(View view, int i) {
+//                            Log.i("tag11","111222");
+//                            Intent intent = new Intent(getContext(), WebDetailsActivity.class);
+//                            intent.putExtra("url", list.get(i).getBanner_web_url());
+//                            startActivity(intent);
+//                            Log.i("tag11","1122233");
+//                        }
+//                    });
+
+                    mBanner.start();
+
                 } else {
                     ToastUtils.setOkToast(getContext(), "请检查网络！");
-                    rl_network_error.setVisibility(View.VISIBLE);
-                    ll_load_state.setVisibility(View.GONE);
-                    mRecyclerView.setVisibility(View.GONE);
                 }
-                mSmartRefreshLayout.finishRefresh();
             }
         });
 
@@ -253,6 +306,7 @@ public class HomeFragment extends BaseFragment {
             requestLocation();
         }
     }
+
     /**
      * 配置定位信息
      */
@@ -264,6 +318,7 @@ public class HomeFragment extends BaseFragment {
         option.setIsNeedAddress(true);
         mLocationClient.setLocOption(option);
     }
+
     /**
      * 开始定位的方法
      */
@@ -351,4 +406,16 @@ public class HomeFragment extends BaseFragment {
         }
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mBanner.pause();//暂停轮播
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mBanner.start();//开始轮播
+    }
 }

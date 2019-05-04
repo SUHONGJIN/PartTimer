@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class BossSelectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
+public class BossPostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
     private List<JobSelection> datalist;
     private Context context;
     private OnItemClickListener onItemClickListener;
@@ -28,7 +28,7 @@ public class BossSelectionAdapter extends RecyclerView.Adapter<RecyclerView.View
      * @param context  上下文
      * @param datalist 数据集合
      */
-    public BossSelectionAdapter(Context context, List<JobSelection> datalist) {
+    public BossPostAdapter(Context context, List<JobSelection> datalist) {
         this.context = context;
         this.datalist = datalist;
     }
@@ -69,7 +69,7 @@ public class BossSelectionAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         if (logo != null) {
             //网络加载图片
-            Glide.with(context).load(logo).error(R.drawable.head).into(((MyHolder) viewHolder).civ_boss_logo);
+            Glide.with(context).load(logo).placeholder(R.drawable.head).error(R.drawable.head).into(((MyHolder) viewHolder).civ_boss_logo);
         }
     }
     /**
