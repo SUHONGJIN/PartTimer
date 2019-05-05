@@ -61,25 +61,24 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.mRecyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.mSmartRefreshLayout)
+
     SmartRefreshLayout mSmartRefreshLayout;
     private MZBannerView mBanner;
     private RecyclerView sRecyclerView;
-
-    private final int UPDATE_DATE_CODE = 2;
-    private final int RESULT_DATE_CODE = 100;
-    private final int RESULT_LOCATION_CODE = 200;
-
     //百度定位
     public LocationClient mLocationClient = null;
     private MyLocationListener myListener = new MyLocationListener();
     //创建权限集合
     private List<String> permissionList = new ArrayList<>();
-
     private List<JobSelection> datalist = new ArrayList<>();
     private List<StrategyTable> strategyList = new ArrayList<>();
     private HomeAdapter adapter;
     private GLAdapter sAdapter;
     private RelativeLayout rl_strategy;
+
+    private final int UPDATE_DATE_CODE = 2;
+    private final int RESULT_DATE_CODE = 100;
+    private final int RESULT_LOCATION_CODE = 200;
 
     @Override
     public int getLayoutResId() {
@@ -102,56 +101,6 @@ public class HomeFragment extends BaseFragment {
 
         //自动刷新
         mSmartRefreshLayout.autoRefresh();
-    }
-
-    /**
-     * 头部内容
-     */
-    private void headPart() {
-        View headView = LayoutInflater.from(getContext()).inflate(R.layout.item_header_layout, null);
-        mBanner = (MZBannerView) headView.findViewById(R.id.mBanner);
-        sRecyclerView = (RecyclerView) headView.findViewById(R.id.sRecyclerView);
-        rl_strategy = (RelativeLayout) headView.findViewById(R.id.rl_strategy);
-        rl_strategy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), JobStrategyActivity.class));
-            }
-        });
-        getBannerData();
-        getStrategy();
-        adapter.setHeaderView(headView);
-    }
-
-    /**
-     * 获取兼职攻略
-     */
-    private void getStrategy() {
-        BmobQuery<StrategyTable> bmobQuery = new BmobQuery<>();
-        bmobQuery.order("-createdAt");
-        bmobQuery.findObjects(new FindListener<StrategyTable>() {
-            @Override
-            public void done(List<StrategyTable> list, BmobException e) {
-                if (e == null) {
-                    strategyList.clear();
-                    strategyList.addAll(list);
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                    layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-                    sRecyclerView.setLayoutManager(layoutManager);
-                    sRecyclerView.setAdapter(sAdapter);
-                } else {
-
-                }
-            }
-        });
-        sAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(getContext(), WebDetailsActivity.class);
-                intent.putExtra("url", strategyList.get(position).getStrategy_web_url());
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -230,6 +179,56 @@ public class HomeFragment extends BaseFragment {
     }
 
     /**
+     * 头部内容
+     */
+    private void headPart() {
+        View headView = LayoutInflater.from(getContext()).inflate(R.layout.item_header_layout, null);
+        mBanner = (MZBannerView) headView.findViewById(R.id.mBanner);
+        sRecyclerView = (RecyclerView) headView.findViewById(R.id.sRecyclerView);
+        rl_strategy = (RelativeLayout) headView.findViewById(R.id.rl_strategy);
+        rl_strategy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), JobStrategyActivity.class));
+            }
+        });
+        getBannerData();
+        getStrategy();
+        adapter.setHeaderView(headView);
+    }
+
+    /**
+     * 获取兼职攻略
+     */
+    private void getStrategy() {
+        BmobQuery<StrategyTable> bmobQuery = new BmobQuery<>();
+        bmobQuery.order("-createdAt");
+        bmobQuery.findObjects(new FindListener<StrategyTable>() {
+            @Override
+            public void done(List<StrategyTable> list, BmobException e) {
+                if (e == null) {
+                    strategyList.clear();
+                    strategyList.addAll(list);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                    layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    sRecyclerView.setLayoutManager(layoutManager);
+                    sRecyclerView.setAdapter(sAdapter);
+                } else {
+
+                }
+            }
+        });
+        sAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(getContext(), WebDetailsActivity.class);
+                intent.putExtra("url", strategyList.get(position).getStrategy_web_url());
+                startActivity(intent);
+            }
+        });
+    }
+
+    /**
      * 获取轮播图后台数据
      */
     private void getBannerData() {
@@ -247,18 +246,7 @@ public class HomeFragment extends BaseFragment {
                         }
                     });
                     mBanner.setIndicatorVisible(false);
-                    //添加Page点击事件
-//                    mBanner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
-//                        @Override
-//                        public void onPageClick(View view, int i) {
-//                            Log.i("tag11","111222");
-//                            Intent intent = new Intent(getContext(), WebDetailsActivity.class);
-//                            intent.putExtra("url", list.get(i).getBanner_web_url());
-//                            startActivity(intent);
-//                            Log.i("tag11","1122233");
-//                        }
-//                    });
-
+                    mBanner.setDelayedTime(3000);
                     mBanner.start();
 
                 } else {

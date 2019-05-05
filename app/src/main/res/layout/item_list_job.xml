@@ -5,8 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/selector_itemview_bg"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
+    android:paddingLeft="13dp"
+    android:paddingRight="13dp"
     android:paddingTop="10dp">
 
     <RelativeLayout
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="2019年4月9日"
-            android:textColor="@color/goldenrod"
+            android:textColor="@color/gray"
             android:layout_centerVertical="true"
             android:textSize="14sp"
             android:drawablePadding="4dp"
@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:enabled="true"
-                android:maxLength="5"
+                android:maxLength="6"
                 android:text="广州天河区广州天河区广州天河区"
                 android:ellipsize="end"
                 android:textColor="@color/somber"

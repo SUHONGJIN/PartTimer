@@ -6,7 +6,7 @@
     android:layout_margin="@dimen/dp_4"
     android:background="@drawable/selector_itemview_bg">
 
-    <ImageView
+    <com.mfzj.parttimer.utils.CustomRoundAngleImageView
         android:id="@+id/iv_str_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        android:textSize="16sp"
-        android:padding="6dp"
+        android:textSize="14sp"
+        android:padding="4dp"
         android:text="兼职攻略标题兼职攻略标题兼职攻略标题兼职攻略标题兼职攻略标题"
         android:lines="1"
         android:ellipsize="end"

@@ -110,7 +110,7 @@ public class MyResumeActivity extends BaseActivity {
                 .centerCrop()
                 .placeholder(R.drawable.banner_default)
                 .error(R.drawable.banner_default)
-                .apply(bitmapTransform(new BlurTransformation(22,2)))
+                .apply(bitmapTransform(new BlurTransformation(24,6)))
                 .into(iv_head_bg);
 
         Glide.with(MyResumeActivity.this)

@@ -6,8 +6,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mfzj.parttimer.R;
+import com.mfzj.parttimer.adapter.AdvertisingBannerViewHolder;
 import com.mfzj.parttimer.base.BaseFragment;
+import com.mfzj.parttimer.bean.Advertising;
 import com.mfzj.parttimer.bean.User;
 import com.mfzj.parttimer.utils.ToastUtils;
 import com.mfzj.parttimer.view.activity.AboutActivity;
@@ -16,21 +19,27 @@ import com.mfzj.parttimer.view.activity.CollectActivity;
 import com.mfzj.parttimer.view.activity.FeedBackActivity;
 import com.mfzj.parttimer.view.activity.LoginActivity;
 import com.mfzj.parttimer.view.activity.MyDataActivity;
-import com.mfzj.parttimer.view.activity.postjob.MyPostPartTimerActivity;
-import com.mfzj.parttimer.view.activity.MyStateActivity;
-import com.mfzj.parttimer.view.activity.setting.SettingActivity;
 import com.mfzj.parttimer.view.activity.MyResumeActivity;
+import com.mfzj.parttimer.view.activity.MyStateActivity;
 import com.mfzj.parttimer.view.activity.WalletActivity;
+import com.mfzj.parttimer.view.activity.postjob.MyPostPartTimerActivity;
+import com.mfzj.parttimer.view.activity.setting.SettingActivity;
 import com.mfzj.parttimer.widget.ItemMenu;
 import com.mfzj.parttimer.widget.ItemView;
-import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.zhouwei.mzbanner.MZBannerView;
+import com.zhouwei.mzbanner.holder.MZHolderCreator;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -71,6 +80,8 @@ public class MyFragment extends BaseFragment {
     ImageView iv_vip;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+    @BindView(R.id.aBanner)
+    MZBannerView aBanner;
     private static  final int INFO_CODE=1;
     @Override
     public int getLayoutResId() {
@@ -79,11 +90,43 @@ public class MyFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
+        getAdvertising();
+
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 initData();
-                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+                getAdvertising();
+                refreshlayout.finishRefresh(1000);
+            }
+        });
+
+    }
+
+    /**
+     * 获取广告轮播图后台数据
+     */
+    private void getAdvertising() {
+        BmobQuery<Advertising> query = new BmobQuery<>();
+        query.order("-createdAt");
+        query.findObjects(new FindListener<Advertising>() {
+            @Override
+            public void done(final List<Advertising> list, BmobException e) {
+                if (e == null) {
+                    // 设置数据
+                    aBanner.setPages(list, new MZHolderCreator<AdvertisingBannerViewHolder>() {
+                        @Override
+                        public AdvertisingBannerViewHolder createViewHolder() {
+                            return new AdvertisingBannerViewHolder();
+                        }
+                    });
+                    aBanner.setIndicatorVisible(false);
+                    aBanner.setDelayedTime(3000);
+                    aBanner.start();
+                } else {
+                    ToastUtils.setOkToast(getContext(), "请检查网络！");
+                }
+
             }
         });
 
@@ -272,6 +315,18 @@ public class MyFragment extends BaseFragment {
                 tv_motto.setText(user.getMotto());
             }
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        aBanner.pause();//暂停轮播
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        aBanner.start();//开始轮播
     }
 
 }
