@@ -21,10 +21,12 @@ import com.baidu.location.LocationClientOption;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzj.parttimer.CitySelect.CityPickerActivity;
 import com.mfzj.parttimer.R;
+import com.mfzj.parttimer.adapter.AdvertisingBannerViewHolder;
 import com.mfzj.parttimer.adapter.BannerViewHolder;
 import com.mfzj.parttimer.adapter.GLAdapter;
 import com.mfzj.parttimer.adapter.HomeAdapter;
 import com.mfzj.parttimer.base.BaseFragment;
+import com.mfzj.parttimer.bean.Advertising;
 import com.mfzj.parttimer.bean.BannerBean;
 import com.mfzj.parttimer.bean.JobSelection;
 import com.mfzj.parttimer.bean.StrategyTable;
@@ -64,6 +66,7 @@ public class HomeFragment extends BaseFragment {
 
     SmartRefreshLayout mSmartRefreshLayout;
     private MZBannerView mBanner;
+    private MZBannerView aBanner;
     private RecyclerView sRecyclerView;
     //百度定位
     public LocationClient mLocationClient = null;
@@ -100,7 +103,7 @@ public class HomeFragment extends BaseFragment {
         headPart();
 
         //自动刷新
-        mSmartRefreshLayout.autoRefresh();
+        //mSmartRefreshLayout.autoRefresh();
     }
 
     @Override
@@ -111,12 +114,36 @@ public class HomeFragment extends BaseFragment {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(adapter);
 
+        //刷新兼职攻略数据
+        getStrategy();
+
+        getAdvertising();
+
+        BmobQuery<JobSelection> query = new BmobQuery<>();
+        query.order("-createdAt");
+        query.setSkip(0);
+        query.setLimit(10);
+        query.findObjects(new FindListener<JobSelection>() {
+            @Override
+            public void done(List<JobSelection> list, BmobException e) {
+                if (e == null) {
+                    datalist.clear();
+                    datalist.addAll(list);
+                    adapter.replaceData(datalist);
+                } else {
+                    ToastUtils.setOkToast(getContext(), "获取数据失败，请重试~");
+                }
+            }
+        });
+
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
 
                 //刷新兼职攻略数据
                 getStrategy();
+
+                getAdvertising();
 
                 BmobQuery<JobSelection> query = new BmobQuery<>();
                 query.order("-createdAt");
@@ -184,6 +211,7 @@ public class HomeFragment extends BaseFragment {
     private void headPart() {
         View headView = LayoutInflater.from(getContext()).inflate(R.layout.item_header_layout, null);
         mBanner = (MZBannerView) headView.findViewById(R.id.mBanner);
+        aBanner = (MZBannerView) headView.findViewById(R.id.aBanner);
         sRecyclerView = (RecyclerView) headView.findViewById(R.id.sRecyclerView);
         rl_strategy = (RelativeLayout) headView.findViewById(R.id.rl_strategy);
         rl_strategy.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +223,35 @@ public class HomeFragment extends BaseFragment {
         getBannerData();
         getStrategy();
         adapter.setHeaderView(headView);
+    }
+
+    /**
+     * 获取广告轮播图后台数据
+     */
+    private void getAdvertising() {
+        BmobQuery<Advertising> query = new BmobQuery<>();
+        query.order("-createdAt");
+        query.findObjects(new FindListener<Advertising>() {
+            @Override
+            public void done(final List<Advertising> list, BmobException e) {
+                if (e == null) {
+                    // 设置数据
+                    aBanner.setPages(list, new MZHolderCreator<AdvertisingBannerViewHolder>() {
+                        @Override
+                        public AdvertisingBannerViewHolder createViewHolder() {
+                            return new AdvertisingBannerViewHolder();
+                        }
+                    });
+                    aBanner.setIndicatorVisible(false);
+                    aBanner.setDelayedTime(6000);
+                    aBanner.start();
+                } else {
+                    ToastUtils.setOkToast(getContext(), "请检查网络！");
+                }
+
+            }
+        });
+
     }
 
     /**
@@ -245,7 +302,6 @@ public class HomeFragment extends BaseFragment {
                             return new BannerViewHolder();
                         }
                     });
-                    mBanner.setIndicatorVisible(false);
                     mBanner.setDelayedTime(3000);
                     mBanner.start();
 
@@ -399,11 +455,13 @@ public class HomeFragment extends BaseFragment {
     public void onPause() {
         super.onPause();
         mBanner.pause();//暂停轮播
+        aBanner.pause();//暂停轮播
     }
 
     @Override
     public void onResume() {
         super.onResume();
         mBanner.start();//开始轮播
+        aBanner.start();//开始轮播
     }
 }

@@ -63,7 +63,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         hideAllFragment(transaction);
         switch (i) {
             case R.id.rb_home:
-                if (rb_home != null) {
+                if (fragmentHome == null) {
                     fragmentHome = new HomeFragment();
                     transaction.add(R.id.fl_content, fragmentHome);
                 } else {
@@ -71,7 +71,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 }
                 break;
             case R.id.rb_post:
-                if (rb_post != null) {
+                if (fragmentPost == null) {
                     fragmentPost = new PostFragment();
                     transaction.add(R.id.fl_content, fragmentPost);
                 } else {
@@ -79,7 +79,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 }
                 break;
             case R.id.rb_message:
-                if (rb_message != null) {
+                if (fragmentMessage == null) {
                     fragmentMessage = new MessageFragment();
                     transaction.add(R.id.fl_content, fragmentMessage);
                 } else {
@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 }
                 break;
             case R.id.rb_my:
-                if (rb_my != null) {
+                if (fragmentMy == null) {
                     fragmentMy = new MyFragment();
                     transaction.add(R.id.fl_content, fragmentMy);
                 } else {

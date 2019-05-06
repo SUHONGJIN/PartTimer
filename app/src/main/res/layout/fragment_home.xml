@@ -48,7 +48,7 @@
 
     </RelativeLayout>
 
-    <!--<include layout="@layout/item_line_layout"/>-->
+    <include layout="@layout/item_line_layout"/>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/mSmartRefreshLayout"

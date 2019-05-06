@@ -110,10 +110,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="4dp"
                 android:background="@color/white"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp">
 
                 <com.mfzj.parttimer.widget.ItemMenu
                     android:id="@+id/itemmenu_item1"
@@ -153,19 +153,11 @@
 
             </LinearLayout>
 
-            <com.zhouwei.mzbanner.MZBannerView
-                android:id="@+id/aBanner"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                app:canLoop="true"
-                app:middle_page_cover="true"
-                app:open_mz_mode="false" />
-
             <com.mfzj.parttimer.widget.ItemView
                 android:id="@+id/itemview_item1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="10dp"
                 app:isShowLine="true"
                 app:setIcon="@mipmap/icon_item1"
                 app:setText="@string/item1_name">

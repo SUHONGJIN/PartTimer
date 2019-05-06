@@ -18,8 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/rl_strategy"
@@ -32,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="兼职攻略"
                 android:textColor="@color/somber"
-                android:textSize="16sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -54,17 +53,24 @@
 
     </LinearLayout>
 
+    <!--<include layout="@layout/item_line_layout" />-->
+
+    <com.zhouwei.mzbanner.MZBannerView
+        android:id="@+id/aBanner"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:canLoop="true"
+        app:middle_page_cover="true"
+        app:open_mz_mode="false" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:text="全部兼职"
-        android:textColor="@color/somber"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
+        android:padding="10dp"
+        android:text="附近兼职"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
     <include layout="@layout/item_line_layout" />
 
