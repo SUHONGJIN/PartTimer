@@ -50,25 +50,3 @@
 -dontwarn **.R$*
 
 
-#---------Bmob------------
--ignorewarnings
-
--keepattributes Signature,*Annotation*
-
-# keep BmobSDK
--dontwarn cn.bmob.v3.**
--keep class cn.bmob.v3.** {*;}
-
-# 确保JavaBean不被混淆-否则gson将无法将数据解析成具体对象
--keep class * extends cn.bmob.v3.BmobObject {
-    *;
-}
--keep class com.example.bmobexample.bean.BankCard{*;}
--keep class com.example.bmobexample.bean.GameScore{*;}
--keep class com.example.bmobexample.bean.MyUser{*;}
--keep class com.example.bmobexample.bean.Person{*;}
--keep class com.example.bmobexample.file.Movie{*;}
--keep class com.example.bmobexample.file.Song{*;}
--keep class com.example.bmobexample.relation.Post{*;}
--keep class com.example.bmobexample.relation.Comment{*;}
-

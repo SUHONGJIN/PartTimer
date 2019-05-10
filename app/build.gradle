@@ -21,8 +21,8 @@ MobSDK {
                 shareByAppClient false
             }
             Wechat {
-                appId "wx4868b35061f87885"
-                appSecret "64020361b8ec4c99936c0e3999a9f249"
+                appId "wx70ba49d7aacbbab6"
+                appSecret "525432a19edb91a5e046f404cf7a9fd4"
             }
             QQ {
                 appId "100371282"
@@ -60,6 +60,7 @@ android {
         ]
         // ===================================================================
 
+        multiDexEnabled = true
     }
     buildTypes {
         release {
@@ -154,5 +155,6 @@ dependencies {
 
     //指示器
     implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
+
 
 }

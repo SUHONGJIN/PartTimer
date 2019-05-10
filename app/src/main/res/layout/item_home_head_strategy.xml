@@ -6,7 +6,7 @@
     android:layout_margin="@dimen/dp_4"
     android:background="@drawable/selector_itemview_bg">
 
-    <com.mfzj.parttimer.utils.CustomRoundAngleImageView
+    <ImageView
         android:id="@+id/iv_str_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

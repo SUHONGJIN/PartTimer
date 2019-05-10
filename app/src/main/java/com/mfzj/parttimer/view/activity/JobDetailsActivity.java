@@ -421,7 +421,7 @@ public class JobDetailsActivity extends BaseActivity {
         // titleUrl QQ和QQ空间跳转链接
         oks.setTitleUrl("我在蜜蜂兼APP职发现了一个有趣的兼职" + job_title + "你也来吧！" + job_describe);
         // text是分享文本，所有平台都需要这个字段
-        oks.setText("我发现了一个有趣的兼职，快来蜜蜂兼职看看吧！");
+        oks.setText("我在蜜蜂兼APP职发现了一个有趣的兼职" + job_title + "你也来吧！" + job_describe);
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
         oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
         // url在微信、微博，Facebook等平台中使用

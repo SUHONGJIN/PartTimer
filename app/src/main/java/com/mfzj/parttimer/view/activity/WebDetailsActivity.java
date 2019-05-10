@@ -103,13 +103,13 @@ public class WebDetailsActivity extends BaseActivity {
         // titleUrl QQ和QQ空间跳转链接
         oks.setTitleUrl(url);
         // text是分享文本，所有平台都需要这个字段
-        oks.setText("我发现了一个有趣的内容，快来蜜蜂兼职看看吧！");
+        oks.setText("我给你分享一个有趣的内容，快来蜜蜂兼职看看吧！"+url);
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
         oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
         // url在微信、微博，Facebook等平台中使用
         oks.setUrl(url);
         // comment是我对这条分享的评论，仅在人人网使用
-        oks.setComment("我发现了一个有趣的内容，快来蜜蜂兼职看看吧！");
+        oks.setComment("我发现了一个有趣的内容，快来蜜蜂兼职看看吧！"+url);
         // 启动分享GUI
         oks.show(this);
     }

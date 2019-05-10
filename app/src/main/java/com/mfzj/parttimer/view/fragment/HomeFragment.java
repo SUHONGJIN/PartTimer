@@ -114,9 +114,9 @@ public class HomeFragment extends BaseFragment {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(adapter);
 
-        //刷新兼职攻略数据
+        //刷新数据
         getStrategy();
-
+        getBannerData();
         getAdvertising();
 
         BmobQuery<JobSelection> query = new BmobQuery<>();
@@ -142,7 +142,7 @@ public class HomeFragment extends BaseFragment {
 
                 //刷新兼职攻略数据
                 getStrategy();
-
+                getBannerData();
                 getAdvertising();
 
                 BmobQuery<JobSelection> query = new BmobQuery<>();
